@@ -24,7 +24,8 @@
     "ter-no-irregular-whitespace": true,
     "ter-no-sparse-arrays": true,
     "ter-prefer-arrow-callback": true,
-    "valid-typeof": true
+    "valid-typeof": true,
+    "interface-name": false
   },
   "rulesDirectory": [
     "node_modules/tslint-eslint-rules/dist/rules"
