@@ -1,14 +1,33 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
-      Ionic Blank
+      Heartbeat
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addUserPrompt()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  Hello World <!--A change made by ash for testing gitKraken-->
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <ion-list>
+    <ion-item-sliding #item *ngFor="let user of users | async">
+      <ion-item (click)="updateUserPrompt(user)">
+        <ion-avatar item-start>
+          <img src="http://i.pravatar.cc/150?u={{user.$id}}">
+        </ion-avatar>
+        <h2>{{user.name}}</h2>
+        <p>Age: {{user.age}}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="removeUser(user)">
+          <ion-icon name="trash"></ion-icon>
+          Remove
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
 </ion-content>
