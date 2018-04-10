@@ -11,11 +11,13 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import firebaseConfig from '../config/firebase.config';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -28,6 +30,7 @@ import firebaseConfig from '../config/firebase.config';
   entryComponents: [
     MyApp,
     HomePage,
+    LoginPage,
   ],
   providers: [
     StatusBar,

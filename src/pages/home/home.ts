@@ -3,6 +3,7 @@ import { NavController, AlertController } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { User } from '../../models/user';
 import { Observable } from 'rxjs/Observable';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -21,7 +22,7 @@ export class HomePage {
   }
 
   public addUserPrompt() {
-    const prompt = this.alertCtrl.create({
+    /*const prompt = this.alertCtrl.create({
       title: 'Add User',
       message: 'Add a new user.',
       inputs: [
@@ -45,7 +46,8 @@ export class HomePage {
         },
       ],
     });
-    prompt.present();
+    prompt.present();*/
+    this.navCtrl.push(LoginPage);
   }
 
   public updateUserPrompt(user: User) {
