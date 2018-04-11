@@ -1,7 +1,7 @@
 import { DateTime } from "ionic-angular";
 
 //import { Person } from '../models/person'; 
-export interface Doctor{
+export class Doctor{
     //person: Person
     phone: string;
     //speciality
@@ -10,3 +10,4 @@ export interface Doctor{
     workoursStart: DateTime;
     workoursEnd: DateTime;
 }
+

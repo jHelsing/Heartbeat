@@ -3,6 +3,7 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Doctor } from '../../models/doctor';
 import { Observable } from 'rxjs/Observable';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'page-doctor',
@@ -19,4 +20,14 @@ import { Observable } from 'rxjs/Observable';
           $id: action.payload.doc.id, ...action.payload.doc.data() as Doctor,
         })));
       }
+  
+    public addDoctor(phone: string, email: string){
+        this.doctorsCollection.add({ phone: phone, email: email, workoursEnd: null, workoursStart: null});
+    } 
+
+    public event = {
+        month: "2018-01-01",
+        timeStarts: "08:08",
+        timeEnds: "1990-02-23"
+    }
   }

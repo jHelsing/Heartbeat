@@ -3,6 +3,7 @@ import { NavController, AlertController } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { User } from '../../models/user';
 import { Observable } from 'rxjs/Observable';
+import { DoctorRegistration } from '../doctorRegistration/doctorRegistration';
 
 @Component({
   selector: 'page-home',
@@ -18,6 +19,10 @@ export class HomePage {
     this.users = this.usersCollection.snapshotChanges().map((actions) => actions.map((action) => ({
       $id: action.payload.doc.id, ...action.payload.doc.data() as User,
     })));
+  }
+
+  doctorView(){
+    this.navCtrl.push(DoctorRegistration);
   }
 
   public addUserPrompt() {
