@@ -14,12 +14,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'patient-details.html',
 })
 export class PatientDetailsPage {
+    public patient: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PatientDetailsPage');
+      this.patient = navParams.get("patient");
   }
 
 }
