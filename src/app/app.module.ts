@@ -6,6 +6,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { ListPatientsPage } from '../pages/list-patients/list-patients';
+import { PatientDetailsPage } from '../pages/patient-details/patient-details';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -16,6 +18,8 @@ import firebaseConfig from '../config/firebase.config';
   declarations: [
     MyApp,
     HomePage,
+    PatientDetailsPage,
+    ListPatientsPage
   ],
   imports: [
     BrowserModule,
