@@ -21,7 +21,7 @@ export class HomePage {
     })));
   }
 
-  doctorView(){
+  public doctorView(){
     this.navCtrl.push(DoctorRegistration);
   }
 
