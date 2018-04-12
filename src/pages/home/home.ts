@@ -19,13 +19,10 @@ export class HomePage {
     this.users = this.usersCollection.snapshotChanges().map((actions) => actions.map((action) => ({
       $id: action.payload.doc.id, ...action.payload.doc.data() as User,
     })));
-
- 
-
   }
 
   public addUserPrompt() {
-    /*const prompt = this.alertCtrl.create({
+    const prompt = this.alertCtrl.create({
       title: 'Add User',
       message: 'Add a new user.',
       inputs: [
@@ -49,8 +46,7 @@ export class HomePage {
         },
       ],
     });
-    prompt.present();*/
-    this.navCtrl.push(LoginPage);
+    prompt.present();
   }
 
   public updateUserPrompt(user: User) {
@@ -99,14 +95,10 @@ export class HomePage {
     this.usersCollection.doc(user.$id).delete();
   }
 
-
-login(){
-
+  public login() {
 
     this.navCtrl.push(LoginPage);
 
   }
 
 }
-
-

@@ -20,7 +20,7 @@ import firebase from 'firebase';
       if (firebaseUser) {
         this.checkRole(firebaseUser.uid); // When user logs in, check role and load corresponding page.
       } else {
-        alert('User logged out!');
+        alert('User not logged in.');
       }
     });
   }
