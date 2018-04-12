@@ -4,7 +4,8 @@ import { DateTime } from 'ionic-angular';
 export class Doctor {
   firstName: string;
   lastName: string;
-  //age: number;
+  gender: string;
+  age: number;
   phone: string;
     // speciality: reference Role
     // office: reference Room

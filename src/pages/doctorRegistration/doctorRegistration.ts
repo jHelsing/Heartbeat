@@ -4,9 +4,6 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Doctor } from '../../models/doctor';
 import { Observable } from 'rxjs/Observable';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFirestypeModule, ModelType } from 'angular-firestype';
 
 @Component({
   selector: 'page-doctor',
@@ -30,18 +27,9 @@ export class DoctorRegistration{
     })));
   }
 
-  public addDoctor(phone, email, firstName, lastName, start: DateTime, end: DateTime) {
-    // this.doctorsCollection.add({ phone: phone, email: email, workoursEnd: null, workoursStart: null});
-    /*this.dr.firstName = firstName;
-    this.dr.lastName = lastName;
-    this.dr.phone = phone;
-    this.dr.email = email;
-    this.dr.workHoursStart = start;
-    this.dr.workHoursEnd = end;*/
-    // Temporary solution, makes everything to string and no object references e.g. Person
-    // const data = JSON.parse(JSON.stringify(this.dr));
-    // this.doctorsCollection.add(this.dr);
-    this.doctorsCollection.add({firstName: firstName, lastName: lastName, phone: phone,
+  public addDoctor(phone, email, firstName, lastName, age, gender, start: DateTime, end: DateTime) {
+    
+    this.doctorsCollection.add({firstName: firstName, lastName: lastName, phone: phone, gender:gender, age: age,
                                 email: email, workHoursStart: start, workHoursEnd: end});
   }
 }
