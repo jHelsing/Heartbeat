@@ -17,7 +17,7 @@ import { LoginPage } from '../pages/login/login';
   declarations: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
   ],
   imports: [
     BrowserModule,

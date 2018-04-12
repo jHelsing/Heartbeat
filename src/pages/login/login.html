@@ -15,4 +15,22 @@
 
 <ion-content padding>
 
+    <ion-item>
+      <ion-label color="primary" stacked>Stacked Label</ion-label>
+      <ion-input [(ngModel)]="inputEmail" type="email" placeholder="Email Input"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label color="primary" stacked>Stacked Label</ion-label>
+      <ion-input [(ngModel)]="inputPassword" type="password" placeholder="Password Input"></ion-input>
+    </ion-item>
+
+    <button ion-button (click)="login()">
+      Login
+    </button>
+
+    <button ion-button (click)="logout()">
+      Logout
+    </button>
+
 </ion-content>
