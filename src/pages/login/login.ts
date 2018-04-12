@@ -1,23 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import firebase from 'firebase';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { User } from '../../models/user';
-import { Observable } from 'rxjs/Observable';
-
-/*
-Headers for firestore start
-*/
-
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-
 
 @IonicPage()
 @Component({
@@ -26,74 +9,54 @@ Headers for firestore start
 })
  export class LoginPage {
 
+  // Used to read the input fields from HTML elements with [(ngModel)].
   private inputEmail;
   private inputPassword;
 
-
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+    // Add listener for detecting when user logs out or in.
     firebase.auth().onAuthStateChanged((firebaseUser) => {
       if (firebaseUser) {
-        //alert('Logged in');
-       
-        this.checkRoles(firebaseUser.uid);
-
-        
-
+        this.checkRole(firebaseUser.uid); // When user logs in, check role and load corresponding page.
       } else {
-        //alert('Not logged in');
+        alert('User logged out!');
       }
     });
   }
 
-  checkRoles(userID){
-
-     //alert(userID);
-     //alert("checkRules: userID = " + userID);
-
-     var db = firebase.firestore();
-     
-     var nursesRef = db.collection('nurses').doc(userID).get().then(function(doc){
-      
-     if (doc.exists) {
-        //console.log("Document data:", doc.data());
-        
-        //alert(doc.data()["name"]); //this is how to access the fields
-        alert("The role is = Nurse");
-      }
-
-      });
-
-     var doctorRef = db.collection('doctors').doc(userID).get().then(function(doc){
-      
-     if (doc.exists) {
-        //console.log("Document data:", doc.data());
-        
-        //alert(doc.data()["name"]); this is how to access the fields
-        alert("The role is = Doctor");
-      }
-
-     });
-
-
-     //console.log(db);
-
+  public checkRole(userID) {
+    // Load page corresponding to user role.
+    this.loadCorrectPage(userID, 'nurses');
+    this.loadCorrectPage(userID, 'doctors');
   }
 
+  // Fetch username and password from input fields. Log user in.
   public login() {
-    //alert('Logging in');
     const auth = firebase.auth();
     const promise = auth.signInWithEmailAndPassword(this.inputEmail, this.inputPassword);
     promise.catch((e) => alert(e.message));
 
   }
 
+  // Log user out.
   public logout() {
-    alert('Logging out');
     const auth = firebase.auth();
     auth.signOut();
   }
 
- 
+  private loadCorrectPage(userID, roleCollectionName) {
+    const db = firebase.firestore();
+
+    // Look for userID in collection. If it exists in category, user has role.
+    db.collection(roleCollectionName).doc(userID).get().then((doc) => {
+
+      if (doc.exists) {
+        alert('User is in role category = ' + roleCollectionName);
+        // TODO: Load correct page.
+      }
+
+    });
+  }
 
 }
