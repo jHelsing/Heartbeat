@@ -14,10 +14,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'patient-details.html',
 })
 export class PatientDetailsPage {
-    public patient: any;
+  public patient: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-      this.patient = navParams.get("patient");
+    this.patient = navParams.get('patient');
   }
 
 }

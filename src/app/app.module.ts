@@ -19,7 +19,7 @@ import firebaseConfig from '../config/firebase.config';
     MyApp,
     HomePage,
     PatientDetailsPage,
-    ListPatientsPage
+    ListPatientsPage,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +31,7 @@ import firebaseConfig from '../config/firebase.config';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
+    ListPatientsPage,
   ],
   providers: [
     StatusBar,
