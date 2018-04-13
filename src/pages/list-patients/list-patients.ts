@@ -7,7 +7,7 @@ import firebase from 'firebase';
 import { Patient } from '../../models/patient';
 // import { PatientDoctor } from '../../models/patient-doctor';
 
-// import { PatientDetailsPage } from '../patient-details/patient-details';
+import { PatientDetailsPage } from '../patient-details/patient-details';
 /**
  * Generated class for the ListPatientsPage page.
  *
@@ -56,7 +56,8 @@ export class ListPatientsPage {
   }
 
   public openDetails(patient: Patient) {
-    
+    this.navCtrl.data = patient;
+    this.navCtrl.push(PatientDetailsPage);
   }
 
 }

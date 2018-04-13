@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { Patient } from '../../models/patient';
+
 /**
  * Generated class for the PatientDetailsPage page.
  *

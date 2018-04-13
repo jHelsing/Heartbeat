@@ -31,7 +31,9 @@ import firebaseConfig from '../config/firebase.config';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    HomePage,
     ListPatientsPage,
+    PatientDetailsPage,
   ],
   providers: [
     StatusBar,
