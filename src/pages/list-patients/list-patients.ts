@@ -19,8 +19,8 @@ export class ListPatientsPage {
     const db = firebase.firestore();
     const patientRef = db.collection('patients');
     const patients = this.patients;
-    patientRef.get().then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
+    patientRef.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
         const data = doc.data();
         if (data.doctor != null && data.doctor._key.path.segments[6] === '8R79pi90CmrO9sYSdHUX') {
           // The patient belongs to the doctor in question.
