@@ -56,8 +56,7 @@ export class ListPatientsPage {
   }
 
   public openDetails(patient: Patient) {
-    this.navCtrl.data = patient;
-    this.navCtrl.push(PatientDetailsPage);
+    this.navCtrl.push(PatientDetailsPage, {patient: patient});
   }
 
 }
