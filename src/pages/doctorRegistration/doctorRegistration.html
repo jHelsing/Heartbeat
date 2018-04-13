@@ -24,23 +24,18 @@
     </ion-item>
 
     <ion-item>
+        <ion-label>Spciality</ion-label>
+        <ion-select [(ngModel)]="dr.speciality">
+            <ion-option *ngFor="let speciality of specialities | async" [value]="speciality.name">{{speciality.name}}</ion-option>
+         </ion-select>
+    </ion-item>
+
+    <ion-item>
         <ion-input type="email" id="email" placeholder="email" [(ngModel)]="dr.email"></ion-input>
     </ion-item>
 
     <ion-item>
-        <ion-input type="password" placeholder="password"></ion-input>
-    </ion-item>
-
-    <ion-item>
-        <ion-input type="text" placeholder="id"></ion-input>
-    </ion-item>
-
-    <ion-item>
-        <ion-input type="text" placeholder="access level"></ion-input>
-    </ion-item>
-
-    <ion-item>
-        <ion-input type="text" placeholder="speciality"></ion-input>
+        <ion-input type="password" placeholder="password" [(ngModel)]="dr.password"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -53,9 +48,9 @@
         <ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="event.timeEnds"></ion-datetime>
     </ion-item>
 
-    <ion-item>
+    <!-- <ion-item>
         <ion-input type="text" placeholder="office location"></ion-input>
-    </ion-item>
+    </ion-item> -->
 
     <ion-item>
         <ion-input type="tel" id="phone" placeholder="telephone number" [(ngModel)]="dr.phone"></ion-input>
@@ -64,7 +59,10 @@
 </ion-list>
 
 <ion-buttons end>
-<button ion-button round (click)="addDoctor(dr.phone, dr.email, dr.firstName, dr.lastName, dr.gender, dr.age, event.timeStarts, event.timeEnds)">
+<button ion-button round (click)="goBack()">
+Cancel
+</button>
+<button ion-button round (click)="addDoctor(dr.firstName, dr.lastName, dr.gender, dr.age, dr.speciality, dr.email, dr.password, event.timeStarts, event.timeEnds, dr.phone)">
 Create
 </button>
 </ion-buttons>

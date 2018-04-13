@@ -1,17 +1,17 @@
 import { DateTime } from 'ionic-angular';
+import { Speciality } from '../models/specialities';
 
 // import { Person } from '../models/person';
 export class Doctor {
-  firstName: string;
-  lastName: string;
-  gender: string;
-  age: number;
-  phone: string;
-    // speciality: reference Role
+  public firstName: string;
+  public lastName: string;
+  public gender: string;
+  public age: number;
+  public password: string;
+  public phone: string;
+  public speciality: Speciality;
     // office: reference Room
-  email: string;
-  workHoursStart: DateTime;
-  workHoursEnd: DateTime;
-  constructor() {}
+  public email: string;
+  public workHoursStart: DateTime;
+  public workHoursEnd: DateTime;
 }
-
