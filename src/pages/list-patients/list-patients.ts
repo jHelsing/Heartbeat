@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import firebase from 'firebase';
 
 import { Patient } from '../../models/patient';
-import { PatientDoctor } from '../../models/patient-doctor';
+// import { PatientDoctor } from '../../models/patient-doctor';
 
 // import { PatientDetailsPage } from '../patient-details/patient-details';
 /**
@@ -20,39 +21,42 @@ import { PatientDoctor } from '../../models/patient-doctor';
   templateUrl: 'list-patients.html',
 })
 export class ListPatientsPage {
-  private patients: Observable<Patient[]>;
+  public patients: Array<Patient> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public fireStore: AngularFirestore) {
-    this.patients = fireStore.collection<Patient>('/patients').snapshotChanges().map((actions) => actions.map((action) => ({
-      $id: action.payload.doc.id, ...action.payload.doc.data() as Patient,
-    })));
-    let patientsOfDoctor = fireStore.collection<PatientDoctor>('/patientDoctors', (ref) => ref.where('doctor', '==', 'a1XamXMzTqmLpfWZQpoO')).snapshotChanges().map((actions) => actions.map((action) => ({
-      $id: action.payload.doc.id, ...action.payload.doc.data() as PatientDoctor,
-    })));
-    console.log(this.patients);
+    const db = firebase.firestore();
+    const patientRef = db.collection('patients');
+    const patients = this.patients;
+    patientRef.get().then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        let data = doc.data();
+        if (data.doctor != null && data.doctor._key.path.segments[6] === '8R79pi90CmrO9sYSdHUX') {
+          // The patient belongs to the doctor in question.
+          let patient: Patient = new Patient();
+          patient.setName(data.name);
+          patient.setID(doc.id);
+          patient.setAge(data.age);
+          patient.setDiet(data.diet);
+          patient.setDoctor(data.doctor._key.path.segments[6]);
+          patient.setBloodType(data.bloodType);
+          patient.setArrivalTime(data.arrivalTime);
+          patients.push(patient);
+        }
+        console.log(doc.id, " => ", doc.data());
+      });
+    })
+    .catch(function(error) {
+      console.log("Error getting documents: " + error);
+    });
 
-    // Get patients from doctor in navParams.get("doctor")
-    // let patientDoctorCollection = fireStore.collection<PatientDoctor>('/patientDoctors',
-    //  (ref) => ref.where('doctor', '==', 'a1XamXMzTqmLpfWZQpoO')).snapshotChanges().map((actions) => actions.map((action) => ({
-    //    $id: action.payload.doc.id, ...action.payload.doc.data() as PatientDoctor, })));
-    // this.patients = fireStore.collection<Patient>('/patients').snapshotChanges().map((actions) => actions.map((action) => ({
-    //  $id: action.payload.doc.id, ...action.payload.doc.data() as Patient, })));
-    // patientCollection.forEach(doc => console.log(doc));
-    // this.patients = patientCollection;
-    // patientDoctorCollection.forEach(doc => {
+    //this.patients = fireStore.collection<Patient>('patients', (ref) => ref.where('doctor', '==', '/doctors/8R79pi90CmrO9sYSdHUX')).snapshotChanges().map((actions) =>
+    //  actions.map((action) => ({$id: action.payload.doc.id, ...action.payload.doc.data() as Patient,
+    //  })));
+    //console.log(this.patients);
+  }
 
-    // });
-
-    // console.log(patientDoctorCollection);
-    // let patientDoctors = patientDoctorCollection.snapshotChanges().map((action) => action.payload.data());
-    // patientDoctors.forEach(doc => console.log(doc));
-    // const unfiltered = patientCollection.snapshotChanges();
-    // console.log(patientDoctors);
-    // let i: Integer;
-    // for (i = 0; i < patientDoctors.size; i++) {
-    //  console.log(unfiltered);
-    //  let newPatient = unfiltered.get();
-    // }
+  public openDetails(patient: Patient) {
+    
   }
 
 }
