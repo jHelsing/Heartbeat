@@ -22,7 +22,7 @@ export class ListPatientsPage {
     patientRef.get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         const data = doc.data();
-        if (data.doctor != null && data.doctor._key.path.segments[6] === '8R79pi90CmrO9sYSdHUX') {
+        if (data.doctor != null && data.doctor.id === '8R79pi90CmrO9sYSdHUX') {
           // The patient belongs to the doctor in question.
           const patient: Patient = new Patient();
           patient.setName(data.name);
@@ -37,7 +37,7 @@ export class ListPatientsPage {
         console.log(doc.id, '=>', doc.data());
       });
     })
-    .catch(function(error) {
+    .catch((error) => {
       console.log("Error getting documents: " + error);
     });
 
