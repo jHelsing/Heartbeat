@@ -24,7 +24,7 @@
     </ion-item>
 
     <ion-item>
-        <ion-label>Spciality</ion-label>
+        <ion-label>Speciality</ion-label>
         <ion-select [(ngModel)]="dr.speciality">
             <ion-option *ngFor="let speciality of specialities | async" [value]="speciality.name">{{speciality.name}}</ion-option>
          </ion-select>

@@ -41,6 +41,12 @@ export class DoctorRegistration {
 
     this.doctorsCollection.add({ firstName: firstName, lastName: lastName, gender: gender, age: age, speciality: speciality, email: email, 
       password: password, workHoursStart: start, workHoursEnd: end, phone: phone });
+    let alert = this.alertCtrl.create({
+      title: 'Doctor created',
+      subTitle: firstName + ' got added as a doctor.',
+      buttons: ['OK'],
+    });
+    alert.present();
   }
 
   public goBack() {
