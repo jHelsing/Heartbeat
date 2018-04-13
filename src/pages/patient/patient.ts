@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Patient } from '../../models/patient';
-import { Person } from '../../models/person';
 import { Observable } from 'rxjs/Observable';
 import { AddPatientPage } from '../add-patient/add-patient';
 import { UpdatePatientPage } from '../update-patient/update-patient';
