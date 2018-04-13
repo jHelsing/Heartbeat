@@ -13,5 +13,5 @@ export class Doctor {
     // office: reference Room
   public email: string;
   public workHoursStart: DateTime;
-  public workHoursEnd: DateTime; 
+  public workHoursEnd: DateTime;
 }

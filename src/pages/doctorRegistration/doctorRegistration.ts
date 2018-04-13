@@ -13,13 +13,13 @@ import { DocumentReference } from '@firebase/firestore-types';
 })
 
 export class DoctorRegistration {
-  public doctorsCollection: AngularFirestoreCollection<Doctor>;
-  public specialitiesCollection: AngularFirestoreCollection<Speciality>;
-  public doctors: Observable<Doctor[]>;
-  public dr: Doctor = new Doctor();
-  public specialities: Observable<Speciality[]>;
+  private doctorsCollection: AngularFirestoreCollection<Doctor>;
+  private specialitiesCollection: AngularFirestoreCollection<Speciality>;
+  private doctors: Observable<Doctor[]>;
+  private dr: Doctor = new Doctor();
+  private specialities: Observable<Speciality[]>;
 
-  public event = {
+  private event = {
     month: '2018-01-01',
     timeStarts: '08:00',
     timeEnds: '17:00',
@@ -39,9 +39,9 @@ export class DoctorRegistration {
 
   public addDoctor(firstName, lastName, gender, age, speciality, email, password, start: DateTime, end: DateTime, phone) {
 
-    this.doctorsCollection.add({ firstName: firstName, lastName: lastName, gender: gender, age: age, speciality: speciality, email: email, 
-      password: password, workHoursStart: start, workHoursEnd: end, phone: phone });
-    let alert = this.alertCtrl.create({
+    this.doctorsCollection.add({ firstName: firstName, lastName: lastName, gender: gender, age: age, speciality: speciality, email: email,
+      password, workHoursStart: start, workHoursEnd: end, phone });
+    const alert = this.alertCtrl.create({
       title: 'Doctor created',
       subTitle: firstName + ' got added as a doctor.',
       buttons: ['OK'],
