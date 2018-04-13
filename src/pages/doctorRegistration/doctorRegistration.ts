@@ -38,8 +38,8 @@ export class DoctorRegistration {
   }
 
   public addDoctor(firstName, lastName, gender, age, speciality, email, password, start: DateTime, end: DateTime, phone) {
-
-    this.doctorsCollection.add({ firstName: firstName, lastName: lastName, gender: gender, age: age, speciality: speciality, email: email,
+    const specialityRef = this.fireStore.doc('specialties/' + speciality).ref;
+    this.doctorsCollection.add({ firstName: firstName, lastName: lastName, gender: gender, age: age, speciality: specialityRef, email: email,
       password, workHoursStart: start, workHoursEnd: end, phone });
     const alert = this.alertCtrl.create({
       title: 'Doctor created',

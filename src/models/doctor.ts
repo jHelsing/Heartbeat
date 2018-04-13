@@ -1,5 +1,6 @@
 import { DateTime } from 'ionic-angular';
 import { Speciality } from '../models/specialities';
+import { DocumentReference } from '@firebase/firestore-types';
 
 // import { Person } from '../models/person';
 export class Doctor {
@@ -9,7 +10,7 @@ export class Doctor {
   public age: number;
   public password: string;
   public phone: string;
-  public speciality: Speciality;
+  public speciality: DocumentReference;
     // office: reference Room
   public email: string;
   public workHoursStart: DateTime;
