@@ -12,8 +12,6 @@ export class Patient {
   // alive: boolean;
   public doctor?: string;
 
-  constructor() {}
-
   public setName(newName: string) {
     this.name = newName;
   }
