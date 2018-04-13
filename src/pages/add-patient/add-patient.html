@@ -1,0 +1,116 @@
+<!--
+  Generated template for the AddPatientPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add Patient</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="background">
+  <ion-card>
+    <ion-card-header>
+      Add Patient
+    </ion-card-header>
+    <ion-card-content>
+
+
+      <ion-list no-lines>
+        <form #pform="ngForm" (ngSubmit)="addPatient(pform)">
+        <!--  <ion-item>
+            <ion-label floating [ngClass]="{'required': id.errors}">Patient Id</ion-label>
+            <ion-input type="text" [(ngModel)]="newPatient.id" maxlength="10" name="id" required #id="ngModel"></ion-input>
+          </ion-item>-->
+          <!--<span *ngIf="pid.errors">
+              <span [hidden]="!pid.errors.required">
+                  <ion-label style="color: red; margin-left: 16px;"> Id is required </ion-label>
+              </span>
+          </span>-->
+          <ion-item>
+            <ion-label floating [ngClass]="{'required': name.errors}">Name</ion-label>
+            <ion-input type="text" [(ngModel)]="newPatient.name" maxlength="20" name="name" required #name="ngModel"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating [ngClass]="{'required': age.errors}">Age</ion-label>
+            <ion-input type="tel" pattern="[0-9]*" [(ngModel)]="newPatient.age" maxlength="3" name="age" #age="ngModel" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label [ngClass]="{'required': gender.errors}">Gender</ion-label>
+            <ion-select [(ngModel)]="newPatient.gender" name="gender" #gender="ngModel" required>
+              <ion-option value="Female">Female</ion-option>
+              <ion-option value="Male">Male</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Blood Group</ion-label>
+            <ion-select [(ngModel)]="newPatient.bloodType" name="bloodType">
+              <ion-option value="A+">A+</ion-option>
+              <ion-option value="A-">A-</ion-option>
+              <ion-option value="B+">B+</ion-option>
+              <ion-option value="B-">B-</ion-option>
+              <ion-option value="O+">O+</ion-option>
+              <ion-option value="O-">O-</ion-option>
+              <ion-option value="AB+">AB+</ion-option>
+              <ion-option value="AB-">AB-</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label floating >Arrival Time</ion-label>
+            <!--<ion-input type="date" [(ngModel)]="newPatient.arrivalTime" name="arrivalTime"></ion-input>-->
+            <ion-datetime [(ngModel)]="newPatient.arrivalTime" name="arrivalTime">></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label floating [ngClass]="{'required': roomRef.errors}">Room</ion-label>
+            <!--<ion-input type="text" [(ngModel)]="newPatient.room" name="room" maxlength="12"></ion-input>-->
+            <ion-select [(ngModel)]="newPatient.roomRef" required name="roomRef" #roomRef="ngModel">
+              <ion-option *ngFor="let room of rooms | async" value="{{room.$id}}">{{room.name}}</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <!--<ion-item>
+            <ion-label>Diseases</ion-label>
+            <ion-select [(ngModel)]="newPatient.disease" name="disease" multiple="true">
+              <ion-option *ngFor="let disease of diseases | async" value="{{disease.id}}">{{disease.name}}</ion-option>
+            </ion-select>
+          </ion-item>-->
+
+          <ion-item>
+            <ion-label>Allergies</ion-label>
+            <ion-select [(ngModel)]="newPatient.allergy" required name="allergy" multiple="true" #allergy="ngModel">
+              <ion-option *ngFor="let allergy of allergies | async" value="{{allergy.$id}}">{{allergy.name}}</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Diet</ion-label>
+            <ion-textarea [(ngModel)]="newPatient.diet" name="diet"></ion-textarea>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Current Treatments</ion-label>
+            <ion-textarea [(ngModel)]="newPatient.treatment" name="treatment"></ion-textarea>
+          </ion-item>
+
+
+          <ion-item>
+            <ion-label>Assign Doctor</ion-label>
+            <ion-select [(ngModel)]="newPatient.doctor" required name="doctor" multiple="true" #doctor="ngModel">
+              <ion-option *ngFor="let doctor of doctors | async" value="{{doctor.$id}}">{{doctor.firstName + " " + doctor.lastName}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <!--<button ion-button (click)="addPatient(newPatient)" ><ion-icon name="add"></ion-icon></button>-->
+          <button ion-button [disabled]="!pform.form.valid" type="submit"><ion-icon name="add"></ion-icon></button>
+        </form>
+        <ion-item>
+          <button ion-button (click)="refresh()"><ion-icon name="close"></ion-icon></button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
