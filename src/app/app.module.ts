@@ -12,6 +12,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import firebaseConfig from '../config/firebase.config';
 import { LoginPage } from '../pages/login/login';
+import { NurseProvider } from '../providers/nurse/nurse';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { LoginPage } from '../pages/login/login';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
+    NurseProvider,
   ],
 })
 export class AppModule {}
