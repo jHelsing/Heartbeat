@@ -19,6 +19,9 @@ export class HomePage {
     this.users = this.usersCollection.snapshotChanges().map((actions) => actions.map((action) => ({
       $id: action.payload.doc.id, ...action.payload.doc.data() as User,
     })));
+
+ 
+
   }
 
   public addUserPrompt() {
@@ -96,4 +99,14 @@ export class HomePage {
     this.usersCollection.doc(user.$id).delete();
   }
 
+
+login(){
+
+
+    this.navCtrl.push(LoginPage);
+
+  }
+
 }
+
+
