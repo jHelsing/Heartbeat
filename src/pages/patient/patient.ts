@@ -4,15 +4,8 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Patient } from '../../models/patient';
 import { Observable } from 'rxjs/Observable';
 import { AddPatientPage } from '../add-patient/add-patient';
-import { UpdatePatientPage } from '../update-patient/update-patient';
 import { PatientDetailPage } from '../patient-detail/patient-detail';
 import 'rxjs/Rx';
-/**
- * Generated class for the PatientPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -20,7 +13,6 @@ import 'rxjs/Rx';
   templateUrl: 'patient.html',
 })
 export class PatientPage {
-
   public patientsCollection: AngularFirestoreCollection<Patient>;
   public patients: Observable<Patient[]>;
 
@@ -43,23 +35,17 @@ export class PatientPage {
       const combined = Observable.combineLatest(roomObservable, doctorObservable, allergyObservable);
 
       // Extend the Nurse object with the ID and referenced Room data
-      return combined.map(([room, doctor, allergy]) => ({ ...data, $id, room: room.name, doctor: doctor.firstName,
-      allergy: allergy.name }));
+      return combined.map(([room, doctor, allergy]) => {
+        return { ...data, $id, room: room.name, doctor: doctor.firstName, allergy: allergy.name };
+      });
     })).flatMap((patients) => Observable.combineLatest(patients));
-
-  }
-
-  public ionViewDidLoad() {
-    // console.log('ionViewDidLoad PatientPage');
   }
 
   public updateUser(patient: Patient, data) {
-    // console.log('Update', { patient, data });
     this.patientsCollection.doc(patient.$id).update(data);
   }
 
   public removeUser(patient: Patient) {
-    // console.log('Remove', patient);
     this.patientsCollection.doc(patient.$id).delete();
   }
 

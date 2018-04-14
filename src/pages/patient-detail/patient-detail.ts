@@ -6,15 +6,7 @@ import { Doctor } from '../../models/doctor';
 import { Allergy } from '../../models/allergy';
 import { Room } from '../../models/room';
 import { Observable } from 'rxjs/Observable';
-import { PatientPage } from '../patient/patient';
 import { UpdatePatientPage } from '../update-patient/update-patient';
-
-/**
- * Generated class for the PatientDetailPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -22,7 +14,6 @@ import { UpdatePatientPage } from '../update-patient/update-patient';
   templateUrl: 'patient-detail.html',
 })
 export class PatientDetailPage {
-
   public patient;
 
   public patientsCollection: AngularFirestoreCollection<Patient>;
@@ -39,6 +30,7 @@ export class PatientDetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public alertCtrl: AlertController, public fireStore: AngularFirestore) {
+    this.patient = navParams.get('patient');
 
     this.patientsCollection = fireStore.collection<Patient>('/patients');
     this.patients = this.patientsCollection.snapshotChanges().map((actions) => actions.map((action) => ({
@@ -50,8 +42,6 @@ export class PatientDetailPage {
       $id: action.payload.doc.id, ...action.payload.doc.data() as Doctor,
     })));
 
-    // this.doctors.forEach(doctor => console.log(doctor));
-
     this.allergiesCollection = fireStore.collection<Allergy>('/allergies');
     this.allergies = this.allergiesCollection.snapshotChanges().map((actions) => actions.map((action) => ({
       $id: action.payload.doc.id, ...action.payload.doc.data() as Allergy,
@@ -61,13 +51,6 @@ export class PatientDetailPage {
     this.rooms = this.roomsCollection.snapshotChanges().map((actions) => actions.map((action) => ({
       $id: action.payload.doc.id, ...action.payload.doc.data() as Room,
     })));
-
-///
-
-    this.patient = navParams.get('patient');
-    // this.patient1 = this.patientsCollection.doc('ZhpyUV02R6zhItNYaqkj');
-    // this.doctor = this.fireStore.doc(this.patient.doctor);
-
   }
 
   public ionViewDidLoad() {
@@ -82,7 +65,6 @@ export class PatientDetailPage {
 
   public goToUpdatePatient(patient) {
     this.navCtrl.push(UpdatePatientPage, { patient });
-    console.log('helloooo', patient);
   }
 
 }
