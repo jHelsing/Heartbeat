@@ -14,7 +14,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding #item *ngFor="let patient of patients | async">
+    <ion-item-sliding #item *ngFor="let patient of patients | async | patientFilter:patients">
       <!--<ion-item (click)="updateUserPrompt(patient)">-->
       <ion-item (click)="viewDetails(patient)">
         <ion-avatar item-start>
