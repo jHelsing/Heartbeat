@@ -1,5 +1,4 @@
 import { DateTime } from 'ionic-angular';
-import { Speciality } from '../models/specialities';
 import { DocumentReference } from '@firebase/firestore-types';
 
 // import { Person } from '../models/person';

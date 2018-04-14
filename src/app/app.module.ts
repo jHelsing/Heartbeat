@@ -6,6 +6,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { PatientPage } from '../pages/patient/patient';
+import { AddPatientPage } from '../pages/add-patient/add-patient';
+import { PatientDetailPage } from '../pages/patient-detail/patient-detail';
+import { UpdatePatientPage } from '../pages/update-patient/update-patient';
+import { NurseProvider } from '../providers/nurse/nurse';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -17,7 +22,11 @@ import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistrati
   declarations: [
     MyApp,
     HomePage,
-    DoctorRegistration
+    DoctorRegistration,
+    PatientPage,
+    AddPatientPage,
+    PatientDetailPage,
+    UpdatePatientPage,
   ],
   imports: [
     BrowserModule,
@@ -30,12 +39,17 @@ import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistrati
   entryComponents: [
     MyApp,
     HomePage,
-    DoctorRegistration
+    DoctorRegistration,
+    PatientPage,
+    AddPatientPage,
+    PatientDetailPage,
+    UpdatePatientPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
+    NurseProvider,
   ],
 })
 export class AppModule {}
