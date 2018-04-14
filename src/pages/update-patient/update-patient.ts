@@ -8,20 +8,12 @@ import { Room } from '../../models/room';
 import { Observable } from 'rxjs/Observable';
 import { PatientPage } from '../patient/patient';
 
-/**
- * Generated class for the UpdatePatientPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-update-patient',
   templateUrl: 'update-patient.html',
 })
 export class UpdatePatientPage {
-
   public patient;
 
   public patientsCollection: AngularFirestoreCollection<Patient>;
@@ -45,14 +37,10 @@ export class UpdatePatientPage {
       $id: action.payload.doc.id, ...action.payload.doc.data() as Patient,
     })));
 
-    this.patients.forEach(patient => console.log(patient));
-
     this.doctorsCollection = fireStore.collection<Doctor>('/doctors');
     this.doctors = this.doctorsCollection.snapshotChanges().map((actions) => actions.map((action) => ({
       $id: action.payload.doc.id, ...action.payload.doc.data() as Doctor,
     })));
-
-    // this.doctors.forEach(doctor => console.log(doctor));
 
     this.allergiesCollection = fireStore.collection<Allergy>('/allergies');
     this.allergies = this.allergiesCollection.snapshotChanges().map((actions) => actions.map((action) => ({
@@ -63,12 +51,12 @@ export class UpdatePatientPage {
     this.rooms = this.roomsCollection.snapshotChanges().map((actions) => actions.map((action) => ({
       $id: action.payload.doc.id, ...action.payload.doc.data() as Room,
     })));
-
   }
 
   public updatePatient(form) {
     this.updateUser(form.value);
   }
+
   public updateUser(patient1: Patient) {
     console.log(patient1);
     this.patientsCollection.doc(this.patient.$id).update(patient1);

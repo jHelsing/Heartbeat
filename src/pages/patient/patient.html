@@ -4,7 +4,6 @@
       Patient List
     </ion-title>
     <ion-buttons end>
-      <!--<button ion-button icon-only (click)="addUserPrompt()">-->
       <button ion-button icon-only (click)="goToAddPatient()">
         <ion-icon name="add"></ion-icon>
       </button>
@@ -15,7 +14,6 @@
 <ion-content>
   <ion-list>
     <ion-item-sliding #item *ngFor="let patient of patients | async">
-      <!--<ion-item (click)="updateUserPrompt(patient)">-->
       <ion-item (click)="viewDetails(patient)">
         <ion-avatar item-start>
           <img src="http://i.pravatar.cc/150?u={{patient.$id}}">
@@ -26,9 +24,6 @@
         <p>Blood Type: {{patient.bloodType}}</p>
         <p>Arrival Time: {{patient.arrivalTime}}</p>
       </ion-item>
-      <!--<ion-item>
-        <button ion-button (click)="viewDetails(patient)">View Details</button>
-      </ion-item>-->
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="removeUser(patient)">
           <ion-icon name="trash"></ion-icon>
@@ -37,5 +32,4 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-
 </ion-content>
