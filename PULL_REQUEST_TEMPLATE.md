@@ -1,0 +1,15 @@
+- [ ] The pull request contains a description of the changes made
+- [ ] The code has been tested locally by the reviewer and works as expected
+- [ ] Any added files are located in their correct directories
+- [ ] Any added files have correct file names
+- [ ] Variable/function names etc. are descriptive and follow casing conventions (camelcasing)
+- [ ] The code passes TSLint with zero (or very few) warnings
+- [ ] The code does not contain a lot of duplicated functionality
+- [ ] The code belongs to the correct files (with regards to separation of concerns)
+- [ ] The front-end (HTML) does not contain too much logic/expose too much of the underlaying data
+- [ ] The code does not contain a lot of commented-out code
+- [ ] The front-end (HTML) makes use of the appropriate Angular directives (e.g. ```*ngFor``` to display array data dynamically)
+- [ ] The front-end (HTML) makes use of the appropriate Ionic Components in the way they are supposed to be used (e.g. ```<ion-list>``` for displaying list data)
+- [ ] The front-end (HTML) code is properly indented/formatted
+- [ ] If the code is implementing something that is similar to something that has already been implemented in the project: is it following the same pattern? If no: is there a valid reason?
+- [ ] If there are well-defined best practices for how to do something that is done in the code: are those best practises followed? If no: is there a valid reason?  
