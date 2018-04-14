@@ -4,7 +4,7 @@
       Heartbeat
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="addUserPrompt()">
+      <button ion-button icon-only (click)="addNursePrompt()">
         <ion-icon name="add"></ion-icon>
       </button>
       <button ion-button icon-only (click)="doctorView()">
@@ -16,21 +16,21 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding #item *ngFor="let user of users | async">
-      <ion-item (click)="updateUserPrompt(user)">
+    <ion-item-sliding #item *ngFor="let nurse of nurses | async">
+      <ion-item (click)="updateNursePrompt(nurse)">
         <ion-avatar item-start>
-          <img src="http://i.pravatar.cc/150?u={{user.$id}}">
+          <img src="http://i.pravatar.cc/150?u={{nurse.$id}}">
         </ion-avatar>
         <h2>{{user.name}}</h2>
         <p>Age: {{user.age}}</p>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="danger" (click)="removeUser(user)">
+        <button ion-button color="danger" (click)="removeNurse(nurse)">
           <ion-icon name="trash"></ion-icon>
           Remove
         </button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-
+  <button ion-button (click)="goToPatient()">Patients</button>
 </ion-content>
