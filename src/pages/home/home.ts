@@ -3,6 +3,7 @@ import { NavController, AlertController } from 'ionic-angular';
 import { Nurse } from '../../models/nurse';
 import { NurseProvider } from '../../providers/nurse/nurse';
 import { Observable } from 'rxjs/Observable';
+import { PatientPage } from '../patient/patient';
 
 @Component({
   selector: 'page-home',
@@ -25,6 +26,10 @@ export class HomePage {
 
   public removeNurse(nurse: Nurse) {
     this.nurseProvider.removeNurse(nurse);
+  }
+
+  public goToPatient() {
+    this.navCtrl.push(PatientPage);
   }
 
 }

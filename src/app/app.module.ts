@@ -6,17 +6,25 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { PatientPage } from '../pages/patient/patient';
+import { AddPatientPage } from '../pages/add-patient/add-patient';
+import { PatientDetailPage } from '../pages/patient-detail/patient-detail';
+import { UpdatePatientPage } from '../pages/update-patient/update-patient';
+import { NurseProvider } from '../providers/nurse/nurse';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import firebaseConfig from '../config/firebase.config';
-import { NurseProvider } from '../providers/nurse/nurse';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+    PatientPage,
+    AddPatientPage,
+    PatientDetailPage,
+    UpdatePatientPage,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +37,10 @@ import { NurseProvider } from '../providers/nurse/nurse';
   entryComponents: [
     MyApp,
     HomePage,
+    PatientPage,
+    AddPatientPage,
+    PatientDetailPage,
+    UpdatePatientPage,
   ],
   providers: [
     StatusBar,
