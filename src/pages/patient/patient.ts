@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Patient } from '../../models/patient';
 import { Observable } from 'rxjs/Observable';
@@ -16,8 +16,17 @@ export class PatientPage {
   public patientsCollection: AngularFirestoreCollection<Patient>;
   public patients: Observable<Patient[]>;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public fireStore: AngularFirestore) {
-    this.patientsCollection = fireStore.collection<Patient>('/patients');
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
+              public fireStore: AngularFirestore) {
+    const specificDoctor = navParams.get('doctor');
+
+    if (specificDoctor) {
+      const doctorRef = fireStore.doc('doctors/' + specificDoctor).ref;
+      this.patientsCollection = fireStore.collection<Patient>('/patients', (ref) =>
+        ref.where('doctor', '==', doctorRef));
+    } else {
+      this.patientsCollection = fireStore.collection<Patient>('/patients');
+    }
     this.patients = this.patientsCollection.snapshotChanges().map((actions) => actions.map((patientAction) => {
       const data = patientAction.payload.doc.data() as Patient;
       const $id = patientAction.payload.doc.id;

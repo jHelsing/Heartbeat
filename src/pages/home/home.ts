@@ -29,6 +29,12 @@ export class HomePage {
   }
 
   public goToPatient() {
+    /*
+     * TODO updated this according to the doctor ID after adding tab navigation
+     * The doctor id should be sent into PatientPage if we are to show
+     * the patients of a doctor.
+     */
+    // let doctor = 'DOCTOR ID';
     this.navCtrl.push(PatientPage);
   }
 
