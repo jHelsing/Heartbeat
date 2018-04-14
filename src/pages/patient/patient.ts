@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Patient } from '../../models/patient';
 import { Observable } from 'rxjs/Observable';
@@ -24,10 +24,13 @@ export class PatientPage {
   public patientsCollection: AngularFirestoreCollection<Patient>;
   public patients: Observable<Patient[]>;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public fireStore: AngularFirestore) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public alertCtrl: AlertController, public fireStore: AngularFirestore) {
+
     this.patientsCollection = fireStore.collection<Patient>('/patients');
+
     this.patients = this.patientsCollection.snapshotChanges().map((actions) => actions.map((patientAction) => {
-      const data = patientAction.payload.doc.data() as Patient;
+      let data = patientAction.payload.doc.data() as Patient;
       const $id = patientAction.payload.doc.id;
 
       // Get the observable of the referenced Room document
@@ -43,6 +46,14 @@ export class PatientPage {
       const combined = Observable.combineLatest(roomObservable, doctorObservable, allergyObservable);
 
       // Extend the Nurse object with the ID and referenced Room data
+      try {
+        const specificDoctor = navParams.get('doctor');
+        if (specificDoctor !== undefined && data.doctor.id !== specificDoctor) {
+          data = null;
+        }
+      } catch (e) {
+        console.log('Could not find doctor in navParams in patient.ts' + e);
+      }
       return combined.map(([room, doctor, allergy]) => ({ ...data, $id, room: room.name, doctor: doctor.firstName,
       allergy: allergy.name }));
     })).flatMap((patients) => Observable.combineLatest(patients));

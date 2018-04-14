@@ -29,6 +29,16 @@ export class HomePage {
   }
 
   public goToPatient() {
+    /*
+     * TODO This should be updated when connected with tab bar.
+     * The doctor constant should contain the ID of the logged in doctor.
+     * If we are showing the patientPage without filtering for a specific doctor
+     * we do not need to supply anything to the PatientPage, at least nothing
+     * that is accessed as 'doctor'.
+     * When this has been implemented the code should have the following push:
+     * this.navCtrl.push(PatientPage, { doctor });
+     */
+    // const doctor = 'ATjOUbjPJT34BwP8zX7C';
     this.navCtrl.push(PatientPage);
   }
 

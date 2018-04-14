@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, AlertController } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Patient } from '../../models/patient';
 import { Doctor } from '../../models/doctor';
@@ -7,13 +7,6 @@ import { Allergy } from '../../models/allergy';
 import { Room } from '../../models/room';
 import { Observable } from 'rxjs/Observable';
 import { PatientPage } from '../patient/patient';
-
-/**
- * Generated class for the AddPatientPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({

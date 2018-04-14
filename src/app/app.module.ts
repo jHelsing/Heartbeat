@@ -11,6 +11,7 @@ import { AddPatientPage } from '../pages/add-patient/add-patient';
 import { PatientDetailPage } from '../pages/patient-detail/patient-detail';
 import { UpdatePatientPage } from '../pages/update-patient/update-patient';
 import { NurseProvider } from '../providers/nurse/nurse';
+import { PatientFilterPipe } from '../pipes/patient-filter/patient-filter';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -25,6 +26,7 @@ import firebaseConfig from '../config/firebase.config';
     AddPatientPage,
     PatientDetailPage,
     UpdatePatientPage,
+    PatientFilterPipe,
   ],
   imports: [
     BrowserModule,
