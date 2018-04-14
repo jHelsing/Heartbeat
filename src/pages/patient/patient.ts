@@ -18,17 +18,13 @@ export class PatientPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
               public fireStore: AngularFirestore) {
-    try {
-      const specificDoctor = navParams.get('doctor');
-      if (specificDoctor === undefined) {
-        throw new Error('There is no specified doctor');
-      }
+    const specificDoctor = navParams.get('doctor');
+
+    if (specificDoctor) {
       const doctorRef = fireStore.doc('doctors/' + specificDoctor).ref;
       this.patientsCollection = fireStore.collection<Patient>('/patients', (ref) =>
         ref.where('doctor', '==', doctorRef));
-      console.log('We have assigned a doctor');
-    } catch (e) {
-      console.log('No assigned doctor');
+    } else {
       this.patientsCollection = fireStore.collection<Patient>('/patients');
     }
     this.patients = this.patientsCollection.snapshotChanges().map((actions) => actions.map((patientAction) => {
