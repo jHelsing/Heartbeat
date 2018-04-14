@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Observable';
 import { AddPatientPage } from '../add-patient/add-patient';
 import { UpdatePatientPage } from '../update-patient/update-patient';
 import { PatientDetailPage } from '../patient-detail/patient-detail';
-import Reference from 'firebase.firestore.Reference';
 import 'rxjs/Rx';
 /**
  * Generated class for the PatientPage page.

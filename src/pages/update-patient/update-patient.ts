@@ -45,7 +45,7 @@ export class UpdatePatientPage {
       $id: action.payload.doc.id, ...action.payload.doc.data() as Patient,
     })));
 
-    this.patients.forEach(patient => console.log(patient));
+    this.patients.forEach((patient) => console.log(patient));
 
     this.doctorsCollection = fireStore.collection<Doctor>('/doctors');
     this.doctors = this.doctorsCollection.snapshotChanges().map((actions) => actions.map((action) => ({
