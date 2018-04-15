@@ -4,6 +4,7 @@ import { Nurse } from '../../models/nurse';
 import { NurseProvider } from '../../providers/nurse/nurse';
 import { Observable } from 'rxjs/Observable';
 import { LoginPage } from '../login/login';
+import { DoctorRegistration } from '../doctorRegistration/doctorRegistration';
 import { PatientPage } from '../patient/patient';
 
 @Component({
@@ -15,6 +16,10 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, public nurseProvider: NurseProvider) {
     this.nurses = nurseProvider.getNurses();
+  }
+
+  public doctorView() {
+    this.navCtrl.push(DoctorRegistration);
   }
 
   public addNursePrompt() {

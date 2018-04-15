@@ -16,12 +16,14 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import firebaseConfig from '../config/firebase.config';
+import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistration';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LoginPage,
+    DoctorRegistration,
     PatientPage,
     AddPatientPage,
     PatientDetailPage,
@@ -39,6 +41,7 @@ import firebaseConfig from '../config/firebase.config';
     MyApp,
     HomePage,
     LoginPage,
+    DoctorRegistration,
     PatientPage,
     AddPatientPage,
     PatientDetailPage,
