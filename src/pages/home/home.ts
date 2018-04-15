@@ -3,6 +3,7 @@ import { NavController, AlertController } from 'ionic-angular';
 import { Nurse } from '../../models/nurse';
 import { NurseProvider } from '../../providers/nurse/nurse';
 import { Observable } from 'rxjs/Observable';
+import { LoginPage } from '../login/login';
 import { DoctorRegistration } from '../doctorRegistration/doctorRegistration';
 import { PatientPage } from '../patient/patient';
 
@@ -31,6 +32,10 @@ export class HomePage {
 
   public removeNurse(nurse: Nurse) {
     this.nurseProvider.removeNurse(nurse);
+  }
+
+  public login() {
+    this.navCtrl.push(LoginPage);
   }
 
   public goToPatient() {

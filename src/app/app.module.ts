@@ -11,7 +11,7 @@ import { AddPatientPage } from '../pages/add-patient/add-patient';
 import { PatientDetailPage } from '../pages/patient-detail/patient-detail';
 import { UpdatePatientPage } from '../pages/update-patient/update-patient';
 import { NurseProvider } from '../providers/nurse/nurse';
-
+import { LoginPage } from '../pages/login/login';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -22,6 +22,7 @@ import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistrati
   declarations: [
     MyApp,
     HomePage,
+    LoginPage,
     DoctorRegistration,
     PatientPage,
     AddPatientPage,
@@ -39,6 +40,7 @@ import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistrati
   entryComponents: [
     MyApp,
     HomePage,
+    LoginPage,
     DoctorRegistration,
     PatientPage,
     AddPatientPage,
