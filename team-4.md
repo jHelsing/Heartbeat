@@ -16,6 +16,45 @@ The application is developed using Ionic, a cross-platform mobile framework buil
 - Issue tracker: https://trello.com/b/nf2rvUqW/development
 - Continuous integration builds: https://travis-ci.org/jHelsing/Heartbeat/
 
+# Sprint 2 Log
+
+## Commitment
+For the second sprint, six backlog items were selected.
+- #2 As an administrator I want to be able to register doctors to the system.
+- #15 As a user I want to be able to log in.
+- #11 As an administrator I want to be able to add a new patient to the hospital.
+- #8 As an administrator I want to be able to assign doctor(s) to a patient.
+- #18 As a doctor I want to be able to view my patients.
+- #19 As a user I want to be able to create, read, update, and delete data in the application.
+
+## Work Done
+During the second sprint, pair programming was used to a large extent. The use of pair programming was facilitated by assigning most of the selected backlog items to two team members instead of just one, allowing these two team members to work closely together. By using this technique, it was possible to share knowledge and review each other in order to get a good result.
+
+The group met after every lecture to do a stand-up meeting to inform everyone about what had been done since the last meeting, discuss found obstacles, and plan for the time ahead.
+
+The project is using the Cloud Firestore from Google Firebase for storage in the cloud. It is a NoSQL database using collections, which can be seen as quite similar to the concept of tables in SQL databases. This suited our previous experience better than if we had chosen the alternative database offered by Google Firebase. The Cloud Firestore database also allows us to structure data in a way that we believe is more intuitive, and allows us to perform richer querying on the data. We believe that creating the data model is a very important step of building software. Therefore, we met as a team to discuss how we wanted to construct our data model, i.e. which collections we should store and which fields those should contain.
+
+A meeting on Friday the 13th was selected to review pull requests created and make sure that everyone’s code was similar in structure and it’s execution.
+
+To further promote the feeling of collective code ownership, increase each others knowledge, and to achieve better code, we decided to increase the number of required reviewers on pull request from one person to two. This will act as a safety net, making sure that the code we are merging into our project meets a certain standard and works as expected. It also forces more people to actually see and reflect upon the code, which in the long run can be quite useful for general understandability of the code and maintainability. A checklist with certain things to consider when doing a code review (or even writing a pull request) was also created, as a guiding tool to make code reviews more systematic.
+
+Feature | Time estimated | Time spent per team member
+------------|----------|---------------------------
+
+## Reflections
+In many cases it was very convenient to use pair programming as all team members are new to the technologies used in the project, and so having one person who can look for information and try to anticipate upcoming problems while the other person writes the actual source code is very helpful. At times it can be frustrating to try to explain certain concepts when you know in your head what a possible solution looks like but you aren’t able to write it yourself, but remaining patient and discussing everything makes for a more thorough job since all aspects are discussed aloud. It also gives more collective ownership of the code when two people are involved in creating each solution. Having two sets of eyes on the code also makes spotting errors much faster.
+
+The group tried to have a team member acting as a proxy, or an on-site customer, in the beginning of the second sprint. This did not last for long. It might have been that it was forgotten after the easter, but while the practice was used one could see that it is possible that the on-site customer’s opinions differ from the “real” customer.
+
+So far, all the tools selected for the project have worked well. Using TSLint makes it easier to read everyone's code and also reduces the risk of unnecessary merge conflicts due to inconsequent spacing and such. The git workflow also makes collective ownership more natural, as someone else always has to approve the merging of each feature branch to the develop branch, forcing them to read and understand the code to some extent. We believe that increasing the number of required reviewers will help us get even better at this, while still maintaining some agility of being able to merge changes rather quickly.
+
+Writing tests has been seen as something quite unnatural due to the early stages of the project, where the code is quickly being changed by us, and as a result of changed requirements from customers. Our goal is to soon be able to start writing tests in a more systematic manner, when the basics of the project has been established and implementation has calmed down a bit. This will probably let us write tests that do not instantly have to be changed, which could otherwise be considered wasteful.
+
+Gathering together as a team to create the initial data model for the Cloud Firestore database was a good exercise, where everyone was involved in the discussion. Spending some extra time on thinking through the data model is something we believe can greatly help us in the long run, as making major changes to the data model can be quite tricky after the database has already been populated by a lot of data, and the code has been built around a certain structure.
+
+Due to an optimistic time schedule, we feel that the pull requests were not reviewed to the extent they ideally should have been. To avoid introducing a lot of technical debt, we might take this into account during the next sprint planning, to perform refactoring to resolve any issues introduced when merging these particular pull requests. We will also try to create the pull requests earlier during the next sprint, to enable us to spend more time on code reviews before merging.
+
+
 # Sprint 1 Log
 
 ## Commitment
@@ -76,11 +115,6 @@ Keep within 1000-1500 words. -->
   Did they complement or counteract each other? -->
 
 <!-- - How efficient were the practices, given the time they took to use? -->
-
-
-# Sprint X Log
-*As for the previous sprints.*
-
 
 # Postmortem
 Once the project is finished, summarize your experiences.
