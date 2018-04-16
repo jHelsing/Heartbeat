@@ -1,6 +1,6 @@
 % Agile Development Processes Project Report  
   Team 4
-% Evio Abazi; Lage Bergman; Jonathan Helsing; Ashish M Husain; Christoffer Karlsson; Oskar Lignell; Marufa Binte Mostafa
+% Evio Abazi; Lage Bergman; Jonathan Helsing; Ashish M Husain; Christoffer Karlsson; Oskar Lignell; Marufa Binte Mostafa; David Mendez Alvarez
 %
 
 This is the project report template.
