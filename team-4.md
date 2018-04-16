@@ -40,6 +40,23 @@ To further promote the feeling of collective code ownership, increase each other
 
 Feature | Time estimated | Time spent per team member
 ------------|----------|---------------------------
+*Sprint 2 planning meeting* | *3 hours* | *Evio Abazi: 3 hours, Ashish M Husain: 3 hours, Lage Bergman: 3 hours, Jonathan Helsing: 3 hours, Christoffer Karlsson: 3 hours, Oskar Lignell: 3 hours, Marufa Binte Mostafa: 3 hours, David Mendez Alvarez: 3 hours*
+*Database data model creation* | *2 hours* | *Evio Abazi: 2 hours, Ashish M Husain: 2 hours, Lage Bergman: 2 hours, Jonathan Helsing: 1 hours, Christoffer Karlsson: 3.5 hours, Oskar Lignell: 2 hours, Marufa Binte Mostafa: 2 hours, David Mendez Alvarez: 2 hours*
+*2.1 Create a register doctor view* |*2 hours*| *Evio Abazi: 3 hours, Oskar Lignell: 3 hours*
+*2.2 Connect to create a new doctor in database* |*4 hours*| *Evio Abazi: 4 hours, Oskar Lignell: 4 hours*
+*8.1 Make it possible to register a patient to doctor when creating a patient* | *5 hours* | *Marufa Binte Mostafa: 4 hours, David Mendez: 4 hours*
+*11.1 Create a patient creation view.* | *2 hours* | *Marufa Binte Mostafa: 2 hours*
+*11.2 Connect to create a new patient in Database* | *6 hours* | *Marufa Binte Mostafa: 6 hours*
+*15.1 Create a log-in view* | *1 hour* | *Ashish M Husain: 1 hours, Lage Bergman: 1 hours*
+*15.2 Check with database over credentials* | *2 hour* | *Ashish M Husain: 2 hours, Lage Bergman: 2 hours*
+*15.3 Check level of user.* | *3 hour* | *Ashish M Husain: 3 hours, Lage Bergman: 3 hours*
+*18.1 View all of my patients* | *10 hours* | *Jonathan Helsing: 12 hours*
+*18.2 View a specific patient* | *4 hours* | *Jonathan Helsing: 3 hours*
+*19.1 Research and create a Firebase database and connect it to the application* | *6 hours* | *Christoffer Karlsson: 6 hours*
+*19.2 Add example CRUD view for the Users collection to demonstrate how to interact with Firebase* | *2 hours* | *Christoffer Karlsson: 2 hours*
+*19.3 Refactor example Users collection database functionality into a provider for better separation of concerns and modularity, as a reference for other collections* | *1 hours* | *Christoffer Karlsson: 1 hours*
+*19.4 Replace Users collection functionality with Nurses collection and make it possible to access referenced values from Firestore* | *3 hours* | *Christoffer Karlsson: 4 hours*
+*Report Sprint 2* | *5 hours* | *Ashish M Husain: 1 hour, Christoffer Karlsson: 1 hour, Oskar Lignell: 1 hour, Lage Bergman: 1 hour, Jonathan Helsing: 1 hours, David Mendez Alvarez: 1 hours*, Marufa Binte Mostafa: 0.5 hours
 
 ## Reflections
 In many cases it was very convenient to use pair programming as all team members are new to the technologies used in the project, and so having one person who can look for information and try to anticipate upcoming problems while the other person writes the actual source code is very helpful. At times it can be frustrating to try to explain certain concepts when you know in your head what a possible solution looks like but you aren’t able to write it yourself, but remaining patient and discussing everything makes for a more thorough job since all aspects are discussed aloud. It also gives more collective ownership of the code when two people are involved in creating each solution. Having two sets of eyes on the code also makes spotting errors much faster.
