@@ -54,7 +54,6 @@ import { PatientProvider } from '../providers/patient/patient';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     NurseProvider,
     PatientProvider,
-    PatientProvider,
   ],
 })
 export class AppModule {}
