@@ -11,7 +11,7 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list no-lines>
-        <form #patientForm="ngForm" (ngSubmit)="addPatient(patientForm.value)">
+        <form #patientForm="ngForm" (ngSubmit)="addPatient(patientForm)">
           <ion-item>
             <ion-label floating [ngClass]="{'required': name.errors}">Name</ion-label>
             <ion-input type="text" [(ngModel)]="newPatient.name" maxlength="20" name="name" required #name="ngModel"></ion-input>
@@ -26,12 +26,12 @@
               <ion-option value="Female">Female</ion-option>
               <ion-option value="Male">Male</ion-option>
             </ion-select>
-          </ion-item>
+            </ion-item>
           <ion-item>
             <ion-label>Blood Group</ion-label>
             <ion-select [(ngModel)]="newPatient.bloodType" name="bloodType">
-              <ion-option *ngFor="let bloodType of bloodTypes">{{bloodType}}</ion-option>
-            </ion-select>
++              <ion-option *ngFor="let bloodType of bloodTypes">{{bloodType}}</ion-option>
+             </ion-select>
           </ion-item>
           <ion-item>
             <ion-label floating >Arrival Time</ion-label>
