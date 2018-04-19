@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add Doctor</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-input type="text" id="firstName" placeholder="First name" [(ngModel)]="doctor.firstName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="text" id="lastName" placeholder="Last name" [(ngModel)]="doctor.lastName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Gender</ion-label>
+      <ion-select [(ngModel)]="doctor.gender">
+        <ion-option value="female">Female</ion-option>
+        <ion-option value="male">Male</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="number" id="age" placeholder="age" [(ngModel)]="doctor.age"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Speciality</ion-label>
+      <ion-select [(ngModel)]="doctor.speciality">
+        <ion-option *ngFor="let speciality of specialityObservable | async" [value]="speciality.$id">{{speciality.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="email" id="email" placeholder="email" [(ngModel)]="doctor.email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="password" placeholder="password" [(ngModel)]="doctor.password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Working hours (start)</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="defaultTime.timeStarts"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Working hours (end)</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="defaultTime.timeEnds"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Room</ion-label>
+      <ion-select [(ngModel)]="doctor.room">
+        <ion-option *ngFor="let room of roomObservable | async" [value]="room.$id">{{room.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="tel" id="phone" placeholder="telephone number" [(ngModel)]="doctor.phone"></ion-input>
+    </ion-item>
+
+
+    <ion-buttons end>
+      <button ion-button round (click)="goBack()">
+        Cancel
+      </button>
+      <button ion-button round (click)="addDoctor(doctor)">
+        Create
+      </button>
+    </ion-buttons>
+  </ion-list>
+</ion-content>
+

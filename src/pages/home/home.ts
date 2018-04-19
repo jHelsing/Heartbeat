@@ -4,7 +4,7 @@ import { Nurse } from '../../models/nurse';
 import { NurseProvider } from '../../providers/nurse/nurse';
 import { Observable } from 'rxjs/Observable';
 import { LoginPage } from '../login/login';
-import { DoctorRegistration } from '../doctorRegistration/doctorRegistration';
+import { DoctorRegistration } from '../add-doctor/add-doctor';
 import { PatientPage } from '../patient/patient';
 
 @Component({
