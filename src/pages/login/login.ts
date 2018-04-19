@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { LoginProvider } from '../../providers/login/login';
 
 @IonicPage()
 @Component({
@@ -10,52 +11,42 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
  export class LoginPage {
 
+  public static roleCollectionNames = ['nurses', 'doctors'];
+
   // Used to read the input fields from HTML elements with [(ngModel)].
-  private inputEmail;
-  private inputPassword;
-  private roleCollectionNames = ['nurses', 'doctors'];
+  private inputEmail: string;
+  private inputPassword: string;
 
-  constructor(public afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loginProvider: LoginProvider) {
 
-    // Listen for auth state once when app starts to continue an ongoing session, then unsubscribe.
-    const authObserver = afAuth.authState.subscribe((user) => {
-      if (user) {
-        this.loadCorrectPage(user.uid); // User already logged in, check role and load corresponding page.
-        authObserver.unsubscribe();
-      } else {
-        // Nog logged in
-        authObserver.unsubscribe();
-      }
-    });
+    // Check if the current device is already logged in as a user. If so, continue that session.
+    this.loginProvider.checkLoggedIn(this.loadCorrectPage);
   }
 
   public loadCorrectPage(userID) {
     const db = firebase.firestore();
-    for (const roleCollectionName of this.roleCollectionNames) {
+    for (const roleCollectionName of LoginPage.roleCollectionNames) {
 
       // Look for userID in collection. If it exists in category, user has role.
       db.collection(roleCollectionName).doc(userID).get().then((doc) => {
-
         if (doc.exists) {
           alert('User is in role category = ' + roleCollectionName);
           // TODO: Load correct page.
         }
-
       });
     }
   }
 
   // Fetch username and password from input fields. Log user in.
   public login() {
-    this.afAuth.auth.signInWithEmailAndPassword(this.inputEmail, this.inputPassword).then((promise) => {
+    this.loginProvider.login(this.inputEmail, this.inputPassword).then((promise) => {
       this.loadCorrectPage(promise.uid);
     });
-
   }
 
   // Log user out.
   public logout() {
-    this.afAuth.auth.signOut();
+    this.loginProvider.logout();
   }
 
 }
