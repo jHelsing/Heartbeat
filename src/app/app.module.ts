@@ -21,8 +21,8 @@ import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistrati
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     LoginPage,
+    HomePage,
     DoctorRegistration,
     PatientPage,
     AddPatientPage,

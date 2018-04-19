@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import firebase from 'firebase';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @IonicPage()
 @Component({
@@ -13,14 +14,16 @@ import firebase from 'firebase';
   private inputEmail;
   private inputPassword;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
 
-    // Add listener for detecting when user logs out or in.
-    firebase.auth().onAuthStateChanged((firebaseUser) => {
-      if (firebaseUser) {
-        this.checkRole(firebaseUser.uid); // When user logs in, check role and load corresponding page.
+    // Listen for auth state once when app starts to continue an ongoing session, then unsubscribe.
+    const authObserver = afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.checkRole(user.uid); // User already logged in, check role and load corresponding page.
+        authObserver.unsubscribe();
       } else {
-        alert('User not logged in.');
+        // Nog logged in
+        authObserver.unsubscribe();
       }
     });
   }
@@ -33,16 +36,13 @@ import firebase from 'firebase';
 
   // Fetch username and password from input fields. Log user in.
   public login() {
-    const auth = firebase.auth();
-    const promise = auth.signInWithEmailAndPassword(this.inputEmail, this.inputPassword);
-    promise.catch((e) => alert(e.message));
+    this.afAuth.auth.signInWithEmailAndPassword(this.inputEmail, this.inputPassword);
 
   }
 
   // Log user out.
   public logout() {
-    const auth = firebase.auth();
-    auth.signOut();
+    this.afAuth.auth.signOut();
   }
 
   private loadCorrectPage(userID, roleCollectionName) {
