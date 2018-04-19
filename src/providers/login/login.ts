@@ -5,10 +5,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 @Injectable()
 export class LoginProvider {
 
-  private afAuth;
+  constructor(private afAuth: AngularFireAuth) {
 
-  constructor(afAuth: AngularFireAuth) {
-    this.afAuth = afAuth;
   }
 
   // Check if there is a logged in user at this time. If there is, the parameter function is called.
