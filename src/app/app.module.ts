@@ -20,12 +20,13 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import firebaseConfig from '../config/firebase.config';
 import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistration';
+import { LoginProvider } from '../providers/login/login';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     LoginPage,
+    HomePage,
     DoctorRegistration,
     PatientPage,
     AddPatientPage,
@@ -61,6 +62,7 @@ import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistrati
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     NurseProvider,
+    LoginProvider,
   ],
 })
 export class AppModule {}
