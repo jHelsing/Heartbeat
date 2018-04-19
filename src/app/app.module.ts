@@ -10,8 +10,11 @@ import { PatientPage } from '../pages/patient/patient';
 import { AddPatientPage } from '../pages/add-patient/add-patient';
 import { PatientDetailPage } from '../pages/patient-detail/patient-detail';
 import { UpdatePatientPage } from '../pages/update-patient/update-patient';
+import { NurseListPage } from '../pages/nurse-list/nurse-list';
+import { DoctorListPage } from '../pages/doctor-list/doctor-list';
 import { NurseProvider } from '../providers/nurse/nurse';
 import { LoginPage } from '../pages/login/login';
+import { AdminTabs } from '../pages/admin-tabs/admin-tabs';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -28,6 +31,9 @@ import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistrati
     AddPatientPage,
     PatientDetailPage,
     UpdatePatientPage,
+    AdminTabs,
+    NurseListPage,
+    DoctorListPage,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +52,9 @@ import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistrati
     AddPatientPage,
     PatientDetailPage,
     UpdatePatientPage,
+    AdminTabs,
+    NurseListPage,
+    DoctorListPage,
   ],
   providers: [
     StatusBar,
