@@ -18,6 +18,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import firebaseConfig from '../config/firebase.config';
 import { DoctorRegistration } from '../pages/add-doctor/add-doctor';
 import { DoctorProvider } from '../providers/doctor/doctor';
+import { RoomProvider } from '../providers/room/room';
+import { SpecialityProvider } from '../providers/speciality/speciality';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { DoctorProvider } from '../providers/doctor/doctor';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     NurseProvider,
     DoctorProvider,
+    RoomProvider,
+    SpecialityProvider,
   ],
 })
 export class AppModule {}

@@ -1,4 +1,3 @@
-import { DateTime } from 'ionic-angular';
 import { DocumentReference } from '@firebase/firestore-types';
 
 export interface Doctor {
@@ -11,6 +10,6 @@ export interface Doctor {
   speciality: DocumentReference;
   room: DocumentReference;
   email: string;
-  workHoursStart: DateTime;
-  workHoursEnd: DateTime;
+  workHoursStart: Date;
+  workHoursEnd: Date;
 }
