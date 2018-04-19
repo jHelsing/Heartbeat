@@ -7,6 +7,7 @@ import { Allergy } from '../../models/allergy';
 import { Room } from '../../models/room';
 import { Observable } from 'rxjs/Observable';
 import { PatientPage } from '../patient/patient';
+import { NgForm } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -14,8 +15,8 @@ import { PatientPage } from '../patient/patient';
   templateUrl: 'add-patient.html',
 })
 export class AddPatientPage {
-  public newPatient = {  id: '', name: '', age: '', gender: '', bloodType: '', arrivalTime: '',
-    room: '', diet: '', treatment: '', doctor: '', disease: '', allergy: '' };
+  public newPatient = { };
+  public bloodTypes = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
 
   public patientsCollection: AngularFirestoreCollection<Patient>;
   public patients: Observable<Patient[]>;
@@ -51,11 +52,7 @@ export class AddPatientPage {
     })));
   }
 
-  public addPatient(form) {
-    this.addUser(form.value);
-  }
-
-  public addUser(patient: Patient) {
+  public addPatient(patient: Patient) {
     patient.doctor = this.fireStore.doc('doctors/' + patient.doctor).ref;
     patient.roomRef = this.fireStore.doc('rooms/' + patient.roomRef).ref;
     patient.allergy = this.fireStore.doc('allergies/' + patient.allergy).ref;
@@ -67,8 +64,8 @@ export class AddPatientPage {
     this.navCtrl.push(PatientPage);
   }
 
-  public refresh() {
-    this.navCtrl.push(AddPatientPage);
+  public resetPatient() {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
 }

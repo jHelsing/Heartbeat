@@ -11,7 +11,7 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list no-lines>
-        <form #pform="ngForm" (ngSubmit)="addPatient(pform)">
+        <form #patientForm="ngForm" (ngSubmit)="addPatient(patientForm.value)">
           <ion-item>
             <ion-label floating [ngClass]="{'required': name.errors}">Name</ion-label>
             <ion-input type="text" [(ngModel)]="newPatient.name" maxlength="20" name="name" required #name="ngModel"></ion-input>
@@ -30,14 +30,7 @@
           <ion-item>
             <ion-label>Blood Group</ion-label>
             <ion-select [(ngModel)]="newPatient.bloodType" name="bloodType">
-              <ion-option value="A+">A+</ion-option>
-              <ion-option value="A-">A-</ion-option>
-              <ion-option value="B+">B+</ion-option>
-              <ion-option value="B-">B-</ion-option>
-              <ion-option value="O+">O+</ion-option>
-              <ion-option value="O-">O-</ion-option>
-              <ion-option value="AB+">AB+</ion-option>
-              <ion-option value="AB-">AB-</ion-option>
+              <ion-option *ngFor="let bloodType of bloodTypes">{{bloodType}}</ion-option>
             </ion-select>
           </ion-item>
           <ion-item>
@@ -66,14 +59,14 @@
           </ion-item>
           <ion-item>
             <ion-label>Assign Doctor</ion-label>
-            <ion-select [(ngModel)]="newPatient.doctor" required name="doctor" multiple="true" #doctor="ngModel">
+            <ion-select [(ngModel)]="newPatient.doctor" required name="doctor" #doctor="ngModel">
               <ion-option *ngFor="let doctor of doctors | async" value="{{doctor.$id}}">{{doctor.firstName + " " + doctor.lastName}}</ion-option>
             </ion-select>
           </ion-item>
-          <button ion-button [disabled]="!pform.form.valid" type="submit"><ion-icon name="add"></ion-icon></button>
+          <button ion-button [disabled]="!patientForm.form.valid" type="submit"><ion-icon name="add"></ion-icon></button>
         </form>
         <ion-item>
-          <button ion-button (click)="refresh()"><ion-icon name="close"></ion-icon></button>
+          <button ion-button (click)="resetPatient()"><ion-icon name="close"></ion-icon></button>
         </ion-item>
       </ion-list>
     </ion-card-content>

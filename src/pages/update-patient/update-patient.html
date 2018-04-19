@@ -11,7 +11,7 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list no-lines>
-        <form #pform="ngForm" (ngSubmit)="updatePatient(pform)">
+        <form #patientForm="ngForm" (ngSubmit)="updatePatient(patientForm)">
           <ion-item>
             <ion-label floating [ngClass]="{'required': name.errors}">Name</ion-label>
             <ion-input type="text" [(ngModel)]="patient.name" maxlength="20" value="patient.name" name="name" required #name="ngModel"></ion-input>
@@ -23,25 +23,18 @@
           <ion-item>
             <ion-label [ngClass]="{'required': gender.errors}">Gender</ion-label>
             <ion-select [(ngModel)]="patient.gender" name="gender" #gender="ngModel" required>
-              <ion-option value="f">Female</ion-option>
-              <ion-option value="m">Male</ion-option>
+              <ion-option value="Female">Female</ion-option>
+              <ion-option value="Male">Male</ion-option>
             </ion-select>
           </ion-item>
           <ion-item>
             <ion-label>Blood Group</ion-label>
-            <ion-select [(ngModel)]="patient.bloodType" name="bloodType">
-              <ion-option value="A+">A+</ion-option>
-              <ion-option value="A-">A-</ion-option>
-              <ion-option value="B+">B+</ion-option>
-              <ion-option value="B-">B-</ion-option>
-              <ion-option value="O+">O+</ion-option>
-              <ion-option value="O-">O-</ion-option>
-              <ion-option value="AB+">AB+</ion-option>
-              <ion-option value="AB-">AB-</ion-option>
+            <ion-select [(ngModel)]="newPatient.bloodType" name="bloodType">
+              <ion-option *ngFor="let bloodType of bloodTypes">{{bloodType}}</ion-option>
             </ion-select>
           </ion-item>
           <ion-item>
-            <ion-label>Arrival<br>Time</ion-label>
+            <ion-label>Arrival Time</ion-label>
             <ion-input type="date" [(ngModel)]="patient.arrivalTime" name="arrivalTime" value="patient.arrivalTime"></ion-input>
           </ion-item>
           <ion-item>
@@ -50,12 +43,12 @@
           </ion-item>
           <ion-item>
             <ion-label floating>Current Treatments</ion-label>
-            <ion-textarea [(ngModel)]="patient.treatment" name="treatment" value="patient.diet"></ion-textarea>
+            <ion-textarea [(ngModel)]="patient.treatment" name="treatment" value="patient.treatment"></ion-textarea>
           </ion-item>
-          <button ion-button [disabled]="!pform.form.valid" type="submit"><ion-icon name="checkmark"></ion-icon></button>
+          <button ion-button [disabled]="!patientForm.form.valid" type="submit"><ion-icon name="checkmark"></ion-icon></button>
         </form>
         <ion-item>
-          <button ion-button (click)="refresh()"><ion-icon name="close"></ion-icon></button>
+          <button ion-button (click)="resetPatient()"><ion-icon name="close"></ion-icon></button>
         </ion-item>
       </ion-list>
     </ion-card-content>
