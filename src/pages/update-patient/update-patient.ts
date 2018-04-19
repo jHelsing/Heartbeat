@@ -59,7 +59,6 @@ export class UpdatePatientPage {
   }
 
   public updateUser(patient: Patient) {
-    console.log(patient);
     this.patientsCollection.doc(this.patient.$id).update(patient);
     const prompt = this.alertCtrl.create({
       message: 'Patient Updated',
@@ -68,7 +67,7 @@ export class UpdatePatientPage {
     this.navCtrl.push(PatientPage);
   }
 
-  public resetPatient() {
+  public resetForm() {
     this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 

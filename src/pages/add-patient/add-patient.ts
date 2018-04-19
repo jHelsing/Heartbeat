@@ -38,7 +38,7 @@ export class AddPatientPage {
     this.navCtrl.push(PatientPage);
   }
 
-  public resetPatient() {
+  public resetForm() {
     this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
