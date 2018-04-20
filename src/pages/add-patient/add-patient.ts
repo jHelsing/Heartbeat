@@ -7,6 +7,8 @@ import { Allergy } from '../../models/allergy';
 import { Room } from '../../models/room';
 import { Observable } from 'rxjs/Observable';
 import { PatientPage } from '../patient/patient';
+import { NgForm } from '@angular/forms';
+import { PatientProvider } from '../../providers/patient/patient';
 
 @IonicPage()
 @Component({
@@ -14,52 +16,21 @@ import { PatientPage } from '../patient/patient';
   templateUrl: 'add-patient.html',
 })
 export class AddPatientPage {
-  public newPatient = {  id: '', name: '', age: '', gender: '', bloodType: '', arrivalTime: '',
-    room: '', diet: '', treatment: '', doctor: '', disease: '', allergy: '' };
+  public newPatient = { };
+  public bloodTypes = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
+  public rooms;
+  public doctors;
+  public allergies;
 
-  public patientsCollection: AngularFirestoreCollection<Patient>;
-  public patients: Observable<Patient[]>;
-
-  public doctorsCollection: AngularFirestoreCollection<Doctor>;
-  public doctors: Observable<Doctor[]>;
-
-  public allergiesCollection: AngularFirestoreCollection<Allergy>;
-  public allergies: Observable<Allergy[]>;
-
-  public roomsCollection: AngularFirestoreCollection<Room>;
-  public rooms: Observable<Room[]>;
-
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public fireStore: AngularFirestore) {
-    this.patientsCollection = fireStore.collection<Patient>('/patients');
-    this.patients = this.patientsCollection.snapshotChanges().map((actions) => actions.map((action) => ({
-      $id: action.payload.doc.id, ...action.payload.doc.data() as Patient,
-    })));
-
-    this.doctorsCollection = fireStore.collection<Doctor>('/doctors');
-    this.doctors = this.doctorsCollection.snapshotChanges().map((actions) => actions.map((action) => ({
-      $id: action.payload.doc.id, ...action.payload.doc.data() as Doctor,
-    })));
-
-    this.allergiesCollection = fireStore.collection<Allergy>('/allergies');
-    this.allergies = this.allergiesCollection.snapshotChanges().map((actions) => actions.map((action) => ({
-      $id: action.payload.doc.id, ...action.payload.doc.data() as Allergy,
-    })));
-
-    this.roomsCollection = fireStore.collection<Room>('/rooms');
-    this.rooms = this.roomsCollection.snapshotChanges().map((actions) => actions.map((action) => ({
-      $id: action.payload.doc.id, ...action.payload.doc.data() as Room,
-    })));
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController,
+              public fireStore: AngularFirestore, public patientProvider: PatientProvider) {
+    this.rooms = patientProvider.getRooms();
+    this.doctors = patientProvider.getDoctors();
+    this.allergies = patientProvider.getAllergies();
   }
 
   public addPatient(form) {
-    this.addUser(form.value);
-  }
-
-  public addUser(patient: Patient) {
-    patient.doctor = this.fireStore.doc('doctors/' + patient.doctor).ref;
-    patient.roomRef = this.fireStore.doc('rooms/' + patient.roomRef).ref;
-    patient.allergy = this.fireStore.doc('allergies/' + patient.allergy).ref;
-    this.patientsCollection.add(patient);
+    this.patientProvider.newPatient(form.value);
     const prompt = this.alertCtrl.create({
       message: 'Patient added',
     });
@@ -67,8 +38,8 @@ export class AddPatientPage {
     this.navCtrl.push(PatientPage);
   }
 
-  public refresh() {
-    this.navCtrl.push(AddPatientPage);
+  public resetForm() {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
 }

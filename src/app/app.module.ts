@@ -3,7 +3,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PatientPage } from '../pages/patient/patient';
@@ -22,6 +21,7 @@ import firebaseConfig from '../config/firebase.config';
 import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistration';
 import { CommentProvider } from '../providers/comment/comment';
 import { AddCommentComponent } from '../components/add-comment/add-comment';
+import { PatientProvider } from '../providers/patient/patient';
 import { LoginProvider } from '../providers/login/login';
 
 @NgModule({
@@ -67,6 +67,7 @@ import { LoginProvider } from '../providers/login/login';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     NurseProvider,
     CommentProvider,
+    PatientProvider,
     LoginProvider,
   ],
 })

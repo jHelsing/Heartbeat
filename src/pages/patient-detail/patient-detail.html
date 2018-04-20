@@ -8,24 +8,20 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item-sliding #item>
-      <ion-item>
-        <ion-avatar item-start>
-          <img src="http://i.pravatar.cc/150?u={{patient.$id}}">
-        </ion-avatar>
-        <h2>{{patient.name}}</h2>
-        <p>Age: {{patient.age}}</p>
-        <p>Gender: {{patient.gender}}</p>
-        <p>Blood Type: {{patient.bloodType}}</p>
-        <p>Arrival Time: {{patient.arrivalTime}}</p>
-        <p>Room: {{patient.room}}</p>
-        <p>Allergy: {{patient.allergy}}</p>
-        <p>Doctor: {{patient.doctor}}</p>
-      </ion-item>
-      <ion-item>
-        <button ion-button (click)="goToUpdatePatient(patient)">Update</button>
-      </ion-item>
-    </ion-item-sliding>
-  </ion-list>
+  <ion-item>
+    <ion-avatar item-start>
+      <img src="http://i.pravatar.cc/150?u={{patient.$id}}">
+    </ion-avatar>
+    <h2>{{patient.name}}</h2>
+    <p>Age: {{patient.age}}</p>
+    <p>Gender: {{patient.gender}}</p>
+    <p>Blood Type: {{patient.bloodType}}</p>
+    <p>Arrival Time: {{patient.arrivalTime}}</p>
+    <p>Room: {{patient.room}}</p>
+    <p>Allergy: {{patient.allergy}}</p>
+    <p>Doctor: {{patient.doctor}}</p>
+  </ion-item>
+  <ion-item>
+    <button ion-button (click)="goToUpdatePatient(patient)">Update</button>
+  </ion-item>
 </ion-content>
