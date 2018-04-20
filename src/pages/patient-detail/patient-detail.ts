@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Patient } from '../../models/patient';
 import { Doctor } from '../../models/doctor';
@@ -7,6 +7,7 @@ import { Allergy } from '../../models/allergy';
 import { Room } from '../../models/room';
 import { Observable } from 'rxjs/Observable';
 import { UpdatePatientPage } from '../update-patient/update-patient';
+import { AddCommentComponent } from '../../components/add-comment/add-comment';
 
 @IonicPage()
 @Component({
@@ -29,7 +30,8 @@ export class PatientDetailPage {
   public rooms: Observable<Room[]>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public alertCtrl: AlertController, public fireStore: AngularFirestore) {
+              public alertCtrl: AlertController, public fireStore: AngularFirestore,
+              public modalCtrl: ModalController) {
     this.patient = navParams.get('patient');
 
     this.patientsCollection = fireStore.collection<Patient>('/patients');
@@ -65,6 +67,12 @@ export class PatientDetailPage {
 
   public goToUpdatePatient(patient) {
     this.navCtrl.push(UpdatePatientPage, { patient });
+  }
+
+  public addComment() {
+    const commentModal = this.modalCtrl.create(AddCommentComponent, { patientId: this.patient.$id}, {});
+    commentModal.present();
+
   }
 
 }

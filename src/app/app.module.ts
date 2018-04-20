@@ -20,6 +20,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import firebaseConfig from '../config/firebase.config';
 import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistration';
+import { CommentProvider } from '../providers/comment/comment';
+import { AddCommentComponent } from '../components/add-comment/add-comment';
 import { LoginProvider } from '../providers/login/login';
 
 @NgModule({
@@ -32,6 +34,7 @@ import { LoginProvider } from '../providers/login/login';
     AddPatientPage,
     PatientDetailPage,
     UpdatePatientPage,
+    AddCommentComponent,
     AdminTabs,
     NurseListPage,
     DoctorListPage,
@@ -53,6 +56,7 @@ import { LoginProvider } from '../providers/login/login';
     AddPatientPage,
     PatientDetailPage,
     UpdatePatientPage,
+    AddCommentComponent,
     AdminTabs,
     NurseListPage,
     DoctorListPage,
@@ -62,6 +66,7 @@ import { LoginProvider } from '../providers/login/login';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     NurseProvider,
+    CommentProvider,
     LoginProvider,
   ],
 })
