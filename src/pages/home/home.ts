@@ -5,7 +5,7 @@ import { NurseProvider } from '../../providers/nurse/nurse';
 import { Observable } from 'rxjs/Observable';
 import { LoginPage } from '../login/login';
 import { DoctorRegistration } from '../doctorRegistration/doctorRegistration';
-import { PatientPage } from '../patient/patient';
+import { PatientListPage } from '../patient-list/patient-list';
 
 @Component({
   selector: 'page-home',
@@ -37,11 +37,11 @@ export class HomePage {
   public goToPatient() {
     /*
      * TODO updated this according to the doctor ID after adding tab navigation
-     * The doctor id should be sent into PatientPage if we are to show
+     * The doctor id should be sent into PatientListPage if we are to show
      * the patients of a doctor.
      */
     // let doctor = 'DOCTOR ID';
-    this.navCtrl.push(PatientPage);
+    this.navCtrl.push(PatientListPage);
   }
 
 }

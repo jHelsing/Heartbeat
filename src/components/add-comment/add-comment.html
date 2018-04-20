@@ -18,7 +18,7 @@
     <form #commentForm="ngForm" (ngSubmit)="addComment(commentForm)">
       <ion-item>
         <ion-label>Category</ion-label>
-        <ion-select [(ngModel)]="comment.category" name="category">
+        <ion-select [(ngModel)]="comment.category" name="category" id="category">
           <ion-option value="Diagnosis">Diagnosis</ion-option>
           <ion-option value="Treatment">Treatment</ion-option>
           <ion-option value="Note">Note</ion-option>

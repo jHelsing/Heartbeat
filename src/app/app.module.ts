@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { PatientPage } from '../pages/patient/patient';
+import { PatientListPage } from '../pages/patient-list/patient-list';
 import { AddPatientPage } from '../pages/add-patient/add-patient';
 import { PatientDetailPage } from '../pages/patient-detail/patient-detail';
 import { UpdatePatientPage } from '../pages/update-patient/update-patient';
@@ -30,7 +30,7 @@ import { LoginProvider } from '../providers/login/login';
     LoginPage,
     HomePage,
     DoctorRegistration,
-    PatientPage,
+    PatientListPage,
     AddPatientPage,
     PatientDetailPage,
     UpdatePatientPage,
@@ -52,7 +52,7 @@ import { LoginProvider } from '../providers/login/login';
     HomePage,
     LoginPage,
     DoctorRegistration,
-    PatientPage,
+    PatientListPage,
     AddPatientPage,
     PatientDetailPage,
     UpdatePatientPage,

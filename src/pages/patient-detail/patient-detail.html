@@ -1,27 +1,44 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Patient Detail</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>
+      Patient Details
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goToUpdatePatient(patient)">
+        <ion-icon name="create"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="addComment()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-  <button ion-button icon-only (click)="addComment()">
-    <ion-icon name="add"></ion-icon>
-  </button>
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-avatar item-start>
-      <img src="http://i.pravatar.cc/150?u={{patient.$id}}">
-    </ion-avatar>
-    <h2>{{patient.name}}</h2>
-    <p>Age: {{patient.age}}</p>
-    <p>Gender: {{patient.gender}}</p>
-    <p>Blood Type: {{patient.bloodType}}</p>
-    <p>Arrival Time: {{patient.arrivalTime}}</p>
-    <p>Room: {{patient.room}}</p>
-    <p>Allergy: {{patient.allergy}}</p>
-    <p>Doctor: {{patient.doctor}}</p>
-  </ion-item>
-  <ion-item>
-    <button ion-button (click)="goToUpdatePatient(patient)">Update</button>
-  </ion-item>
+  <ion-list>
+    <ion-card>
+      <ion-card-title style="margin-left: 1em;">Basic Info</ion-card-title>
+      <ion-card-content>
+        <strong>Name:</strong> {{patient.name}}<br>
+        <strong>Date of Birth:</strong> {{patient.age}}<br>
+        <strong>Gender:</strong> {{patient.gender}}<br>
+        <strong>Doctor:</strong> Dr. {{patient.doctor}}<br>
+        <strong>Room:</strong> {{patient.room}}<br>
+        <strong>Arrival Time:</strong> {{patient.arrivalTime | date : "yyyy-MM-dd"}}<br>
+        <strong>Blood Type:</strong> {{patient.bloodType}}<br>
+        <strong>Allergies:</strong> {{patient.allergy}}<br>
+        <strong>Diet:</strong> {{patient.diet}}<br>
+      </ion-card-content>
+    </ion-card>
+    <ion-list-header>History</ion-list-header>
+    <ion-item-group *ngFor="let comment of comments | async">
+      <ion-card>
+        <ion-card-title style="margin-left: 1em;">{{comment.category}}</ion-card-title>
+        <ion-card-content>
+          <strong>{{comment.title}}</strong><br>
+          {{comment.createdAt | date: yyyy-MM-dd}}
+        </ion-card-content>
+      </ion-card>
+    </ion-item-group>
+  </ion-list>
 </ion-content>

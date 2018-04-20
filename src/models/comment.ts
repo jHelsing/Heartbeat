@@ -2,7 +2,7 @@ import * as firebase from 'firebase';
 import DocumentReference = firebase.firestore.DocumentReference;
 import FieldValue = firebase.firestore.FieldValue;
 
-export interface Comment {
+export class Comment {
   title: string;
   category: string;
   description: string;
