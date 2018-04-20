@@ -1,0 +1,43 @@
+<!-- Generated template for the AddCommentComponent component -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Description
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list no-lines>
+    <form #commentForm="ngForm" (ngSubmit)="addComment(commentForm)">
+      <ion-item>
+        <ion-label>Category</ion-label>
+        <ion-select [(ngModel)]="comment.category" name="category">
+          <ion-option value="Diagnosis">Diagnosis</ion-option>
+          <ion-option value="Treatment">Treatment</ion-option>
+          <ion-option value="Note">Note</ion-option>
+        </ion-select>
+        <!-- This below was first used, but unable to get it to work -->
+        <!--<ion-select required [(ngModel)]="comment.category" name="category">
+          <ion-option *ngFor="let item of categories">{{item}}</ion-option>
+        </ion-select> -->
+      </ion-item>
+      <ion-item>
+        <ion-input required type="text" id="title" placeholder="Title" [(ngModel)]="comment.title" name="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input required type="text" id="description" placeholder="Description" [(ngModel)]="comment.description" name="description"></ion-input>
+      </ion-item>
+
+      <!-- TODO: Add image picker functionality -->
+
+      <button ion-button block [disabled]="!commentForm.form.valid" type="submit">Add Comment</button>
+    </form>
+  </ion-list>
+</ion-content>

@@ -17,6 +17,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import firebaseConfig from '../config/firebase.config';
 import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistration';
+import { CommentProvider } from '../providers/comment/comment';
+import { AddCommentComponent } from '../components/add-comment/add-comment';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistrati
     AddPatientPage,
     PatientDetailPage,
     UpdatePatientPage,
+    AddCommentComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,12 +49,14 @@ import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistrati
     AddPatientPage,
     PatientDetailPage,
     UpdatePatientPage,
+    AddCommentComponent,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     NurseProvider,
+    CommentProvider,
   ],
 })
 export class AppModule {}
