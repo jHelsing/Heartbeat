@@ -9,7 +9,7 @@ import { Comment } from '../../models/comment';
 })
 export class AddCommentComponent {
 
-  public comment: Comment = new Comment();
+  public comment: Comment;
   public categories = ['Diagnosis', 'Treatment', 'Note'];
   private patientId: string;
 
