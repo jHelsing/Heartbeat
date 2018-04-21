@@ -31,12 +31,30 @@
       </ion-card-content>
     </ion-card>
     <ion-list-header>History</ion-list-header>
-    <ion-item-group *ngFor="let comment of comments | async">
-      <ion-card>
+    <ion-item-group *ngFor="let comment of comments | async" [ngSwitch]="comment.category">
+      <!-- NOTE -->
+      <ion-card *ngSwitchCase="'Note'">
         <ion-card-title style="margin-left: 1em;">{{comment.category}}</ion-card-title>
         <ion-card-content>
           <strong>{{comment.title}}</strong><br>
-          {{comment.createdAt | date: yyyy-MM-dd}}
+          {{comment.description}}<br>
+          <small>{{comment.createdAt | date: 'yyyy-MM-dd'}}</small>
+        </ion-card-content>
+      </ion-card>
+      <!-- TREATMENT -->
+      <ion-card *ngSwitchCase="'Treatment'">
+        <ion-card-title style="margin-left: 1em;">{{comment.category}}</ion-card-title>
+        <ion-card-content>
+          <strong>{{comment.title}}</strong><br>
+          <ion-col>Start date: {{comment.createdAt | date: 'yyyy-MM-dd'}}</ion-col>
+        </ion-card-content>
+      </ion-card>
+      <!-- DIAGNOSIS -->
+      <ion-card *ngSwitchCase="'Diagnosis'">
+        <ion-card-title style="margin-left: 1em;">Diagnosed with {{comment.title}}</ion-card-title>
+        <ion-card-content>
+          <strong>Diagnosed by </strong> Dr. xxx <br>
+          <small>{{comment.createdAt | date: 'yyyy-MM-dd'}}</small>
         </ion-card-content>
       </ion-card>
     </ion-item-group>

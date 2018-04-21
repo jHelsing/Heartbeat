@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, ViewController } from 'ionic-angular';
+import { DateTime, NavParams, ViewController } from 'ionic-angular';
 import { CommentProvider } from '../../providers/comment/comment';
 import { Comment } from '../../models/comment';
 
@@ -15,13 +15,13 @@ export class AddCommentComponent {
 
   constructor(navParams: NavParams, private viewCtrl: ViewController,
               private commentProvider: CommentProvider) {
+    this.comment.category = 'Diagnosis';
     this.patientId = navParams.get('patientId');
   }
 
   public addComment() {
-    console.log(this.comment.category);
     this.commentProvider.uploadComment(this.comment, this.patientId);
-    this.viewCtrl.dismiss(this.comment);
+    this.dismiss();
   }
 
   public dismiss() {
