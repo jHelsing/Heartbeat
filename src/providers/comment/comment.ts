@@ -29,7 +29,9 @@ export class CommentProvider {
 
   public getComments(patientId: string): Observable<Comment[]> {
     const patientRef = this.fireStore.doc('patients/' + patientId).ref;
-    const col = this.fireStore.collection<Comment>('comments', (ref) => ref.where('patient', '==', patientRef));
+    const col = this.fireStore.collection<Comment>('comments', (ref) => {
+      return ref.where('patient', '==', patientRef).orderBy('createdAt', 'desc');
+    });
     return col.snapshotChanges().map((actions) => actions.map((commentAction) => {
       const data = commentAction.payload.doc.data() as Comment;
       const $id = commentAction.payload.doc.id;
