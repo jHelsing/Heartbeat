@@ -54,11 +54,7 @@ export class UpdatePatientPage {
     })));
   }
 
-  public updatePatient(form) {
-    this.updateUser(form.value);
-  }
-
-  public updateUser(patient: Patient) {
+  public updatePatient(patient: Patient) {
     this.patientsCollection.doc(this.patient.$id).update(patient);
     const prompt = this.alertCtrl.create({
       message: 'Patient Updated',
