@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="transferPatient(patient)">Update</button>
+    </ion-buttons>
+    <ion-title>Transfer Patient</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="background">
+  <ion-card>
+    <ion-card-content>
+      <ion-list no-lines>
+        <form #patientForm="ngForm">
+          <ion-item>
+            <ion-label>Assign New Doctor</ion-label>
+            <ion-select [(ngModel)]="newDoctor" name="doctor" multiple="false">
+              <ion-option *ngFor="let doctor of doctors | async"
+                          value="{{doctor.$id}}"
+                          selected="{{doctor.firstName == patient.doctorRef.firstName &&
+                                      doctor.lastName == patient.doctorRef.lastName}}">
+                {{doctor.firstName}} {{doctor.lastName}}
+              </ion-option>
+            </ion-select>
+          </ion-item>
+        </form>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

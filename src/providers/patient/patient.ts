@@ -21,7 +21,6 @@ export class PatientProvider {
 
   constructor(public fireStore: AngularFirestore) {
     this.patientsCollection = fireStore.collection<Patient>('/patients');
-
     this.patients = this.patientsCollection.snapshotChanges().map((actions) => actions.map((action) => ({
       $id: action.payload.doc.id, ...action.payload.doc.data() as Patient,
     })));
@@ -78,16 +77,20 @@ export class PatientProvider {
 
       const combined = Observable.combineLatest(roomObservable, doctorObservable, allergyObservable);
 
-      // Extend the Nurse object with the ID and referenced Room data
-      return combined.map(([room, doctor, allergy]) => {
-        return { ...data, $id, room: room.name, doctor: doctor.firstName, allergy: allergy.name };
+      // Extend the object with the ID and referenced Room data
+      return combined.map(([room, doctor, allergies]) => {
+        return { ...data,
+                 $id,
+                 room: room.name,
+                 doctorRef: doctor,
+                 allergyName: allergies.name };
       });
     })).flatMap((patients) => Observable.combineLatest(patients));
 
     return this.patients;
   }
 
-  public updateUser(patient: Patient, data) {
+  public updatePatient(patient: Patient, data) {
     this.patientsCollection.doc(patient.$id).update(data);
   }
 
