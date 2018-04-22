@@ -46,11 +46,21 @@ export class PatientProvider {
   }
 
   public getDoctors() {
-    return this.doctors;
+    return this.fireStore.collection('/doctors/').snapshotChanges().map((actions) => {
+      return actions.map((a) => {
+        const data = a.payload.doc.data() as Doctor;
+        const $id = a.payload.doc.id;
+        return { $id, ...data };
+      });
+    });
   }
 
   public getAllergies() {
     return this.allergies;
+  }
+
+  public findDoctor(did) {
+    return this.fireStore.doc('doctors/' + did).ref;
   }
 
   public getPatients(specifiedDoctor) {
@@ -64,6 +74,7 @@ export class PatientProvider {
     this.patients = collection.snapshotChanges().map((actions) => actions.map((patientAction) => {
       const data = patientAction.payload.doc.data() as Patient;
       const $id = patientAction.payload.doc.id;
+      const did = data.doctor.id;
 
       // Get the observable of the referenced Room document
       const roomObservable = this.fireStore.doc(data.roomRef.path).snapshotChanges()
@@ -81,8 +92,9 @@ export class PatientProvider {
       return combined.map(([room, doctor, allergies]) => {
         return { ...data,
                  $id,
+                 did,  // Doctor's ID
                  room: room.name,
-                 doctorRef: doctor,
+                 doctorName: (doctor.firstName + ' ' + doctor.lastName),
                  allergyName: allergies.name };
       });
     })).flatMap((patients) => Observable.combineLatest(patients));
@@ -104,5 +116,4 @@ export class PatientProvider {
   public removePatient(patient: Patient) {
     this.patientsCollection.doc(patient.$id).delete();
   }
-
 }

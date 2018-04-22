@@ -16,10 +16,25 @@
     <p>Arrival Time: {{patient.arrivalTime}}</p>
     <p>Room: {{patient.room}}</p>
     <p>Allergy: {{patient.allergyName}}</p>
-    <p>Doctor: {{patient.doctorRef.firstName}} {{patient.doctorRef.lastName}}</p>
+    <p>Doctor: {{patient.doctorName}}</p>
   </ion-item>
   <ion-item>
     <button ion-button (click)="goToUpdatePatient(patient)">Update</button>
-    <button ion-button (click)="openModalTransferPatient(patient)">Transfer</button>
+    <button ion-button (click)="openDoctorsList()">Transfer</button>
   </ion-item>
 </ion-content>
+
+<form #patientForm="ngForm">
+  <ion-item>
+    <ion-label>New Doctor</ion-label>
+    <ion-select [(ngModel)]="newDoctor" name="doctor" multiple="false"
+                interface="action-sheet" #select
+                (ionChange)="transferPatient(patient)">
+      <ion-option *ngFor="let doctor of doctors | async"
+                  value="{{doctor.$id}}"
+                  selected="{{doctor.$id == newDoctor}}">
+        {{doctor.firstName}} {{doctor.lastName}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+</form>
