@@ -15,6 +15,7 @@ import { PatientPage } from '../patient/patient';
 })
 export class UpdatePatientPage {
   public patient;
+  public bloodTypes = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
 
   public patientsCollection: AngularFirestoreCollection<Patient>;
   public patients: Observable<Patient[]>;
@@ -57,9 +58,8 @@ export class UpdatePatientPage {
     this.updateUser(form.value);
   }
 
-  public updateUser(patient1: Patient) {
-    console.log(patient1);
-    this.patientsCollection.doc(this.patient.$id).update(patient1);
+  public updateUser(patient: Patient) {
+    this.patientsCollection.doc(this.patient.$id).update(patient);
     const prompt = this.alertCtrl.create({
       message: 'Patient Updated',
     });
@@ -67,8 +67,8 @@ export class UpdatePatientPage {
     this.navCtrl.push(PatientPage);
   }
 
-  public refresh() {
-    this.navCtrl.push(UpdatePatientPage);
+  public resetForm() {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
 }

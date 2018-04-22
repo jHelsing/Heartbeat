@@ -10,8 +10,11 @@ import { PatientPage } from '../pages/patient/patient';
 import { AddPatientPage } from '../pages/add-patient/add-patient';
 import { PatientDetailPage } from '../pages/patient-detail/patient-detail';
 import { UpdatePatientPage } from '../pages/update-patient/update-patient';
+import { NurseListPage } from '../pages/nurse-list/nurse-list';
+import { DoctorListPage } from '../pages/doctor-list/doctor-list';
 import { NurseProvider } from '../providers/nurse/nurse';
 import { LoginPage } from '../pages/login/login';
+import { AdminTabs } from '../pages/admin-tabs/admin-tabs';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -20,17 +23,22 @@ import { DoctorRegistration } from '../pages/add-doctor/add-doctor';
 import { DoctorProvider } from '../providers/doctor/doctor';
 import { RoomProvider } from '../providers/room/room';
 import { SpecialityProvider } from '../providers/speciality/speciality';
+import { PatientProvider } from '../providers/patient/patient';
+import { LoginProvider } from '../providers/login/login';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     LoginPage,
+    HomePage,
     DoctorRegistration,
     PatientPage,
     AddPatientPage,
     PatientDetailPage,
     UpdatePatientPage,
+    AdminTabs,
+    NurseListPage,
+    DoctorListPage,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +57,9 @@ import { SpecialityProvider } from '../providers/speciality/speciality';
     AddPatientPage,
     PatientDetailPage,
     UpdatePatientPage,
+    AdminTabs,
+    NurseListPage,
+    DoctorListPage,
   ],
   providers: [
     StatusBar,
@@ -58,6 +69,8 @@ import { SpecialityProvider } from '../providers/speciality/speciality';
     DoctorProvider,
     RoomProvider,
     SpecialityProvider,
+    PatientProvider,
+    LoginProvider,
   ],
 })
 export class AppModule {}

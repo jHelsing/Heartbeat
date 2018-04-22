@@ -25,7 +25,7 @@
         <p>Arrival Time: {{patient.arrivalTime}}</p>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="danger" (click)="removeUser(patient)">
+        <button ion-button color="danger" (click)="patientProvider.removePatient(patient)">
           <ion-icon name="trash"></ion-icon>
           Remove
         </button>
