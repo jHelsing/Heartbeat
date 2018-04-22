@@ -21,6 +21,7 @@ export class PatientProvider {
 
   constructor(public fireStore: AngularFirestore) {
     this.patientsCollection = fireStore.collection<Patient>('/patients');
+
     this.patients = this.patientsCollection.snapshotChanges().map((actions) => actions.map((action) => ({
       $id: action.payload.doc.id, ...action.payload.doc.data() as Patient,
     })));
@@ -46,21 +47,11 @@ export class PatientProvider {
   }
 
   public getDoctors() {
-    return this.fireStore.collection('/doctors/').snapshotChanges().map((actions) => {
-      return actions.map((a) => {
-        const data = a.payload.doc.data() as Doctor;
-        const $id = a.payload.doc.id;
-        return { $id, ...data };
-      });
-    });
+    return this.doctors;
   }
 
   public getAllergies() {
     return this.allergies;
-  }
-
-  public findDoctor(did) {
-    return this.fireStore.doc('doctors/' + did).ref;
   }
 
   public getPatients(specifiedDoctor) {
@@ -74,7 +65,6 @@ export class PatientProvider {
     this.patients = collection.snapshotChanges().map((actions) => actions.map((patientAction) => {
       const data = patientAction.payload.doc.data() as Patient;
       const $id = patientAction.payload.doc.id;
-      const did = data.doctor.id;
 
       // Get the observable of the referenced Room document
       const roomObservable = this.fireStore.doc(data.roomRef.path).snapshotChanges()
@@ -88,21 +78,25 @@ export class PatientProvider {
 
       const combined = Observable.combineLatest(roomObservable, doctorObservable, allergyObservable);
 
-      // Extend the object with the ID and referenced Room data
-      return combined.map(([room, doctor, allergies]) => {
-        return { ...data,
-                 $id,
-                 did,  // Doctor's ID
-                 room: room.name,
-                 doctorName: (doctor.firstName + ' ' + doctor.lastName),
-                 allergyName: allergies.name };
+      // Extend the Nurse object with the ID and referenced Room data
+      return combined.map(([roomRef, doctor, allergy]) => {
+        return { ...data, $id, roomObj: roomRef, doctorObj: doctor, allergyObj: allergy };
       });
     })).flatMap((patients) => Observable.combineLatest(patients));
 
     return this.patients;
   }
 
-  public updatePatient(patient: Patient, data) {
+  public updatePatient(patient) {
+    const id = patient.$id;
+    delete patient.$id;
+    delete patient.roomObj;
+    delete patient.doctorObj;
+    delete patient.allergyObj;
+    this.patientsCollection.doc(id).update(patient);
+  }
+
+  public partialUpdatePatient(patient: Patient, data) {
     this.patientsCollection.doc(patient.$id).update(data);
   }
 
@@ -116,4 +110,5 @@ export class PatientProvider {
   public removePatient(patient: Patient) {
     this.patientsCollection.doc(patient.$id).delete();
   }
+
 }

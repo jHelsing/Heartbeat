@@ -14,9 +14,9 @@
     <p>Gender: {{patient.gender}}</p>
     <p>Blood Type: {{patient.bloodType}}</p>
     <p>Arrival Time: {{patient.arrivalTime}}</p>
-    <p>Room: {{patient.room}}</p>
-    <p>Allergy: {{patient.allergyName}}</p>
-    <p>Doctor: {{patient.doctorName}}</p>
+    <p>Room: {{patient.roomObj.name}}</p>
+    <p>Allergy: {{patient.allergyObj.name}}</p>
+    <p>Doctor: {{patient.doctorObj.firstName}} {{patient.doctorObj.lastName}}</p>
   </ion-item>
   <ion-item>
     <button ion-button (click)="goToUpdatePatient(patient)">Update</button>

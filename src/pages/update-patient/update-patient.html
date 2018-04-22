@@ -14,42 +14,60 @@
         <form #patientForm="ngForm" (ngSubmit)="updatePatient(patientForm.value)">
           <ion-item>
             <ion-label floating [ngClass]="{'required': name.errors}">Name</ion-label>
-            <ion-input type="text" [(ngModel)]="patient.name" maxlength="20" value="patient.name" name="name" required #name="ngModel"></ion-input>
+            <ion-input type="text" [(ngModel)]="clonedPatient.name" maxlength="20" value="clonedPatient.name" name="name" required #name="ngModel"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label floating [ngClass]="{'required': age.errors}">Age</ion-label>
-            <ion-input type="tel" pattern="[0-9]*" [(ngModel)]="patient.age" maxlength="3" value="patient.age" name="age" #age="ngModel" required></ion-input>
+            <ion-input type="tel" pattern="[0-9]*" [(ngModel)]="clonedPatient.age" maxlength="3" value="clonedPatient.age" name="age" #age="ngModel" required></ion-input>
           </ion-item>
           <ion-item>
             <ion-label [ngClass]="{'required': gender.errors}">Gender</ion-label>
-            <ion-select [(ngModel)]="patient.gender" name="gender" #gender="ngModel" required>
+            <ion-select [(ngModel)]="clonedPatient.gender" name="gender" #gender="ngModel" required>
               <ion-option value="Female">Female</ion-option>
               <ion-option value="Male">Male</ion-option>
             </ion-select>
           </ion-item>
           <ion-item>
             <ion-label>Blood Group</ion-label>
-            <ion-select [(ngModel)]="patient.bloodType" name="bloodType">
+            <ion-select [(ngModel)]="clonedPatient.bloodType" name="bloodType">
               <ion-option *ngFor="let bloodType of bloodTypes">{{bloodType}}</ion-option>
             </ion-select>
           </ion-item>
           <ion-item>
             <ion-label>Arrival Time</ion-label>
-            <ion-input type="date" [(ngModel)]="patient.arrivalTime" name="arrivalTime" value="patient.arrivalTime"></ion-input>
+            <ion-datetime [(ngModel)]="clonedPatient.arrivalTime" name="arrivalTime"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>Room</ion-label>
+            <ion-select [(ngModel)]="clonedPatient.roomRef.id" required name="room" #room="ngModel">
+              <ion-option *ngFor="let room of rooms | async" value="{{room.$id}}" selected="room.$id === clonedPatient.roomRef.id">{{room.name}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Allergies</ion-label>
+            <ion-select [(ngModel)]="clonedPatient.allergy.id" required name="allergy" #allergy="ngModel">
+              <ion-option *ngFor="let allergy of allergies | async" value="{{allergy.$id}}" selected="allergy.$id === clonedPatient.allergy.id">{{allergy.name}}</ion-option>
+            </ion-select>
           </ion-item>
           <ion-item>
             <ion-label floating>Diet</ion-label>
-            <ion-textarea [(ngModel)]="patient.diet" name="diet" value="patient.diet"></ion-textarea>
+            <ion-textarea [(ngModel)]="clonedPatient.diet" name="diet"></ion-textarea>
           </ion-item>
           <ion-item>
             <ion-label floating>Current Treatments</ion-label>
-            <ion-textarea [(ngModel)]="patient.treatment" name="treatment" value="patient.treatment"></ion-textarea>
+            <ion-textarea [(ngModel)]="clonedPatient.treatment" name="treatment"></ion-textarea>
           </ion-item>
-          <button ion-button [disabled]="!patientForm.form.valid" type="submit"><ion-icon name="checkmark"></ion-icon></button>
+          <ion-item>
+            <ion-label>Assign Doctor</ion-label>
+            <ion-select [(ngModel)]="clonedPatient.doctor.id" required name="doctor" #doctor="ngModel">
+              <ion-option *ngFor="let doctor of doctors | async" value="{{doctor.$id}}" selected="doctor.$id === clonedPatient.doctor.id">{{doctor.firstName}} {{doctor.lastName}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <button ion-button="!patientForm.form.valid" type="submit"><ion-icon name="checkmark"></ion-icon></button>
         </form>
-        <ion-item>
+        <!---<ion-item>
           <button ion-button (click)="resetForm()"><ion-icon name="close"></ion-icon></button>
-        </ion-item>
+        </ion-item>--->
       </ion-list>
     </ion-card-content>
   </ion-card>

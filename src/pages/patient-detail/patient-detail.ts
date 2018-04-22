@@ -23,7 +23,7 @@ export class PatientDetailPage {
               public fireStore: AngularFirestore, public patientProvider: PatientProvider) {
     this.patient = navParams.get('patient');
     this.doctors = patientProvider.getDoctors();
-    this.newDoctor = this.patient.did;
+    this.newDoctor = this.patient.doctor.id;
   }
 
   public goToUpdatePatient(patient) {
@@ -35,7 +35,7 @@ export class PatientDetailPage {
   }
 
   public transferPatient(patient: Patient) {
-    this.patientProvider.updatePatient(patient, { doctor: this.fireStore.doc('doctors/' + this.newDoctor).ref });
+    this.patientProvider.partialUpdatePatient(patient, { doctor: this.fireStore.doc('doctors/' + this.newDoctor).ref });
     const prompt = this.alertCtrl.create({
       message: 'Patient transfered',
     });
