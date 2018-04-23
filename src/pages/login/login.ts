@@ -15,6 +15,8 @@ import { AdminTabs } from '../admin-tabs/admin-tabs';
   // Used to read the input fields from HTML elements with [(ngModel)].
   private inputEmail: string = '';
   private inputPassword: string = '';
+
+  private showSplash = true; // Show splash until it is confirmed wether there is a logged in user or not.
   private roleCollectionNames = ['nurses', 'doctors'];
   private roleCollectionPageMap = {
     nurses: PatientPage,
@@ -27,7 +29,7 @@ import { AdminTabs } from '../admin-tabs/admin-tabs';
               public toastController: ToastController) {
 
     // Check if the current device is already logged in as a user. If so, continue that session.
-    this.loginProvider.checkLoggedIn(this.loadCorrectPage);
+    this.loginProvider.checkLoggedIn(this.loadCorrectPage, this.hideSplash);
   }
 
   public loadCorrectPage = (userID) => {
@@ -43,6 +45,10 @@ import { AdminTabs } from '../admin-tabs/admin-tabs';
         }
       });
     }
+  }
+
+  public hideSplash = () => {
+    this.showSplash = false; // Read from html to show correct content.
   }
 
   // Fetch username and password from input fields. Log user in.

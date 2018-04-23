@@ -8,16 +8,15 @@ export class LoginProvider {
 
   }
 
-  // Check if there is a logged in user at this time. If there is, the parameter function is called.
-  public checkLoggedIn(onLoggedIn: (uid: string) => any) {
+  // Check if there is a logged in user at this time and call the proper callback function accordingly.
+  public checkLoggedIn(onLoggedIn: (uid: string) => any, onNotLoggedIn: () => any) {
     const authObserver = this.afAuth.authState.subscribe((user) => {
-      if (user) {
+      if (user) { // User is undefined if there is no logged in user.
         onLoggedIn(user.uid);
-        authObserver.unsubscribe();
       } else {
-        // Nog logged in
-        authObserver.unsubscribe();
+        onNotLoggedIn();
       }
+      authObserver.unsubscribe();
     });
   }
 
