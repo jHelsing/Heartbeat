@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { LoginProvider } from '../../providers/login/login';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { PatientPage } from '../patient/patient';
+import { AdminTabs } from '../admin-tabs/admin-tabs';
 
 @IonicPage()
 @Component({
@@ -14,6 +16,11 @@ import { AngularFirestore } from 'angularfire2/firestore';
   private inputEmail: string = '';
   private inputPassword: string = '';
   private roleCollectionNames = ['nurses', 'doctors'];
+  private roleCollectionPageMap = {
+    nurses: PatientPage,
+    doctors: PatientPage,
+    administrators: AdminTabs,
+  };
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public loginProvider: LoginProvider, public fireStore: AngularFirestore,
@@ -31,8 +38,8 @@ import { AngularFirestore } from 'angularfire2/firestore';
 
       userPromise.then((user) => {
         if (user.exists) {
-          alert('User is in role category = ' + roleCollectionName);
-          // TODO: Load correct page.
+          // Replace login page as home page of the logged in user with the correct page for the specific user.
+          this.navCtrl.setRoot(this.roleCollectionPageMap[roleCollectionName]);
         }
       });
     }
