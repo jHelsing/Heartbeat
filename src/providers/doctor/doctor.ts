@@ -16,7 +16,7 @@ export class DoctorProvider {
     })));
   }
 
-  public getDoctor() {
+  public getDoctors() {
     return this.doctorObservable;
   }
 
