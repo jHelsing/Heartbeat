@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage,
+         NavController,
+         NavParams,
+         AlertController } from 'ionic-angular';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Patient } from '../../models/patient';
+import { AuxProvider } from '../../providers/aux';
 import { Doctor } from '../../models/doctor';
 import { Allergy } from '../../models/allergy';
 import { Room } from '../../models/room';
-import { Observable } from 'rxjs/Observable';
 import { PatientProvider } from '../../providers/patient/patient';
+import { Observable } from 'rxjs/Observable';
 
 @IonicPage()
 @Component({
@@ -15,15 +18,18 @@ import { PatientProvider } from '../../providers/patient/patient';
 })
 export class UpdatePatientPage {
   public patient;
-  public clonedPatient = new Patient();
+  public clonedPatient;
   public bloodTypes = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
-  public patients: Observable<Patient[]>;
   public doctors: Observable<Doctor[]>;
   public allergies: Observable<Allergy[]>;
   public rooms: Observable<Room[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public fireStore: AngularFirestore,
-              public alertCtrl: AlertController, public patientProvider: PatientProvider) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public fireStore: AngularFirestore,
+              public alertCtrl: AlertController,
+              public patientProvider: PatientProvider,
+              private aux: AuxProvider) {
     this.patient = navParams.get('patient');
     this.clonedPatient = Object.assign({}, this.patient);
     this.rooms = patientProvider.getRooms();
@@ -31,11 +37,15 @@ export class UpdatePatientPage {
     this.allergies = patientProvider.getAllergies();
   }
 
-  public updatePatient(patient) {
-    this.clonedPatient.roomRef = this.fireStore.collection('/rooms').doc(patient.room).ref;
-    this.clonedPatient.doctor = this.fireStore.collection('/doctors').doc(patient.doctor).ref;
-    this.clonedPatient.allergy = this.fireStore.collection('/allergies').doc(patient.allergy).ref;
-    this.patientProvider.updatePatient(this.clonedPatient);
+  public updatePatient() {
+    this.clonedPatient.roomRef = this.aux.ref('rooms', this.clonedPatient.roomRef.id);
+    this.clonedPatient.allergy = this.aux.ref('allergies', this.clonedPatient.allergy.id);
+    this.clonedPatient.doctor = this.aux.ref('doctors', this.clonedPatient.doctor.id);
+    delete this.clonedPatient.roomObj;
+    delete this.clonedPatient.allergyObj;
+    delete this.clonedPatient.doctorObj;
+    delete this.clonedPatient.$id;
+    this.patientProvider.updatePatient(this.patient, this.clonedPatient);
     const prompt = this.alertCtrl.create({
       message: 'Patient updated',
     });

@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
-import { AngularFirestore } from 'angularfire2/firestore';
-import { Patient } from '../../models/patient';
+import { Component,
+         ViewChild } from '@angular/core';
+import { IonicPage,
+         NavController,
+         NavParams,
+         AlertController,
+         Select } from 'ionic-angular';
 import { PatientProvider } from '../../providers/patient/patient';
+import { AuxProvider } from '../../providers/aux';
+import { Patient } from '../../models/patient';
 import { UpdatePatientPage } from '../update-patient/update-patient';
-import { ViewChild } from '@angular/core';
-import { Select } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -18,9 +21,11 @@ export class PatientDetailPage {
   public doctors;
   public newDoctor;
 
-  constructor(public modalCtrl: ModalController, public navCtrl: NavController,
-              public navParams: NavParams, public alertCtrl: AlertController,
-              public fireStore: AngularFirestore, public patientProvider: PatientProvider) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public alertCtrl: AlertController,
+              public patientProvider: PatientProvider,
+              private aux: AuxProvider) {
     this.patient = navParams.get('patient');
     this.doctors = patientProvider.getDoctors();
     this.newDoctor = this.patient.doctor.id;
@@ -35,7 +40,7 @@ export class PatientDetailPage {
   }
 
   public transferPatient(patient: Patient) {
-    this.patientProvider.partialUpdatePatient(patient, { doctor: this.fireStore.doc('doctors/' + this.newDoctor).ref });
+    this.patientProvider.updatePatient(patient, { doctor: this.aux.ref('doctors', this.newDoctor) });
     const prompt = this.alertCtrl.create({
       message: 'Patient transfered',
     });

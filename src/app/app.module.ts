@@ -22,6 +22,7 @@ import firebaseConfig from '../config/firebase.config';
 import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistration';
 import { PatientProvider } from '../providers/patient/patient';
 import { LoginProvider } from '../providers/login/login';
+import { AuxProvider } from '../providers/aux';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { LoginProvider } from '../providers/login/login';
     NurseProvider,
     PatientProvider,
     LoginProvider,
+    AuxProvider,
   ],
 })
 export class AppModule {}

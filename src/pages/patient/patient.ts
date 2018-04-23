@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Patient } from '../../models/patient';
-import { Observable } from 'rxjs/Observable';
+import { IonicPage,
+         NavController,
+         NavParams } from 'ionic-angular';
+import { PatientProvider } from '../../providers/patient/patient';
 import { AddPatientPage } from '../add-patient/add-patient';
 import { PatientDetailPage } from '../patient-detail/patient-detail';
-import { PatientProvider } from '../../providers/patient/patient';
 import 'rxjs/Rx';
 
 @IonicPage()
@@ -16,7 +15,8 @@ import 'rxjs/Rx';
 export class PatientPage {
   public patients;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
               public patientProvider: PatientProvider) {
     const specificDoctor = navParams.get('doctor');
     this.patients = patientProvider.getPatients(specificDoctor);
