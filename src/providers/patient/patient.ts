@@ -10,7 +10,6 @@ export class PatientProvider {
 
   // dId is the doctor's id, when one is specified
   public getPatients(dId?) {
-    dId = '0d0xTFYu3ozdEU1qvJ80';
     let patientsLst = dId
         ? this.aux.colId$('patients', (ref) => ref.where('doctor', '==', this.aux.ref('doctors', dId)))
         : this.aux.colId$('patients');
