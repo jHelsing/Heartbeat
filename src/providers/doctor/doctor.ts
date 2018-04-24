@@ -51,7 +51,7 @@ export class DoctorProvider {
 
   public removeDoctor(doctor: Doctor) {
     // TODO: make method that removes doctor
-
+    this.doctorCollection.doc(doctor.$id).delete();
   }
 
   public updateDoctor(doctor: Doctor) {
