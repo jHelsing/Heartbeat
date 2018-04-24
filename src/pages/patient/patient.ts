@@ -7,6 +7,7 @@ import { AddPatientPage } from '../add-patient/add-patient';
 import { PatientDetailPage } from '../patient-detail/patient-detail';
 import { PatientProvider } from '../../providers/patient/patient';
 import 'rxjs/Rx';
+import { PopoverController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,7 @@ export class PatientPage {
   public patients;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
-              public patientProvider: PatientProvider) {
+    public patientProvider: PatientProvider, public popoverCtrl: PopoverController) {
     const specificDoctor = navParams.get('doctor');
     this.patients = patientProvider.getPatients(specificDoctor);
   }
@@ -28,5 +29,10 @@ export class PatientPage {
 
   public viewDetails(patient) {
     this.navCtrl.push(PatientDetailPage, { patient });
+  }
+
+  presentPopover() {
+    let popover = this.popoverCtrl.create(MyPopOverPage);
+    popover.present();
   }
 }
