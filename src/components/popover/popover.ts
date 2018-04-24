@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { ViewController } from 'ionic-angular';
+import { ViewController, NavController } from 'ionic-angular';
+import { LoginPage } from '../../pages/login/login';
+import { LoginProvider } from '../../providers/login/login';
+
 
 /**
  * Generated class for the PopoverComponent component.
@@ -16,7 +19,7 @@ export class PopoverComponent {
   public items: any;
   public text: string;
 
-  constructor(public viewCtrl: ViewController) {
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public loginProvider: LoginProvider) {
     this.items = [
       { item: 'Page 1' },
       { item: 'Log Out' },
@@ -25,6 +28,7 @@ export class PopoverComponent {
 
   public itemClick(item: any) {
     this.viewCtrl.dismiss(item);
+
   }
 
 }
