@@ -5,9 +5,9 @@
   <ion-navbar>
     <ion-title><span *ngIf="add; then addTxt; else updateTxt"></span> Patient</ion-title>
     <ion-buttons end>
-    <button ion-button icon-only (click)="closeModal()">
-      <ion-icon name="close"></ion-icon>
-    </button>
+      <button ion-button icon-only (click)="closeModal()">
+        <ion-icon name="close"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -16,51 +16,51 @@
   <form #patientForm="ngForm" (ngSubmit)="addOrUpdatePatient(patientForm.value)">
     <ion-list>
       <ion-item>
-      <ion-label floating>Name</ion-label>
-      <ion-input type="text" [(ngModel)]="clonedPatient.name" name="name" required #name="ngModel"></ion-input>
+        <ion-label floating>Name</ion-label>
+        <ion-input type="text" [(ngModel)]="clonedPatient.name" name="name" required #name="ngModel"></ion-input>
       </ion-item>
       <ion-item>
-      <ion-label floating>Age</ion-label>
-      <ion-input type="number" maxlength="3" [(ngModel)]="clonedPatient.age" required name="age" #age="ngModel"></ion-input>
+        <ion-label floating>Age</ion-label>
+        <ion-input type="number" maxlength="3" [(ngModel)]="clonedPatient.age" required name="age" #age="ngModel"></ion-input>
       </ion-item>
       <ion-item>
-      <ion-label floating>Gender</ion-label>
-      <ion-select [(ngModel)]="clonedPatient.gender" required name="gender" #gender="ngModel">
-        <ion-option value="Female">Female</ion-option>
-        <ion-option value="Male">Male</ion-option>
-      </ion-select>
+        <ion-label floating>Gender</ion-label>
+        <ion-select [(ngModel)]="clonedPatient.gender" required name="gender" #gender="ngModel">
+          <ion-option value="Female">Female</ion-option>
+          <ion-option value="Male">Male</ion-option>
+        </ion-select>
       </ion-item>
       <ion-item>
-      <ion-label floating>Blood Group</ion-label>
-      <ion-select [(ngModel)]="clonedPatient.bloodType" required name="bloodType" #bloodType="ngModel">
-        <ion-option *ngFor="let bloodType of bloodTypes">{{bloodType}}</ion-option>
-      </ion-select>
+        <ion-label floating>Blood Group</ion-label>
+        <ion-select [(ngModel)]="clonedPatient.bloodType" required name="bloodType" #bloodType="ngModel">
+          <ion-option *ngFor="let bloodType of bloodTypes">{{bloodType}}</ion-option>
+        </ion-select>
       </ion-item>
       <ion-item>
-      <ion-label floating>Arrival Time</ion-label>
-      <ion-datetime [(ngModel)]="clonedPatient.arrivalTime" required name="arrivalTime" #arrivalTime="ngModel"></ion-datetime>
+        <ion-label floating>Arrival Time</ion-label>
+        <ion-datetime [(ngModel)]="clonedPatient.arrivalTime" required name="arrivalTime" #arrivalTime="ngModel"></ion-datetime>
       </ion-item>
       <ion-item>
-      <ion-label floating>Room</ion-label>
-      <ion-select [(ngModel)]="clonedPatient.roomRef.id" required name="roomRef" #roomRef="ngModel">
-        <ion-option *ngFor="let room of rooms | async" value="{{room.$id}}">{{room.name}}</ion-option>
-      </ion-select>
+        <ion-label floating>Room</ion-label>
+        <ion-select [(ngModel)]="clonedPatient.roomRef.id" required name="roomRef" #roomRef="ngModel">
+          <ion-option *ngFor="let room of rooms | async" value="{{room.$id}}">{{room.name}}</ion-option>
+        </ion-select>
       </ion-item>
       <ion-item>
-      <ion-label floating>Allergies</ion-label>
-      <ion-select [(ngModel)]="clonedPatient.allergy.id" required name="allergy" #allergy="ngModel">
-        <ion-option *ngFor="let allergy of allergies | async" value="{{allergy.$id}}">{{allergy.name}}</ion-option>
-      </ion-select>
+        <ion-label floating>Allergies</ion-label>
+        <ion-select [(ngModel)]="clonedPatient.allergy.id" required name="allergy" #allergy="ngModel">
+          <ion-option *ngFor="let allergy of allergies | async" value="{{allergy.$id}}">{{allergy.name}}</ion-option>
+        </ion-select>
       </ion-item>
       <ion-item>
-      <ion-label floating>Diet</ion-label>
-      <ion-textarea [(ngModel)]="clonedPatient.diet" required name="diet" #diet="ngModel"></ion-textarea>
+        <ion-label floating>Diet</ion-label>
+        <ion-textarea [(ngModel)]="clonedPatient.diet" required name="diet" #diet="ngModel"></ion-textarea>
       </ion-item>
       <ion-item>
-      <ion-label floating>Assign Doctor</ion-label>
-      <ion-select [(ngModel)]="clonedPatient.doctor.id" required name="doctor" #doctor="ngModel">
-        <ion-option *ngFor="let doctor of doctors | async" value="{{doctor.$id}}">{{doctor.firstName + " " + doctor.lastName}}</ion-option>
-      </ion-select>
+        <ion-label floating>Assign Doctor</ion-label>
+        <ion-select [(ngModel)]="clonedPatient.doctor.id" required name="doctor" #doctor="ngModel">
+          <ion-option *ngFor="let doctor of doctors | async" value="{{doctor.$id}}">{{doctor.firstName + " " + doctor.lastName}}</ion-option>
+        </ion-select>
       </ion-item>
     </ion-list>
     <ion-buttons end>
