@@ -27,6 +27,7 @@ export class DoctorRegistration {
 
   public addDoctor(doctor: Doctor) {
     this.doctorProvider.addDoctor(doctor);
+    this.goBack();
   }
 
   public goBack() {

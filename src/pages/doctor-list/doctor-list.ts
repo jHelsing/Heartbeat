@@ -27,8 +27,8 @@ export class DoctorListPage {
     this.doctorProvider.removeDoctor(doctor);
   }
 
-  public updateDoctor(doctor: Doctor) {
-    this.doctorProvider.updateDoctor(doctor);
+  public updateDoctor(doctor: Doctor, data) {
+    this.doctorProvider.updateDoctor(doctor, data);
   }
 
 }
