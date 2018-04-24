@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Observable } from '@firebase/util';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 import { Doctor } from '../../models/doctor';
 import { DoctorProvider } from '../../providers/doctor/doctor';
 
