@@ -20,7 +20,8 @@ export class PatientPage {
   public patients;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
-    public patientProvider: PatientProvider, public popoverCtrl: PopoverController, public loginProvider: LoginProvider) {
+              public patientProvider: PatientProvider, public popoverCtrl: PopoverController,
+              public loginProvider: LoginProvider) {
     const specificDoctor = navParams.get('doctor');
     this.patients = patientProvider.getPatients(specificDoctor);
   }
@@ -40,9 +41,7 @@ export class PatientPage {
     });
 
     popover.onDidDismiss((popoverData) => {
-      //alert(JSON.stringify(popoverData.item));
-      this.loginProvider.logout();
-      this.navCtrl.setRoot(LoginPage);
+      // Do something when popover closes.
     });
 
   }
