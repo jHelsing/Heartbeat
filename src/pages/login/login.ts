@@ -17,7 +17,7 @@ import { AdminTabs } from '../admin-tabs/admin-tabs';
   private inputPassword: string = '';
 
   private showSplash = false; // Show splash until it is confirmed wether there is a logged in user or not.
-  private roleCollectionNames = ['nurses', 'doctors'];
+  private roleCollectionNames = ['nurses', 'doctors', 'administrators'];
   private roleCollectionPageMap = {
     nurses: PatientPage,
     doctors: PatientPage,
