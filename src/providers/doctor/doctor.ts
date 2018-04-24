@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { AlertController } from 'ionic-angular';
+import { AlertController, ModalController } from 'ionic-angular';
 import { Doctor } from '../../models/doctor';
 import { Observable } from 'rxjs/Observable';
+import { DoctorRegistration } from '../../pages/add-doctor/add-doctor';
 import 'rxjs/Rx';
 
 @Injectable()
@@ -12,18 +13,18 @@ export class DoctorProvider {
 
   constructor(public fireStore: AngularFirestore, public alertCtrl: AlertController) {
     this.doctorCollection = fireStore.collection<Doctor>('/doctors');
-    /*this.doctorObservable = this.doctorCollection.snapshotChanges().map((actions) => actions.map((action) => ({
+    this.doctorObservable = this.doctorCollection.snapshotChanges().map((actions) => actions.map((action) => ({
       $id: action.payload.doc.id, ...action.payload.doc.data() as Doctor,
-    })));*/
-    this.doctorObservable = this.doctorCollection.snapshotChanges().map((actions) => actions.map((doctorAction) => {
-      const data = doctorAction.payload.doc.data() as Doctor;
-      const $id = doctorAction.payload.doc.id;
+    })));
+    // this.doctorObservable = this.doctorCollection.snapshotChanges().map((actions) => actions.map((doctorAction) => {
+    //   const data = doctorAction.payload.doc.data() as Doctor;
+    //   const $id = doctorAction.payload.doc.id;
 
-      const roomObservable = fireStore.doc(data.roomRef.path).snapshotChanges()
-        .map((action) => action.payload.data());
+    //   const roomObservable = fireStore.doc(data.roomRef.path).snapshotChanges()
+    //     .map((action) => action.payload.data());
 
-      return roomObservable.map((room) => ({ ...data, $id, room: room.name }));
-    })).flatMap((doctorObservable) => Observable.combineLatest(doctorObservable));
+    //   return roomObservable.map((room) => ({ ...data, $id, room: room.name }));
+    // })).flatMap((doctorObservable) => Observable.combineLatest(doctorObservable));
   }
 
   public getDoctors() {
@@ -44,13 +45,7 @@ export class DoctorProvider {
     alert.present();
   }
 
-  public addDoctorModal() {
-    // TODO: make method that creates modal
-
-  }
-
   public removeDoctor(doctor: Doctor) {
-    // TODO: make method that removes doctor
     this.doctorCollection.doc(doctor.$id).delete();
   }
 

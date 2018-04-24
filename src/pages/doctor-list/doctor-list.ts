@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { Doctor } from '../../models/doctor';
 import { DoctorProvider } from '../../providers/doctor/doctor';
+import { DoctorRegistration } from '../add-doctor/add-doctor';
 
 @IonicPage()
 @Component({
@@ -13,12 +14,13 @@ import { DoctorProvider } from '../../providers/doctor/doctor';
 export class DoctorListPage {
   public doctorObservable: Observable<Doctor[]>;
 
-  constructor(public navCtrl: NavController, public doctorProvider: DoctorProvider) {
+  constructor(public navCtrl: NavController, public doctorProvider: DoctorProvider, public modalCtrl: ModalController) {
     this.doctorObservable = doctorProvider.getDoctors();
   }
 
   public addDoctorModal() {
-    this.doctorProvider.addDoctorModal();
+    const createDoctorModal = this.modalCtrl.create(DoctorRegistration);
+    createDoctorModal.present();
   }
 
   public removeDoctor(doctor: Doctor) {
