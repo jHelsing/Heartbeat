@@ -18,7 +18,7 @@ export class PatientPage {
   public patients;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
-    public patientProvider: PatientProvider, public popoverCtrl: PopoverController) {
+              public patientProvider: PatientProvider, public popoverCtrl: PopoverController) {
     const specificDoctor = navParams.get('doctor');
     this.patients = patientProvider.getPatients(specificDoctor);
   }
@@ -32,15 +32,14 @@ export class PatientPage {
   }
 
   public presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverComponent);
+    const popover = this.popoverCtrl.create(PopoverComponent);
     popover.present({
-      ev:myEvent
+      ev: myEvent,
     });
 
-    popover.onDidDismiss(popoverData =>{
+    popover.onDidDismiss((popoverData) => {
       alert(JSON.stringify(popoverData.item));
-      console.log(popoverData);
-    })
+    });
 
   }
 

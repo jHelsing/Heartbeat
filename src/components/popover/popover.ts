@@ -9,12 +9,12 @@ import { ViewController } from 'ionic-angular';
  */
 @Component({
   selector: 'popover',
-  templateUrl: 'popover.html'
+  templateUrl: 'popover.html',
 })
 export class PopoverComponent {
 
-  items:any;
-  text: string;
+  public items: any;
+  public text: string;
 
   constructor(public viewCtrl: ViewController) {
     this.items = [
