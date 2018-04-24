@@ -19,13 +19,12 @@
     <ion-item-sliding #item *ngFor="let patient of patients | async">
       <ion-item (click)="viewDetails(patient)">
         <ion-avatar item-start>
-          <img src="http://i.pravatar.cc/150?u={{patient.$id}}">
+          <p class="avatar-base avatar-color-{{patient.name.toUpperCase().charCodeAt(0) - 64}}">
+            {{patient.name.charAt(0).toUpperCase()}}
+          </p>
         </ion-avatar>
         <h2>{{patient.name}}</h2>
-        <p>Age: {{patient.age}}</p>
-        <p>Gender: {{patient.gender}}</p>
-        <p>Blood Type: {{patient.bloodType}}</p>
-        <p>Arrival Time: {{patient.arrivalTime}}</p>
+        <p>Room: {{patient.room}}</p>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="patientProvider.removePatient(patient)">

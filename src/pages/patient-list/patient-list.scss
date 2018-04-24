@@ -1,0 +1,29 @@
+page-patient {
+  // Main color of the UI
+  $main: #488aff;
+  @for $n from 1 through 26 {
+    // Alternative way: generate a random color for each possible initial
+    // $b: hsl(random(360), 25 + random(60 +- 40), 30 + random(70 +- 30));
+    // Use black or white letters depending on the lightness of the background
+    // $f: if(lightness($b) > 50, #000, #fff);
+    .avatar-color-#{$n} {
+      // Generate variations of the main color, getting dark from A to Z
+      background-color: darken($main, $n * 2);
+    }
+  }
+  .avatar-base {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+  }
+}

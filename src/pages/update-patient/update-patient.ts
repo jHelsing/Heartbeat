@@ -6,7 +6,7 @@ import { Doctor } from '../../models/doctor';
 import { Allergy } from '../../models/allergy';
 import { Room } from '../../models/room';
 import { Observable } from 'rxjs/Observable';
-import { PatientPage } from '../patient/patient';
+import { PatientListPage } from '../patient-list/patient-list';
 
 @IonicPage()
 @Component({
@@ -64,7 +64,7 @@ export class UpdatePatientPage {
       message: 'Patient Updated',
     });
     prompt.present();
-    this.navCtrl.push(PatientPage);
+    this.navCtrl.push(PatientListPage);
   }
 
   public resetForm() {

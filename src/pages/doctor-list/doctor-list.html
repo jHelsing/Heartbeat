@@ -1,7 +1,12 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Doctors</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>
+      Doctors
+    </ion-title>
     <ion-buttons end>
+      <button ion-button icon-only (click)="addDoctorModal()">
+        <ion-icon name="person-add"></ion-icon>
+      </button>
       <button ion-button (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
       </button>
@@ -9,7 +14,23 @@
   </ion-navbar>
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+    <ion-item-sliding #item *ngFor="let doctor of doctorObservable | async">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="http://i.pravatar.cc/150?u={{doctor.$id}}">
+        </ion-avatar>
+        <h2>{{doctor.firstName}}</h2>
+        <p>Age: {{doctor.age}}</p>
+        <p>Room: {{doctor.room}}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="removeDoctor(doctor)">
+          <ion-icon name="trash"></ion-icon>
+          Remove
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

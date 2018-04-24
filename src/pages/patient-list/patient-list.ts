@@ -12,9 +12,9 @@ import { PopoverComponent } from '../../components/popover/popover';
 @IonicPage()
 @Component({
   selector: 'page-patient',
-  templateUrl: 'patient.html',
+  templateUrl: 'patient-list.html',
 })
-export class PatientPage {
+export class PatientListPage {
   public patients;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,

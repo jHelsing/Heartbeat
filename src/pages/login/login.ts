@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { LoginProvider } from '../../providers/login/login';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { PatientPage } from '../patient/patient';
 import { AdminTabs } from '../admin-tabs/admin-tabs';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { PatientListPage } from '../patient-list/patient-list';
 
 @IonicPage()
 @Component({
@@ -20,8 +20,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   private showSplash = false; // Show splash until it is confirmed wether there is a logged in user or not.
   private roleCollectionNames = ['nurses', 'doctors', 'administrators'];
   private roleCollectionPageMap = {
-    nurses: PatientPage,
-    doctors: PatientPage,
+    nurses: PatientListPage,
+    doctors: PatientListPage,
     administrators: AdminTabs,
   };
 
