@@ -7,18 +7,9 @@ import * as firebase from 'firebase';
 @Injectable()
 export class CommentProvider {
   private commentsCollection: AngularFirestoreCollection<Comment>;
-  private comments: Observable<Comment[]>;
 
   constructor(private fireStore: AngularFirestore) {
     this.commentsCollection = fireStore.collection<Comment>('/comments');
-    this.comments = this.commentsCollection.snapshotChanges().map((actions) => actions.map((commentAction) => {
-      const data = commentAction.payload.doc.data() as Comment;
-      const $id = commentAction.payload.doc.id;
-
-      const patientObservable = fireStore.doc(data.patient.path).snapshotChanges()
-        .map((action) => action.payload.data());
-      return patientObservable.map((patient) => ({ ...data, $id, patient: patient.name } as Comment));
-    })).flatMap((comments) => Observable.combineLatest(comments));
   }
 
   public uploadComment(comment: Comment, patientId: string) {
