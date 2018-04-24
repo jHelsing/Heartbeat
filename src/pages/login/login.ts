@@ -4,6 +4,7 @@ import { LoginProvider } from '../../providers/login/login';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { PatientPage } from '../patient/patient';
 import { AdminTabs } from '../admin-tabs/admin-tabs';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 @IonicPage()
 @Component({
@@ -26,10 +27,10 @@ import { AdminTabs } from '../admin-tabs/admin-tabs';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public loginProvider: LoginProvider, public fireStore: AngularFirestore,
-              public toastController: ToastController) {
+              public toastController: ToastController, public splashScreen: SplashScreen) {
 
     // Check if the current device is already logged in as a user. If so, continue that session.
-    this.loginProvider.checkLoggedIn(this.loadCorrectPage, this.hideSplash);
+    this.loginProvider.checkLoggedIn(this.loadCorrectPage, this.splashScreen.hide);
   }
 
   public loadCorrectPage = (userID) => {
@@ -41,14 +42,11 @@ import { AdminTabs } from '../admin-tabs/admin-tabs';
       userPromise.then((user) => {
         if (user.exists) {
           // Replace login page as home page of the logged in user with the correct page for the specific user.
+          this.splashScreen.hide();
           this.navCtrl.setRoot(this.roleCollectionPageMap[roleCollectionName]);
         }
       });
     }
-  }
-
-  public hideSplash = () => {
-    this.showSplash = false; // Read from html to show correct content.
   }
 
   // Fetch username and password from input fields. Log user in.
