@@ -1,4 +1,6 @@
 <!-- Generated template for the PopoverComponent component -->
-<div>
-  {{text}}
-</div>
+<ion-list>
+  <ion-item *ngFor="let item of items" (click)="itemClick(item)">
+    {{item.item}}
+  </ion-item>
+</ion-list>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, PopoverController } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Patient } from '../../models/patient';
 import { Observable } from 'rxjs/Observable';
@@ -7,7 +7,7 @@ import { AddPatientPage } from '../add-patient/add-patient';
 import { PatientDetailPage } from '../patient-detail/patient-detail';
 import { PatientProvider } from '../../providers/patient/patient';
 import 'rxjs/Rx';
-import { PopoverController } from 'ionic-angular';
+import { PopoverComponent } from '../../components/popover/popover';
 
 @IonicPage()
 @Component({
@@ -31,8 +31,17 @@ export class PatientPage {
     this.navCtrl.push(PatientDetailPage, { patient });
   }
 
-  presentPopover() {
-    let popover = this.popoverCtrl.create(MyPopOverPage);
-    popover.present();
+  public presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopoverComponent);
+    popover.present({
+      ev:myEvent
+    });
+
+    popover.onDidDismiss(popoverData =>{
+      alert(JSON.stringify(popoverData.item));
+      console.log(popoverData);
+    })
+
   }
+
 }

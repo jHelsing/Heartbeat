@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ViewController } from 'ionic-angular';
 
 /**
  * Generated class for the PopoverComponent component.
@@ -12,11 +13,18 @@ import { Component } from '@angular/core';
 })
 export class PopoverComponent {
 
+  items:any;
   text: string;
 
-  constructor() {
-    console.log('Hello PopoverComponent Component');
-    this.text = 'Hello World';
+  constructor(public viewCtrl: ViewController) {
+    this.items = [
+      { item: 'Page 1' },
+      { item: 'Log Out' },
+    ];
+  }
+
+  public itemClick(item: any) {
+    this.viewCtrl.dismiss(item);
   }
 
 }
