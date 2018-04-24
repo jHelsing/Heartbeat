@@ -4,8 +4,8 @@ import { Nurse } from '../../models/nurse';
 import { NurseProvider } from '../../providers/nurse/nurse';
 import { Observable } from 'rxjs/Observable';
 import { LoginPage } from '../login/login';
-import { DoctorRegistration } from '../doctorRegistration/doctorRegistration';
 import { PatientListPage } from '../patient-list/patient-list';
+import { DoctorRegistration } from '../add-doctor/add-doctor';
 
 @Component({
   selector: 'page-home',

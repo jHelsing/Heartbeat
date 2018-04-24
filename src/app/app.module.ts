@@ -18,9 +18,12 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import firebaseConfig from '../config/firebase.config';
-import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistration';
 import { CommentProvider } from '../providers/comment/comment';
 import { AddCommentComponent } from '../components/add-comment/add-comment';
+import { DoctorRegistration } from '../pages/add-doctor/add-doctor';
+import { DoctorProvider } from '../providers/doctor/doctor';
+import { RoomProvider } from '../providers/room/room';
+import { SpecialityProvider } from '../providers/speciality/speciality';
 import { PatientProvider } from '../providers/patient/patient';
 import { LoginProvider } from '../providers/login/login';
 
@@ -67,6 +70,9 @@ import { LoginProvider } from '../providers/login/login';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     NurseProvider,
     CommentProvider,
+    DoctorProvider,
+    RoomProvider,
+    SpecialityProvider,
     PatientProvider,
     LoginProvider,
   ],

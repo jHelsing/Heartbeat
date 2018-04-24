@@ -1,17 +1,15 @@
-import { DateTime } from 'ionic-angular';
 import { DocumentReference } from '@firebase/firestore-types';
 
-// import { Person } from '../models/person';
-export class Doctor {
-  public firstName: string;
-  public lastName: string;
-  public gender: string;
-  public age: number;
-  public password: string;
-  public phone: string;
-  public speciality: DocumentReference;
-    // office: reference Room
-  public email: string;
-  public workHoursStart: DateTime;
-  public workHoursEnd: DateTime;
+export interface Doctor {
+  firstName: string;
+  lastName: string;
+  gender: string;
+  age: number;
+  password: string;
+  phone: string;
+  specialityRef: DocumentReference;
+  roomRef: DocumentReference;
+  email: string;
+  workHoursStart: Date;
+  workHoursEnd: Date;
 }
