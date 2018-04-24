@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { AlertController, ModalController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 import { Doctor } from '../../models/doctor';
 import { Observable } from 'rxjs/Observable';
-import { DoctorRegistration } from '../../pages/add-doctor/add-doctor';
 import 'rxjs/Rx';
+import { Room } from '../../models/room';
 
 @Injectable()
 export class DoctorProvider {
@@ -18,7 +18,7 @@ export class DoctorProvider {
        const $id = doctorAction.payload.doc.id;
 
        const roomObservable = fireStore.doc(data.roomRef.path).snapshotChanges()
-         .map((action) => action.payload.data());
+         .map((action) => action.payload.data() as Room);
 
        return roomObservable.map((room) => ({ ...data, $id, room: room.name }));
      })).flatMap((doctorObservable) => Observable.combineLatest(doctorObservable));

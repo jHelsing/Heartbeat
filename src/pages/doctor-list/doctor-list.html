@@ -14,13 +14,13 @@
 <ion-content>
   <ion-list>
     <ion-item-sliding #item *ngFor="let doctor of doctorObservable | async">
-      <ion-item (click)="updateDoctor(doctor)">
+      <ion-item>
         <ion-avatar item-start>
           <img src="http://i.pravatar.cc/150?u={{doctor.$id}}">
         </ion-avatar>
         <h2>{{doctor.firstName}}</h2>
         <p>Age: {{doctor.age}}</p>
-        <p>Room: {{doctor.speciality}}</p>
+        <p>Room: {{doctor.room}}</p>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="removeDoctor(doctor)">
