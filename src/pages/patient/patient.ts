@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage,
+         NavParams,
          NavController,
-         NavParams } from 'ionic-angular';
+         ModalController } from 'ionic-angular';
 import { PatientProvider } from '../../providers/patient/patient';
-import { AddPatientPage } from '../add-patient/add-patient';
 import { PatientDetailPage } from '../patient-detail/patient-detail';
-import 'rxjs/Rx';
 
 @IonicPage()
 @Component({
@@ -15,15 +14,17 @@ import 'rxjs/Rx';
 export class PatientPage {
   public patients;
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
+  constructor(public navParams: NavParams,
+              public navCtrl: NavController,
+              public modalCtrl: ModalController,
               public patientProvider: PatientProvider) {
     const specificDoctor = navParams.get('doctor');
     this.patients = patientProvider.getPatients(specificDoctor);
   }
 
-  public goToAddPatient() {
-    this.navCtrl.push(AddPatientPage);
+  public openModalAddPatient() {
+    const addPatientPage = this.modalCtrl.create('AddPatientPage');
+    addPatientPage.present();
   }
 
   public viewDetails(patient) {

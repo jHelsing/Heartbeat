@@ -7,9 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PatientPage } from '../pages/patient/patient';
-import { AddPatientPage } from '../pages/add-patient/add-patient';
 import { PatientDetailPage } from '../pages/patient-detail/patient-detail';
-import { UpdatePatientPage } from '../pages/update-patient/update-patient';
 import { NurseListPage } from '../pages/nurse-list/nurse-list';
 import { DoctorListPage } from '../pages/doctor-list/doctor-list';
 import { NurseProvider } from '../providers/nurse/nurse';
@@ -31,9 +29,7 @@ import { AuxProvider } from '../providers/aux';
     HomePage,
     DoctorRegistration,
     PatientPage,
-    AddPatientPage,
     PatientDetailPage,
-    UpdatePatientPage,
     AdminTabs,
     NurseListPage,
     DoctorListPage,
@@ -52,9 +48,7 @@ import { AuxProvider } from '../providers/aux';
     LoginPage,
     DoctorRegistration,
     PatientPage,
-    AddPatientPage,
     PatientDetailPage,
-    UpdatePatientPage,
     AdminTabs,
     NurseListPage,
     DoctorListPage,

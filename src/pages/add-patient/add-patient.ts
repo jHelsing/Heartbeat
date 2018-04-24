@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { IonicPage,
          NavController,
-         AlertController } from 'ionic-angular';
+         NavParams,
+         AlertController,
+         ViewController } from 'ionic-angular';
+import { AuxProvider } from '../../providers/aux';
 import { PatientProvider } from '../../providers/patient/patient';
-import { Patient } from '../../models/patient';
 import { Room } from '../../models/room';
 import { Allergy } from '../../models/allergy';
 import { Doctor } from '../../models/doctor';
-import { PatientPage } from '../patient/patient';
 import { Observable } from 'rxjs/Observable';
 
 @IonicPage()
@@ -16,30 +17,57 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: 'add-patient.html',
 })
 export class AddPatientPage {
-  public newPatient = new Patient();
-  public bloodTypes = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
+  public patient;
+  public clonedPatient;
+  public bloodTypes = ['unknown', 'A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
   public rooms: Observable<Room[]>;
   public allergies: Observable<Allergy[]>;
   public doctors: Observable<Doctor[]>;
+  public add: boolean;
 
   constructor(public navCtrl: NavController,
               public alertCtrl: AlertController,
-              public patientProvider: PatientProvider) {
+              public aux: AuxProvider,
+              public patientProvider: PatientProvider,
+              public viewCtrl: ViewController,
+              public navParams: NavParams) {
+    this.patient = navParams.get('patient');
+    this.add = this.patient == null;
+    this.clonedPatient = Object.assign({}, this.patient);
+    if (this.add) {
+      this.clonedPatient.allergy = { id: undefined };
+      this.clonedPatient.roomRef = { id: undefined };
+      this.clonedPatient.doctor = { id: undefined };
+    }
     this.rooms = patientProvider.getRooms();
     this.allergies = patientProvider.getAllergies();
     this.doctors = patientProvider.getDoctors();
   }
 
-  public addPatient(form) {
-    this.patientProvider.newPatient(form.value);
+  public addOrUpdatePatient(patient) {
+    this.clonedPatient.roomRef = this.aux.ref('rooms', patient.roomRef);
+    this.clonedPatient.allergy = this.aux.ref('allergies', patient.allergy);
+    this.clonedPatient.doctor = this.aux.ref('doctors', patient.doctor);
+    let msg = 'Patient ';
+    if (this.add) {
+      this.patientProvider.addPatient(this.clonedPatient);
+      msg += 'added';
+    } else {
+      delete this.clonedPatient.roomObj;
+      delete this.clonedPatient.allergyObj;
+      delete this.clonedPatient.doctorObj;
+      delete this.clonedPatient.$id;
+      this.patientProvider.updatePatient(this.patient, this.clonedPatient);
+      msg += 'updated';
+    }
     const prompt = this.alertCtrl.create({
-      message: 'Patient added',
+      message: msg,
     });
     prompt.present();
-    this.navCtrl.push(PatientPage);
+    this.closeModal();
   }
 
-  public resetForm() {
-    this.navCtrl.setRoot(this.navCtrl.getActive().component);
+  public closeModal() {
+    this.viewCtrl.dismiss();
   }
 }

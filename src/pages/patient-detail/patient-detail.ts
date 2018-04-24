@@ -4,11 +4,11 @@ import { IonicPage,
          NavController,
          NavParams,
          AlertController,
+         ModalController,
          Select } from 'ionic-angular';
 import { PatientProvider } from '../../providers/patient/patient';
 import { AuxProvider } from '../../providers/aux';
 import { Patient } from '../../models/patient';
-import { UpdatePatientPage } from '../update-patient/update-patient';
 
 @IonicPage()
 @Component({
@@ -24,15 +24,19 @@ export class PatientDetailPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public alertCtrl: AlertController,
+              public modalCtrl: ModalController,
               public patientProvider: PatientProvider,
-              private aux: AuxProvider) {
+              public aux: AuxProvider) {
     this.patient = navParams.get('patient');
     this.doctors = patientProvider.getDoctors();
     this.newDoctor = this.patient.doctor.id;
   }
 
-  public goToUpdatePatient(patient) {
-    this.navCtrl.push(UpdatePatientPage, { patient });
+  public openModalUpdatePatient() {
+    const data = { patient : this.patient };
+    const addPatientPage = this.modalCtrl.create('AddPatientPage', data);
+    addPatientPage.present();
+    this.navCtrl.pop();
   }
 
   public openDoctorsList() {

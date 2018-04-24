@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AuxProvider } from '../aux';
 import { Observable } from 'rxjs/Observable';
+import { AuxProvider } from '../aux';
 import { Patient } from '../../models/patient';
 
 @Injectable()
@@ -41,7 +41,7 @@ export class PatientProvider {
     return this.aux.colId$('doctors');
   }
 
-  public newPatient(patient: Patient) {
+  public addPatient(patient: Patient) {
     this.aux.col('patients').add(patient);
   }
 
