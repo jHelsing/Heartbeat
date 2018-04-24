@@ -34,10 +34,6 @@ export class HomePage {
     this.nurseProvider.removeNurse(nurse);
   }
 
-  public login() {
-    this.navCtrl.push(LoginPage);
-  }
-
   public goToPatient() {
     /*
      * TODO updated this according to the doctor ID after adding tab navigation
