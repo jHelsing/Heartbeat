@@ -20,7 +20,11 @@ export class DoctorProvider {
     return this.doctorObservable;
   }
 
-  public addDoctor(doctor: Doctor) {
+  public addDoctor(doctor) {
+    doctor.roomRef = this.fireStore.doc('rooms/' + doctor.room).ref;
+    doctor.specialityRef = this.fireStore.doc('specialties/' + doctor.speciality).ref;
+    delete doctor.room;
+    delete doctor.speciality;
     this.doctorCollection.add(doctor);
     const alert = this.alertCtrl.create({
       title: 'Doctor created',

@@ -7,8 +7,8 @@ export interface Doctor {
   age: number;
   password: string;
   phone: string;
-  speciality: DocumentReference;
-  room: DocumentReference;
+  specialityRef: DocumentReference;
+  roomRef: DocumentReference;
   email: string;
   workHoursStart: Date;
   workHoursEnd: Date;
