@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, AlertController, ModalController, ViewController } from 'ionic-angular';
 import { Doctor } from '../../models/doctor';
 import { Speciality } from '../../models/speciality';
 import { Room } from '../../models/room';
@@ -19,7 +19,7 @@ export class DoctorRegistration {
   private roomObservable: Observable<Room[]>;
   private specialityObservable: Observable<Speciality[]>;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public doctorProvider: DoctorProvider, public roomProvider: RoomProvider, specialityProvider: SpecialityProvider) {
+  constructor(public doctorProvider: DoctorProvider, public navCtrl: NavController, public roomProvider: RoomProvider, specialityProvider: SpecialityProvider, public viewCtrl: ViewController) {
     this.doctorObservable = doctorProvider.getDoctors();
     this.roomObservable = roomProvider.getRooms();
     this.specialityObservable = specialityProvider.getSpecialities();
@@ -27,10 +27,10 @@ export class DoctorRegistration {
 
   public addDoctor(doctor: Doctor) {
     this.doctorProvider.addDoctor(doctor);
-    this.navCtrl.pop();
+    this.goBack();
   }
 
   public goBack() {
-    this.navCtrl.pop();
+    this.viewCtrl.dismiss();
   }
 }

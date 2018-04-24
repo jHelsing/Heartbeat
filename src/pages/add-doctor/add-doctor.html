@@ -1,5 +1,8 @@
 <ion-header>
   <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="goBack()">Close</button>
+    </ion-buttons>
     <ion-title>Add Doctor</ion-title>
   </ion-navbar>
 </ion-header>
@@ -61,15 +64,11 @@
       <ion-input type="tel" placeholder="telephone number" [(ngModel)]="doctor.phone"></ion-input>
     </ion-item>
 
-
+  </ion-list>
     <ion-buttons end>
-      <button ion-button round (click)="goBack()">
-        Cancel
-      </button>
-      <button ion-button round (click)="addDoctor(doctor)">
+      <button ion-button block (click)="addDoctor(doctor)">
         Create
       </button>
     </ion-buttons>
-  </ion-list>
 </ion-content>
 

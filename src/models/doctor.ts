@@ -1,6 +1,7 @@
 import { DocumentReference } from '@firebase/firestore-types';
 
 export interface Doctor {
+  $id?: string;
   firstName: string;
   lastName: string;
   gender: string;
