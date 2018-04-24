@@ -21,7 +21,6 @@ export class DoctorListPage {
     });
 
     popover.onDidDismiss((popoverData) => {
-      //alert(JSON.stringify(popoverData.item));
       this.loginProvider.logout();
       this.navCtrl.setRoot(LoginPage);
     });

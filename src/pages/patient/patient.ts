@@ -8,8 +8,6 @@ import { PatientDetailPage } from '../patient-detail/patient-detail';
 import { PatientProvider } from '../../providers/patient/patient';
 import 'rxjs/Rx';
 import { PopoverComponent } from '../../components/popover/popover';
-import { LoginPage } from '../../pages/login/login';
-import { LoginProvider } from '../../providers/login/login';
 
 @IonicPage()
 @Component({
@@ -20,8 +18,7 @@ export class PatientPage {
   public patients;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
-              public patientProvider: PatientProvider, public popoverCtrl: PopoverController,
-              public loginProvider: LoginProvider) {
+              public patientProvider: PatientProvider, public popoverCtrl: PopoverController) {
     const specificDoctor = navParams.get('doctor');
     this.patients = patientProvider.getPatients(specificDoctor);
   }
@@ -43,7 +40,5 @@ export class PatientPage {
     popover.onDidDismiss((popoverData) => {
       // Do something when popover closes.
     });
-
   }
-
 }
