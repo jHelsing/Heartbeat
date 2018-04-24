@@ -3,10 +3,9 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { PatientPage } from '../pages/patient/patient';
+import { PatientListPage } from '../pages/patient-list/patient-list';
 import { PatientDetailPage } from '../pages/patient-detail/patient-detail';
 import { NurseListPage } from '../pages/nurse-list/nurse-list';
 import { DoctorListPage } from '../pages/doctor-list/doctor-list';
@@ -17,10 +16,15 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import firebaseConfig from '../config/firebase.config';
-import { DoctorRegistration } from '../pages/doctorRegistration/doctorRegistration';
+import { CommentProvider } from '../providers/comment/comment';
+import { AddCommentComponent } from '../components/add-comment/add-comment';
+import { DoctorRegistration } from '../pages/add-doctor/add-doctor';
+import { DoctorProvider } from '../providers/doctor/doctor';
+import { RoomProvider } from '../providers/room/room';
+import { SpecialityProvider } from '../providers/speciality/speciality';
 import { PatientProvider } from '../providers/patient/patient';
 import { LoginProvider } from '../providers/login/login';
-import { AuxProvider } from '../providers/aux';
+import { AuxProvider } from '../providers/aux/aux';
 
 @NgModule({
   declarations: [
@@ -28,8 +32,9 @@ import { AuxProvider } from '../providers/aux';
     LoginPage,
     HomePage,
     DoctorRegistration,
-    PatientPage,
+    PatientListPage,
     PatientDetailPage,
+    AddCommentComponent,
     AdminTabs,
     NurseListPage,
     DoctorListPage,
@@ -47,8 +52,9 @@ import { AuxProvider } from '../providers/aux';
     HomePage,
     LoginPage,
     DoctorRegistration,
-    PatientPage,
+    PatientListPage,
     PatientDetailPage,
+    AddCommentComponent,
     AdminTabs,
     NurseListPage,
     DoctorListPage,
@@ -58,6 +64,10 @@ import { AuxProvider } from '../providers/aux';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     NurseProvider,
+    CommentProvider,
+    DoctorProvider,
+    RoomProvider,
+    SpecialityProvider,
     PatientProvider,
     LoginProvider,
     AuxProvider,

@@ -4,7 +4,7 @@ import { IonicPage,
          NavParams,
          AlertController,
          ViewController } from 'ionic-angular';
-import { AuxProvider } from '../../providers/aux';
+import { AuxProvider } from '../../providers/aux/aux';
 import { PatientProvider } from '../../providers/patient/patient';
 import { Room } from '../../models/room';
 import { Allergy } from '../../models/allergy';

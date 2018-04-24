@@ -9,9 +9,9 @@ import { PatientDetailPage } from '../patient-detail/patient-detail';
 @IonicPage()
 @Component({
   selector: 'page-patient',
-  templateUrl: 'patient.html',
+  templateUrl: 'patient-list.html',
 })
-export class PatientPage {
+export class PatientListPage {
   public patients;
 
   constructor(public navParams: NavParams,

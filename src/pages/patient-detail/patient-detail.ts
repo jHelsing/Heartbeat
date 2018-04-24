@@ -7,8 +7,12 @@ import { IonicPage,
          ModalController,
          Select } from 'ionic-angular';
 import { PatientProvider } from '../../providers/patient/patient';
-import { AuxProvider } from '../../providers/aux';
+import { CommentProvider } from '../../providers/comment/comment';
+import { AuxProvider } from '../../providers/aux/aux';
+import { AddCommentComponent } from '../../components/add-comment/add-comment';
 import { Patient } from '../../models/patient';
+import { Comment } from '../../models/comment';
+import { Observable } from 'rxjs/Observable';
 
 @IonicPage()
 @Component({
@@ -20,16 +24,19 @@ export class PatientDetailPage {
   public patient;
   public doctors;
   public newDoctor;
+  public comments: Observable<Comment[]>;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public alertCtrl: AlertController,
               public modalCtrl: ModalController,
               public patientProvider: PatientProvider,
-              public aux: AuxProvider) {
+              private commentProvider: CommentProvider,
+              private aux: AuxProvider) {
     this.patient = navParams.get('patient');
     this.doctors = patientProvider.getDoctors();
     this.newDoctor = this.patient.doctor.id;
+    this.comments = this.commentProvider.getComments(this.patient.$id);
   }
 
   public openModalUpdatePatient() {
@@ -50,5 +57,11 @@ export class PatientDetailPage {
     });
     prompt.present();
     this.navCtrl.pop();
+  }
+
+  public addComment() {
+    const commentModal = this.modalCtrl.create(AddCommentComponent, { patientId: this.patient.$id }, {});
+    commentModal.present();
+
   }
 }
