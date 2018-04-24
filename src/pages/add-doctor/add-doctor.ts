@@ -20,7 +20,7 @@ export class DoctorRegistration {
   private specialityObservable: Observable<Speciality[]>;
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, public doctorProvider: DoctorProvider, public roomProvider: RoomProvider, specialityProvider: SpecialityProvider) {
-    this.doctorObservable = doctorProvider.getDoctor();
+    this.doctorObservable = doctorProvider.getDoctors();
     this.roomObservable = roomProvider.getRooms();
     this.specialityObservable = specialityProvider.getSpecialities();
   }
