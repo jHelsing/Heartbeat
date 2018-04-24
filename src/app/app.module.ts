@@ -3,10 +3,9 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { PatientPage } from '../pages/patient/patient';
+import { PatientListPage } from '../pages/patient-list/patient-list';
 import { AddPatientPage } from '../pages/add-patient/add-patient';
 import { PatientDetailPage } from '../pages/patient-detail/patient-detail';
 import { UpdatePatientPage } from '../pages/update-patient/update-patient';
@@ -19,6 +18,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import firebaseConfig from '../config/firebase.config';
+import { CommentProvider } from '../providers/comment/comment';
+import { AddCommentComponent } from '../components/add-comment/add-comment';
 import { DoctorRegistration } from '../pages/add-doctor/add-doctor';
 import { DoctorProvider } from '../providers/doctor/doctor';
 import { RoomProvider } from '../providers/room/room';
@@ -32,10 +33,11 @@ import { LoginProvider } from '../providers/login/login';
     LoginPage,
     HomePage,
     DoctorRegistration,
-    PatientPage,
+    PatientListPage,
     AddPatientPage,
     PatientDetailPage,
     UpdatePatientPage,
+    AddCommentComponent,
     AdminTabs,
     NurseListPage,
     DoctorListPage,
@@ -53,10 +55,11 @@ import { LoginProvider } from '../providers/login/login';
     HomePage,
     LoginPage,
     DoctorRegistration,
-    PatientPage,
+    PatientListPage,
     AddPatientPage,
     PatientDetailPage,
     UpdatePatientPage,
+    AddCommentComponent,
     AdminTabs,
     NurseListPage,
     DoctorListPage,
@@ -66,6 +69,7 @@ import { LoginProvider } from '../providers/login/login';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     NurseProvider,
+    CommentProvider,
     DoctorProvider,
     RoomProvider,
     SpecialityProvider,
