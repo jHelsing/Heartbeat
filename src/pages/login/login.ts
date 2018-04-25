@@ -30,7 +30,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
               public toastController: ToastController, public splashScreen: SplashScreen) {
 
     // Check if the current device is already logged in as a user. If so, continue that session.
-    this.loginProvider.checkLoggedIn(this.loadCorrectPage, this.splashScreen.hide);
+    this.loginProvider.checkLoggedIn(this.loadCorrectPage, this.hideSplash);
   }
 
   public loadCorrectPage = (userID) => {
@@ -42,11 +42,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
       userPromise.then((user) => {
         if (user.exists) {
           // Replace login page as home page of the logged in user with the correct page for the specific user.
-          this.splashScreen.hide();
           this.navCtrl.setRoot(this.roleCollectionPageMap[roleCollectionName]);
+          this.splashScreen.hide();
         }
       });
     }
+  }
+
+  public hideSplash = () => {
+    this.splashScreen.hide();
   }
 
   // Fetch username and password from input fields. Log user in.
