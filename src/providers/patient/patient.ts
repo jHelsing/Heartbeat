@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AuxProvider } from '../aux/aux';
+import { UtilsProvider } from '../utils/utils';
 import { Patient } from '../../models/patient';
 
 @Injectable()
 export class PatientProvider {
 
-  constructor(private aux: AuxProvider) {}
+  constructor(private utl: UtilsProvider) {}
 
   // dId is the doctor's id, when one is specified
   public getPatients(dId?) {
     let patientsLst = dId
-        ? this.aux.colId$('patients', (ref) => ref.where('doctor', '==', this.aux.ref('doctors', dId)))
-        : this.aux.colId$('patients');
+        ? this.utl.colId$('patients', (ref) => ref.where('doctor', '==', this.utl.ref('doctors', dId)))
+        : this.utl.colId$('patients');
 
     patientsLst = patientsLst.map((doc) => doc.map((d) => {
       // Get the observables of the referenced Room, Allergy and Doctor documents
-      const roomObs = this.aux.doc$(d.roomRef.path);
-      const allergyObs = this.aux.doc$(d.allergy.path);
-      const doctorObs = this.aux.doc$(d.doctor.path);
+      const roomObs = this.utl.doc$(d.roomRef.path);
+      const allergyObs = this.utl.doc$(d.allergy.path);
+      const doctorObs = this.utl.doc$(d.doctor.path);
       // Combine for extending the Patient object with referenced data
       const combined = Observable.combineLatest(roomObs, allergyObs, doctorObs);
       return combined.map(([roomObj, allergyObj, doctorObj]) => {
@@ -30,26 +30,26 @@ export class PatientProvider {
   }
 
   public getRooms() {
-    return this.aux.colId$('rooms');
+    return this.utl.colId$('rooms');
   }
 
   public getAllergies() {
-    return this.aux.colId$('allergies');
+    return this.utl.colId$('allergies');
   }
 
   public getDoctors() {
-    return this.aux.colId$('doctors');
+    return this.utl.colId$('doctors');
   }
 
   public addPatient(patient: Patient) {
-    this.aux.col('patients').add(patient);
+    this.utl.col('patients').add(patient);
   }
 
   public updatePatient(patient: Patient, data) {
-    this.aux.col('patients').doc(patient.$id).update(data);
+    this.utl.col('patients').doc(patient.$id).update(data);
   }
 
   public removePatient(patient: Patient) {
-    this.aux.col('patients').doc(patient.$id).delete();
+    this.utl.col('patients').doc(patient.$id).delete();
   }
 }

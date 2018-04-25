@@ -9,7 +9,7 @@ type CollectionPredicate<T> = string | AngularFirestoreCollection<T>;
 type DocPredicate<T> = string | AngularFirestoreDocument<T>;
 
 @Injectable()
-export class AuxProvider {
+export class UtilsProvider {
 
   constructor(private afs: AngularFirestore) {}
 

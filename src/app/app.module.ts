@@ -24,7 +24,7 @@ import { RoomProvider } from '../providers/room/room';
 import { SpecialityProvider } from '../providers/speciality/speciality';
 import { PatientProvider } from '../providers/patient/patient';
 import { LoginProvider } from '../providers/login/login';
-import { AuxProvider } from '../providers/aux/aux';
+import { UtilsProvider } from '../providers/utils/utils';
 
 @NgModule({
   declarations: [
@@ -70,7 +70,7 @@ import { AuxProvider } from '../providers/aux/aux';
     SpecialityProvider,
     PatientProvider,
     LoginProvider,
-    AuxProvider,
+    UtilsProvider,
   ],
 })
 export class AppModule {}

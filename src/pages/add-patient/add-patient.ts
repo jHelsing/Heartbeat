@@ -4,7 +4,7 @@ import { IonicPage,
          NavParams,
          AlertController,
          ViewController } from 'ionic-angular';
-import { AuxProvider } from '../../providers/aux/aux';
+import { UtilsProvider } from '../../providers/utils/utils';
 import { PatientProvider } from '../../providers/patient/patient';
 import { Room } from '../../models/room';
 import { Allergy } from '../../models/allergy';
@@ -27,7 +27,7 @@ export class AddPatientPage {
 
   constructor(public navCtrl: NavController,
               public alertCtrl: AlertController,
-              public aux: AuxProvider,
+              public utl: UtilsProvider,
               public patientProvider: PatientProvider,
               public viewCtrl: ViewController,
               public navParams: NavParams) {
@@ -45,9 +45,9 @@ export class AddPatientPage {
   }
 
   public addOrUpdatePatient(patient) {
-    this.clonedPatient.roomRef = this.aux.ref('rooms', patient.roomRef);
-    this.clonedPatient.allergy = this.aux.ref('allergies', patient.allergy);
-    this.clonedPatient.doctor = this.aux.ref('doctors', patient.doctor);
+    this.clonedPatient.roomRef = this.utl.ref('rooms', patient.roomRef);
+    this.clonedPatient.allergy = this.utl.ref('allergies', patient.allergy);
+    this.clonedPatient.doctor = this.utl.ref('doctors', patient.doctor);
     let msg = 'Patient ';
     if (this.add) {
       this.patientProvider.addPatient(this.clonedPatient);
