@@ -41,9 +41,7 @@ export class PatientPage {
     });
 
     popover.onDidDismiss((popoverData) => {
-      // alert(JSON.stringify(popoverData.item));
-      this.loginProvider.logout();
-      this.navCtrl.setRoot(LoginPage);
+      // Do something when popover closes.
     });
 
   }
