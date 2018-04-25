@@ -3,9 +3,6 @@
 % Evio Abazi; Lage Bergman; Jonathan Helsing; Ashish M Husain; Christoffer Karlsson; Oskar Lignell; Marufa Binte Mostafa; David Mendez Alvarez
 %
 
-This is the project report template.
-Fill it out over the course of the project.
-
 # Project Description
 The project is called Heartbeat, which is a mobile application for tracking patients in a hospital. Through the application, doctors can view patients, which doctors are treating a patient, the patient’s allergies, and the patient’s medical history.
 The initial description given by the customer is as follows:
@@ -15,6 +12,46 @@ The application is developed using Ionic, a cross-platform mobile framework buil
 - GitHub repository: https://github.com/jHelsing/Heartbeat
 - Issue tracker: https://trello.com/b/nf2rvUqW/development
 - Continuous integration builds: https://travis-ci.org/jHelsing/Heartbeat/
+
+# Sprint 1 Log
+
+## Commitment
+For the first sprint, only one backlog item was completed:
+* As developers we want a "Hello World" application pushed to GitHub.
+
+## Work Done
+During the startup meeting, decisions were made on which technologies to use, both in the actual product and for the development work (communication, issue tracking, etc.) and general planning and design ideas. 
+We opted to choose the Ionic Framework to develop the application as it is cross-platform and free to use. The decision was unanimous as everyone wanted to learn a new framework for this project, and our brief research depicted Ionic as a great tool for rapid prototyping, which seemed suitable in the context of this project. For communication between team members, Slack was selected and finally, for issue tracking and depicting tasks for the project in a systematic manner, using Trello was finalized. 
+
+Some team members are new to git, and so a quick tutorial session was held to bring everyone up to speed. All the team members were new to the Ionic framework. Thus all of us together in the meeting learned the configuration and installation of the framework.
+Lastly, a git workflow was decided upon, and the repository was configured to prevent commits directly to the master or develop branches, using protected branches. The backlog was populated with some expected features, and an initial project was pushed to GitHub.
+
+For the planning phase, we opted to list down the primary tasks for the current sprint in our Trello dashboard and mark them as completed when they were finalized, verified and tested. As for the design, in the meeting, we opted to consider the possible requirements of the hospital system briefly based on the problem statement that was provided to us. Hence, this gave us a contextual idea of how the feature set may look like from the perspective of the customer. Based on our findings, a rough sketch of the possible entities and their relations were transcribed.
+When it comes to the continuous integration tool, we opted for Travis CI which was set up and configured to work with the Ionic project, unit testing, and proper notifications for builds from GitHub. Additionally, during the startup meeting, we made sure that everyone had the programs required, and that they work, to work with the Ionic project, i.e. that everyone's development environment was set up.
+
+A test suite was also created, using the Karma test runner in combination with the behaviour-driven testing framework Jasmine. A simple test was also created for demonstration purposes, with the primary intention of ensuring that the connection between Travis CI and GitHub was correctly configured. The test suite can be used primarily for unit testing, but an end-to-end testing framework such as Protractor might later be added as well.
+To ensure a consistent code style and to enable us to follow best practices, a TSLint configuration was created for static code analysis. The configuration contains most of the recommended TSLint rules for TypeScript. TSLint can be integrated with various editors, such as Visual Studio Code, for instant feedback.
+
+<!--- *Name and ID of each feature* | *X hours* | *Member A: Y hours, Member B: Z hours* --->
+Feature | Time estimated | Time spent per team member
+------------|----------|---------------------------
+*1 As developers we want a “Hello World” app pushed to GitHub* | * * | * *
+*1.1 Initial project meeting, Sprint 1 planning* | *4 hours* |	*Evio Abazi: 4 hours, Ashish M Husain: 4 hours, Lage Bergman: 4 hours, Jonathan Helsing: 4 hours, Christoffer Karlsson: 4 hours, Oskar Lignell: 4 hours, Marufa Binte Mostafa: 4 hours*
+*1.2 Add .gitignore* |	*0.5 hours*	|	*Jonathan Helsing: 0.5 hours*
+*1.3 Setup Travis* | *4 hours* |	*Jonathan Helsing: 4 hours, Christoffer Karlsson: 1 hour*
+*1.4 Add TA’s to git repo (+ slack, trello, etc.)*|	*3 hours* |	*Evio Abazi: 0.5 hours, Jonathan Helsing: 0.5 hours, Lage Bergman: 0.5 hours*
+*1.5 Initiate an Ionic Project* |	*14 hours*	| *Evio Abazi: 2 hours, Ashish M Husain: 3 hours, Lage Bergman: 2 hours, Jonathan Helsing: 2 hours, Christoffer Karlsson: 2 hours, Oskar Lignell: 4 hours, Marufa Binte Mostafa: 3 hours*
+*1.6 Add TSLint configuration* | *2 hours* | *Christoffer Karlsson: 2 hours*
+*1.7 Create one simple unit test to make sure Travis is able to handle it*	 | *3 hours* |	*Christoffer Karlsson: 3 hours*
+*1.8 Report Sprint 1*				|	*4 hours*	|	*Ashish M Husain: 1 hour, Christoffer Karlsson: 0.5 hours, Oskar Lignell: 1 hour, Lage Bergman: 1 hours, Jonathan Helsing: 0.5 hours*
+*1.9 Self Study of Ionic Framework/Github* | *25 hours* |	*Evio Abazi: 4  hours, Ashish M Husain: 4 hours, Lage Bergman: 3 hours, Jonathan Helsing: 4 hours, Christoffer Karlsson: 3 hours, Oskar Lignell: 4 hours, Marufa Binte Mostafa: 3 hours*
+
+## Reflections
+
+Overall the meeting went very well, and everyone contributed to the discussions. The initial project setup required some research since none of the team members was very familiar with Ionic or Travis CI while a few had little to no prior experience of using GitHub.
+
+Since the first Sprint was not even a week long and only included setup of the project environment, no real agile practices were used. Tools were chosen to enable continuous integration and test-first development, as well as for enforcing code standards, but none of the techniques was practiced. Setting up these tools required some work since the team is not familiar with all of them, but hopefully, they will be rewarding when the actual development starts.
+Many of the tools used were discussed and went through together to make sure that everyone had the same basic knowledge of the tools and how to use them.
 
 # Sprint 2 Log
 
@@ -71,46 +108,36 @@ Gathering together as a team to create the initial data model for the Cloud Fire
 
 Due to an optimistic time schedule, we feel that the pull requests were not reviewed to the extent they ideally should have been. To avoid introducing a lot of technical debt, we might take this into account during the next sprint planning, to perform refactoring to resolve any issues introduced when merging these particular pull requests. We will also try to create the pull requests earlier during the next sprint, to enable us to spend more time on code reviews before merging.
 
-
-# Sprint 1 Log
-
+# Sprint 3 Log
 ## Commitment
-For the first sprint, only one backlog item was completed:
-* As developers we want a "Hello World" application pushed to GitHub.
-
+For the third sprint, six backlog items were selected.
+- #23 As an administrator, I want information to be hidden from users that do not have the access level to read it.
+- #8 As an administrator I want to change the assigned doctor of a patient.
+- #4 As a doctor I want to be able to add a diagnosis to a patient (with the option of adding x-ray images to the diagnosis).
+- #24 As an administrator, I want to be able to view the list of doctors.
+- #21 As a user I want an application that is intuitive with a common theme.
+- #20 As a developer I want the code to be well-organised to make development easier.
 ## Work Done
-During the startup meeting, decisions were made on which technologies to use, both in the actual product and for the development work (communication, issue tracking, etc.) and general planning and design ideas. 
-We opted to choose the Ionic Framework to develop the application as it is cross-platform and free to use. The decision was unanimous as everyone wanted to learn a new framework for this project, and our brief research depicted Ionic as a great tool for rapid prototyping, which seemed suitable in the context of this project. For communication between team members, Slack was selected and finally, for issue tracking and depicting tasks for the project in a systematic manner, using Trello was finalized. 
+The priority of this sprint was decided to be on design and code structure, which resulted in less implemented features in the third sprint. From the previous sprints we had many individual features that were ready to be tied together, to generate a better user experience, as the previous features were only connected to the application for demo purposes (e.g. by having buttons that navigated to all possible screens, instead of having the navigation between different screens follow a more intuitive interaction flow). At the early stages of the sprint, we had a meeting to discuss the design of the application and the user flow according to its interactions. We made some low-fidelity sketches together on a whiteboard, to get a better overview of the interaction flow we were trying to achieve. We managed to make the application more secure in the sense that users have access rights to specific features. We worked on adding the capability for the different types of users to perform some of their actions required. This means that a doctor is able to add a diagnosis, treatment, and notes to a patient and that an administrator is able to view the different aspects of the hospital, for example doctors and nurses. As previously mentioned the most important feature is the redesign which means that the overall look of the application has been improved, the usability has greatly improved and because of the redesign we were able to streamline the user experience to match the purpose of the user type, e.g. the first thing a doctor will see after logging in is a list of his or her patients which is possible to interact with in order to view and edit some of the details of a patient. Overall, the user interface was streamlined to address the simplicity factor of using a mobile app. From the Developers perspective, we managed to minimize technical debt, by emphasizing more on refactoring and writing structured code. The aforementioned does not count as a feature but makes the entire project more modular, reusable which indirectly makes integrating future changes easier.
+We have discussed adding some more tests during the upcoming sprints, perhaps using Protractor for end-to-end testing. From our quick discussion it feels like focusing on end-to-end tests would be quite efficient, as a lot of functionality in our application is related to GUI interaction and CRUD operations against a remote database.
 
-Some team members are new to git, and so a quick tutorial session was held to bring everyone up to speed. All the team members were new to the Ionic framework. Thus all of us together in the meeting learned the configuration and installation of the framework.
-Lastly, a git workflow was decided upon, and the repository was configured to prevent commits directly to the master or develop branches, using protected branches. The backlog was populated with some expected features, and an initial project was pushed to GitHub.
-
-For the planning phase, we opted to list down the primary tasks for the current sprint in our Trello dashboard and mark them as completed when they were finalized, verified and tested. As for the design, in the meeting, we opted to consider the possible requirements of the hospital system briefly based on the problem statement that was provided to us. Hence, this gave us a contextual idea of how the feature set may look like from the perspective of the customer. Based on our findings, a rough sketch of the possible entities and their relations were transcribed.
-When it comes to the continuous integration tool, we opted for Travis CI which was set up and configured to work with the Ionic project, unit testing, and proper notifications for builds from GitHub. Additionally, during the startup meeting, we made sure that everyone had the programs required, and that they work, to work with the Ionic project, i.e. that everyone's development environment was set up.
-
-A test suite was also created, using the Karma test runner in combination with the behaviour-driven testing framework Jasmine. A simple test was also created for demonstration purposes, with the primary intention of ensuring that the connection between Travis CI and GitHub was correctly configured. The test suite can be used primarily for unit testing, but an end-to-end testing framework such as Protractor might later be added as well.
-To ensure a consistent code style and to enable us to follow best practices, a TSLint configuration was created for static code analysis. The configuration contains most of the recommended TSLint rules for TypeScript. TSLint can be integrated with various editors, such as Visual Studio Code, for instant feedback.
-
-<!--- *Name and ID of each feature* | *X hours* | *Member A: Y hours, Member B: Z hours* --->
 Feature | Time estimated | Time spent per team member
 ------------|----------|---------------------------
-*1 As developers we want a “Hello World” app pushed to GitHub* | * * | * *
-*1.1 Initial project meeting, Sprint 1 planning* | *4 hours* |	*Evio Abazi: 4 hours, Ashish M Husain: 4 hours, Lage Bergman: 4 hours, Jonathan Helsing: 4 hours, Christoffer Karlsson: 4 hours, Oskar Lignell: 4 hours, Marufa Binte Mostafa: 4 hours*
-*1.2 Add .gitignore* |	*0.5 hours*	|	*Jonathan Helsing: 0.5 hours*
-*1.3 Setup Travis* | *4 hours* |	*Jonathan Helsing: 4 hours, Christoffer Karlsson: 1 hour*
-*1.4 Add TA’s to git repo (+ slack, trello, etc.)*|	*3 hours* |	*Evio Abazi: 0.5 hours, Jonathan Helsing: 0.5 hours, Lage Bergman: 0.5 hours*
-*1.5 Initiate an Ionic Project* |	*14 hours*	| *Evio Abazi: 2 hours, Ashish M Husain: 3 hours, Lage Bergman: 2 hours, Jonathan Helsing: 2 hours, Christoffer Karlsson: 2 hours, Oskar Lignell: 4 hours, Marufa Binte Mostafa: 3 hours*
-*1.6 Add TSLint configuration* | *2 hours* | *Christoffer Karlsson: 2 hours*
-*1.7 Create one simple unit test to make sure Travis is able to handle it*	 | *3 hours* |	*Christoffer Karlsson: 3 hours*
-*1.8 Report Sprint 1*				|	*4 hours*	|	*Ashish M Husain: 1 hour, Christoffer Karlsson: 0.5 hours, Oskar Lignell: 1 hour, Lage Bergman: 1 hours, Jonathan Helsing: 0.5 hours*
-*1.9 Self Study of Ionic Framework/Github* | *25 hours* |	*Evio Abazi: 4  hours, Ashish M Husain: 4 hours, Lage Bergman: 3 hours, Jonathan Helsing: 4 hours, Christoffer Karlsson: 3 hours, Oskar Lignell: 4 hours, Marufa Binte Mostafa: 3 hours*
-
+*Sprint 3 planning meeting* | *0.5 hours* | *Evio Abazi: 0.5 hours, Ashish M Husain: 0.5 hours, Lage Bergman: 0.5 hours, Jonathan Helsing: 0.5 hours, Christoffer Karlsson: 0.5 hours, Oskar Lignell: 0.5 hours, Marufa Binte Mostafa: 0.5 hours, David Mendez Alvarez: 0.5 hours*
+*Report Sprint 3* | *4 hours* | *Evio Abazi: 0.5 hours, Ashish M Husain: 0.5 hours, Christoffer Karlsson: 1 hour, Oskar Lignell: 0.5 hours, Lage Bergman: 1 hour, Jonathan Helsing: 1 hour, David Mendez Alvarez: 0.5 hours, Marufa Binte Mostafa: 0.5 hours*
+*Code reviews and refactor code of Sprint 2 features* | *25 hours* | *Evio Abazi: 3 hours, Ashish M Husain: 3 hours, Lage Bergman: 3 hours, Jonathan Helsing: 3 hours, Christoffer Karlsson: 3 hours, Oskar Lignell: 3 hours, Marufa Binte Mostafa: 3 hours, David Mendez Alvarez: 4 hours*
+*#4 As a doctor I want to be able to add a diagnosis to a patient (with the option of adding x-ray images to the diagnosis)* | *10 hours* | *Jonathan Helsing: 8 hours, Christoffer Karlsson: 1 hour*
+*24 As an admin I want to be able to view the list of doctors* | *2 hours* | *Evio Abazi: 4 hours, Oskar Lignell: 4 hours*
+*8.2 As an administrator I want to change the assigned doctor of a patient.* | *5 hours* | *Marufa Binte Mostafa: 5 hours, David Mendez Alvarez: 6 hours, Christoffer Karlsson: 0.5 hours*
+*21 As a user I want an application that is intuitive with a common theme.* | *4 hours* | *Christoffer Karlsson: 4 hours, David Mendez Alvarez: 1 hour, Jonathan Helsing: 2 hours* 
+*23 As an administrator, I want information to be hidden from users that do not have the access level to read it* | *8 hours* | *Lage Bergman: 6 hours, Ashish M Husain: 5 hours, Christoffer Karlsson: 0.5 hours*
 ## Reflections
+Since this sprint is shorter than the two previous sprints, which meant that we were unsure of how many features we would be able to add to the application. Instead we focused on improving what we have, for example establishing a pull request review checklist in order to make our code look good. This meant that we gained a deeper understand of our code and how it works while also improving our ability to add more features quicker in the future.
+Before even starting on any new features, we refactored all code implemented during the previous sprint. All team members went through the code of all the new features and reviewed it together according to the newly created review checklist mentioned above. This was a good way of making sure no part of the code is unfamiliar to any team member and also made improving the features easier.
+Having the meeting where we met and together discussed different design solutions on a whiteboard was a great way to get all team members involved in the decision process. It was also very helpful in the sense that it naturally resulted in good discussions, regarding different approaches to the user experience. Having this meeting at the beginning of the sprint facilitated the process of dividing smaller tasks between the team members, and ensured that everyone was on the same page about what we were trying to achieve, prior to starting. We, also, intentionally decided not to spend too much time on styling of individual features (i.e. by specifying CSS for different components), as it would be hard to orchestrate this and still reach a unified look and feel of the application. As the built in components provided by Ionic already provide a standardized look and feel we thought it would be better to use the default design initially, and then, perhaps update individual components with CSS, given that we have settled on a specific look and feel for the application. This is, however, something that will be thought about in future sprints, if it becomes relevant.
+As mentioned earlier, we discussed adding end-to-end tests during the next sprint. This is something we will look more into, but it feels as if it would be an efficient way of achieving a lot of rich test cases, in a way that would probably suit our application and workflow better, than only relying strictly on unit tests.
 
-Overall the meeting went very well, and everyone contributed to the discussions. The initial project setup required some research since none of the team members was very familiar with Ionic or Travis CI while a few had little to no prior experience of using GitHub.
 
-Since the first Sprint was not even a week long and only included setup of the project environment, no real agile practices were used. Tools were chosen to enable continuous integration and test-first development, as well as for enforcing code standards, but none of the techniques was practiced. Setting up these tools required some work since the team is not familiar with all of them, but hopefully, they will be rewarding when the actual development starts.
-Many of the tools used were discussed and went through together to make sure that everyone had the same basic knowledge of the tools and how to use them.
 
 
 <!-- Reflect on how the work worked.
