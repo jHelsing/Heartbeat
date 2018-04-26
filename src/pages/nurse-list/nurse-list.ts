@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, PopoverController } from 'ionic-angular';
+import { IonicPage, /*NavController, PopoverController, */ModalController } from 'ionic-angular';
 import { Nurse } from '../../models/nurse';
 import { NurseProvider } from '../../providers/nurse/nurse';
 import { Observable } from 'rxjs/Observable';
-import { PopoverComponent } from '../../components/popover/popover';
+/*import { PopoverComponent } from '../../components/popover/popover';*/
 
 @IonicPage()
 @Component({
@@ -13,12 +13,19 @@ import { PopoverComponent } from '../../components/popover/popover';
 export class NurseListPage {
   public nurses: Observable<Nurse[]>;
 
-  constructor(public navCtrl: NavController, public nurseProvider: NurseProvider,
-              public popoverCtrl: PopoverController) {
+  constructor(/*public navCtrl: NavController, */
+              public nurseProvider: NurseProvider,
+              /*public popoverCtrl: PopoverController,*/
+              public modalCtrl: ModalController) {
     this.nurses = nurseProvider.getNurses();
   }
 
-  public addNursePrompt() {
+  public openModalAddUpdateNurse(nurse) {
+    const addNursePage = this.modalCtrl.create('AddNursePage', nurse);
+    addNursePage.present();
+  }
+
+  /*public addNursePrompt() {
     this.nurseProvider.addNursePrompt();
   }
 
@@ -35,5 +42,5 @@ export class NurseListPage {
     popover.present({
       ev: myEvent,
     });
-  }
+  }*/
 }

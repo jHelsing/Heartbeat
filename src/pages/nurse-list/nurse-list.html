@@ -4,7 +4,7 @@
       Nurses
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="addNursePrompt()">
+      <button ion-button icon-only (click)="openModalAddUpdateNurse()">
         <ion-icon name="person-add"></ion-icon>
       </button>
       <button ion-button (click)="presentPopover($event)">
@@ -17,12 +17,12 @@
 <ion-content>
   <ion-list>
     <ion-item-sliding #item *ngFor="let nurse of nurses | async">
-      <ion-item (click)="updateNursePrompt(nurse)">
+      <ion-item (click)="openModalAddUpdateNurse({nurse: {$id: nurse.$id, name: nurse.name, dob: nurse.dob, roomRef: nurse.roomRef}})">
         <ion-avatar item-start>
           <img src="http://i.pravatar.cc/150?u={{nurse.$id}}">
         </ion-avatar>
         <h2>{{nurse.name}}</h2>
-        <p>Age: {{nurse.age}}</p>
+        <p>Date of Birth: {{nurse.dob}}</p>
         <p>Room: {{nurse.room}}</p>
       </ion-item>
       <ion-item-options side="right">

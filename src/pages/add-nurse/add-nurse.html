@@ -1,0 +1,40 @@
+<ng-template #addTxt>Add</ng-template>
+<ng-template #updateTxt>Update</ng-template>
+
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="closeModal()">Close</button>
+    </ion-buttons>
+    <ion-title><span *ngIf="addingNewNurse; then addTxt; else updateTxt"></span> Nurse</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form #nurseForm="ngForm" (ngSubmit)="addOrUpdateNurse(nurseForm.value)">
+    <ion-list>
+
+      <ion-item>
+        <ion-input type="text" placeholder="Name" [(ngModel)]="clonedNurse.name" required name="name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Date of Birth</ion-label>
+        <ion-datetime [(ngModel)]="clonedNurse.dob" required name="dob"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Room</ion-label>
+        <ion-select [(ngModel)]="clonedNurse.roomRef.id" required name="roomRef">
+          <ion-option *ngFor="let room of rooms | async" value="{{room.$id}}">{{room.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>
+    <ion-buttons end>
+      <button ion-button block [disabled]="!nurseForm.form.valid" type="submit">
+        <span *ngIf="addingNewNurse; then addTxt; else updateTxt"></span>
+      </button>
+    </ion-buttons>
+  </form>
+</ion-content>
