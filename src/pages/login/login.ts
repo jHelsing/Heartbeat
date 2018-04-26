@@ -41,10 +41,13 @@ import { PatientListPage } from '../patient-list/patient-list';
         if (user.exists) {
           // Replace login page as home page of the logged in user with the correct page for the specific user.
           this.navCtrl.setRoot(this.roleCollectionPageMap[roleCollectionName]);
-          this.splashScreen.hide();
         }
       });
     }
+  }
+
+  public ionViewWillUnload() {
+    setTimeout(() => this.splashScreen.hide(), 100);
   }
 
   public hideSplash = () => {
