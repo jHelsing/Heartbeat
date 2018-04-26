@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController, ModalController } from 'ionic-angular';
-import { LoginPage } from '../../pages/login/login';
-import { LoginProvider } from '../../providers/login/login';
+import { IonicPage, NavController, PopoverController, ModalController } from 'ionic-angular';
 import { UtilsProvider } from '../../providers/utils/utils';
 import { PopoverComponent } from '../../components/popover/popover';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { Doctor } from '../../models/doctor';
 import { DoctorProvider } from '../../providers/doctor/doctor';
-import { DoctorRegistration } from '../add-doctor/add-doctor';
+import { DoctorDetailPage } from '../doctor-detail/doctor-detail';
 
 @IonicPage()
 @Component({
@@ -19,13 +17,17 @@ export class DoctorListPage {
   public doctorObservable: Observable<Doctor[]>;
 
   constructor(public navCtrl: NavController, public doctorProvider: DoctorProvider, public modalCtrl: ModalController,
-              public popoverCtrl: PopoverController, public loginProvider: LoginProvider, private utl: UtilsProvider) {
+              public popoverCtrl: PopoverController, public utl: UtilsProvider) {
     this.doctorObservable = doctorProvider.getDoctors();
   }
 
   public addDoctorModal() {
-    const createDoctorModal = this.modalCtrl.create(DoctorRegistration);
-    createDoctorModal.present();
+    const addDoctorPage = this.modalCtrl.create('AddDoctorPage');
+    addDoctorPage.present();
+  }
+
+  public viewDetails(doctor) {
+    this.navCtrl.push(DoctorDetailPage, { doctor });
   }
 
   public removeDoctor(doctor: Doctor) {

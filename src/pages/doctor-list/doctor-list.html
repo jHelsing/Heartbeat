@@ -17,11 +17,11 @@
 <ion-content>
   <ion-list>
     <ion-item-sliding #item *ngFor="let doctor of doctorObservable | async">
-      <ion-item>
+      <ion-item (click)="viewDetails(doctor)">
         <ion-avatar item-start>
           <img src="http://i.pravatar.cc/150?u={{doctor.$id}}">
         </ion-avatar>
-        <h2>{{doctor.firstName}}</h2>
+        <h2>{{doctor.firstName}} {{doctor.lastName}}</h2>
         <p>Date of Birth: {{doctor.dob}} ({{utl.dob2age(doctor.dob)}} yo)</p>
         <p>Room: {{doctor.room}}</p>
       </ion-item>

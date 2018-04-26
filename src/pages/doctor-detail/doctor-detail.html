@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Dr. {{doctor.firstName}} {{doctor.lastName}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openModalUpdateDoctor()">
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card>
+      <ion-card-header>Basic Info</ion-card-header>
+      <ion-card-content>
+        <p><strong>Name: </strong> {{doctor.firstName}} {{doctor.lastName}}</p>
+        <p><strong>Date of Birth: </strong>{{doctor.dob}} ({{utl.dob2age(doctor.dob)}} yo)</p>
+        <p><strong>Gender: </strong>{{doctor.gender}}</p>
+        <p><strong>Email: </strong> {{doctor.email}}</p>
+        <p><strong>Phone: </strong> {{doctor.phone}}</p>
+        <p><strong>Office: </strong>{{doctor.room}}</p>
+        <p><strong>Speciality: </strong>{{doctor.speciality}}</p>
+        <p><strong>Schedule: </strong>{{doctor.workHoursStart}} - {{doctor.workHoursEnd}}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

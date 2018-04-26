@@ -9,6 +9,7 @@ import { PatientListPage } from '../pages/patient-list/patient-list';
 import { PatientDetailPage } from '../pages/patient-detail/patient-detail';
 import { NurseListPage } from '../pages/nurse-list/nurse-list';
 import { DoctorListPage } from '../pages/doctor-list/doctor-list';
+import { DoctorDetailPage } from '../pages/doctor-detail/doctor-detail';
 import { NurseProvider } from '../providers/nurse/nurse';
 import { LoginPage } from '../pages/login/login';
 import { AdminTabs } from '../pages/admin-tabs/admin-tabs';
@@ -18,7 +19,6 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import firebaseConfig from '../config/firebase.config';
 import { CommentProvider } from '../providers/comment/comment';
 import { AddCommentComponent } from '../components/add-comment/add-comment';
-import { DoctorRegistration } from '../pages/add-doctor/add-doctor';
 import { DoctorProvider } from '../providers/doctor/doctor';
 import { RoomProvider } from '../providers/room/room';
 import { SpecialityProvider } from '../providers/speciality/speciality';
@@ -32,13 +32,13 @@ import { PopoverComponent } from '../components/popover/popover';
     MyApp,
     LoginPage,
     HomePage,
-    DoctorRegistration,
     PatientListPage,
     PatientDetailPage,
     AddCommentComponent,
     AdminTabs,
     NurseListPage,
     DoctorListPage,
+    DoctorDetailPage,
     PopoverComponent,
   ],
   imports: [
@@ -53,13 +53,13 @@ import { PopoverComponent } from '../components/popover/popover';
     MyApp,
     HomePage,
     LoginPage,
-    DoctorRegistration,
     PatientListPage,
     PatientDetailPage,
     AddCommentComponent,
     AdminTabs,
     NurseListPage,
     DoctorListPage,
+    DoctorDetailPage,
     PopoverComponent,
   ],
   providers: [

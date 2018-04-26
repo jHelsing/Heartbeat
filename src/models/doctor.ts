@@ -6,6 +6,7 @@ export interface Doctor {
   lastName: string;
   gender: string;
   age: number;
+  dob: Date;
   password: string;
   phone: string;
   specialityRef: DocumentReference;
