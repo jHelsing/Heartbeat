@@ -17,7 +17,7 @@
     <ion-item-sliding #item *ngFor="let patient of patients | async">
       <ion-item (click)="viewDetails(patient)">
         <ion-avatar item-start>
-          <p class="avatar-base avatar-color-{{patient.name.toUpperCase().charCodeAt(0) - 64}}">
+          <p class="avatar-base" [ngStyle]="{'background-color': patient.roomObj.color}">
             {{patient.name.charAt(0).toUpperCase()}}
           </p>
         </ion-avatar>
