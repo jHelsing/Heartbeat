@@ -16,8 +16,6 @@ import { PatientListPage } from '../patient-list/patient-list';
   // Used to read the input fields from HTML elements with [(ngModel)].
   private inputEmail: string = '';
   private inputPassword: string = '';
-
-  private showSplash = false; // Show splash until it is confirmed wether there is a logged in user or not.
   private roleCollectionNames = ['nurses', 'doctors', 'administrators'];
   private roleCollectionPageMap = {
     nurses: PatientListPage,

@@ -9,8 +9,7 @@ import { AdminTabs } from '../pages/admin-tabs/admin-tabs';
 })
 export class MyApp {
 
-  // public rootPage: any = LoginPage;
-  public rootPage: any = AdminTabs;
+  public rootPage: any = LoginPage;
 
   constructor(platform: Platform, statusBar: StatusBar) {
     platform.ready().then(() => {
