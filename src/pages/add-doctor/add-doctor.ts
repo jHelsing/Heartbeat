@@ -32,7 +32,8 @@ export class AddDoctorPage {
               public viewCtrl: ViewController,
               public navParams: NavParams) {
     this.doctor = navParams.get('doctor');
-    this.addingNewDoctor = this.doctor == null;
+    console.log(this.doctor);
+    this.addingNewDoctor = this.doctor == null || this.doctor === undefined;
     this.clonedDoctor = Object.assign({}, this.doctor);
     if (this.addingNewDoctor) {
       this.clonedDoctor.roomRef = { id: undefined };
@@ -48,7 +49,8 @@ export class AddDoctorPage {
   }*/
 
   public addOrUpdateDoctor(doctor) {
-    this.clonedDoctor.roomRef = this.utl.ref('rooms', doctor.room);
+    this.clonedDoctor.roomRef = this.utl.ref('rooms', doctor.roomRef);
+    this.clonedDoctor.specialityRef = this.utl.ref('specialties', doctor.specialityRef);
     let msg = 'Doctor ';
     if (this.addingNewDoctor) {
       this.doctorProvider.addDoctor(this.clonedDoctor);

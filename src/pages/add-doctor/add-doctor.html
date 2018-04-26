@@ -6,7 +6,7 @@
     <ion-buttons start>
       <button ion-button (click)="goBack()">Close</button>
     </ion-buttons>
-    <ion-title><span *ngIf="addingNewPatient; then addTxt; else updateTxt"></span> Doctor</ion-title>
+    <ion-title><span *ngIf="addingNewDoctor; then addTxt; else updateTxt"></span> Doctor</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -74,7 +74,7 @@
     </ion-list>
     <ion-buttons end>
       <button ion-button block [disabled]="!doctorForm.form.valid" type="submit">
-        <span *ngIf="addingNewPatient; then addTxt; else updateTxt"></span>
+        <span *ngIf="addingNewDoctor; then addTxt; else updateTxt"></span>
       </button>
     </ion-buttons>
   </form>

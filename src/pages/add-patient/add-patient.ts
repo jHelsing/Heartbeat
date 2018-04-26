@@ -32,7 +32,7 @@ export class AddPatientPage {
               public viewCtrl: ViewController,
               public navParams: NavParams) {
     this.patient = navParams.get('patient');
-    this.addingNewPatient = this.patient == null;
+    this.addingNewPatient = this.patient == null || this.patient === undefined;
     this.clonedPatient = Object.assign({}, this.patient);
     if (this.addingNewPatient) {
       this.clonedPatient.allergy = { id: undefined };
