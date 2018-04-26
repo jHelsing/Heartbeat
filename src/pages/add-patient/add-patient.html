@@ -3,7 +3,7 @@
 
 <ion-header>
   <ion-navbar>
-    <ion-title><span *ngIf="add; then addTxt; else updateTxt"></span> Patient</ion-title>
+    <ion-title><span *ngIf="addingNewPatient; then addTxt; else updateTxt"></span> Patient</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="closeModal()">
         <ion-icon name="close"></ion-icon>
@@ -64,7 +64,7 @@
       </ion-item>
     </ion-list>
     <ion-buttons end>
-      <button ion-button block [disabled]="!patientForm.form.valid" type="submit"><span *ngIf="add; then addTxt; else updateTxt"></span></button>
+      <button ion-button block [disabled]="!patientForm.form.valid" type="submit"><span *ngIf="addingNewPatient; then addTxt; else updateTxt"></span></button>
     </ion-buttons>
   </form>
 </ion-content>
