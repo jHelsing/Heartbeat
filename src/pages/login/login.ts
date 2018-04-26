@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { LoginProvider } from '../../providers/login/login';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { AdminTabs } from '../admin-tabs/admin-tabs';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { PatientListPage } from '../patient-list/patient-list';
 
 @IonicPage()
 @Component({
@@ -13,14 +16,19 @@ import { AngularFirestore } from 'angularfire2/firestore';
   // Used to read the input fields from HTML elements with [(ngModel)].
   private inputEmail: string = '';
   private inputPassword: string = '';
-  private roleCollectionNames = ['nurses', 'doctors'];
+  private roleCollectionNames = ['nurses', 'doctors', 'administrators'];
+  private roleCollectionPageMap = {
+    nurses: PatientListPage,
+    doctors: PatientListPage,
+    administrators: AdminTabs,
+  };
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public loginProvider: LoginProvider, public fireStore: AngularFirestore,
-              public toastController: ToastController) {
+              public toastController: ToastController, public splashScreen: SplashScreen) {
 
     // Check if the current device is already logged in as a user. If so, continue that session.
-    this.loginProvider.checkLoggedIn(this.loadCorrectPage);
+    this.loginProvider.checkLoggedIn(this.loadCorrectPage, this.hideSplash);
   }
 
   public loadCorrectPage = (userID) => {
@@ -31,11 +39,19 @@ import { AngularFirestore } from 'angularfire2/firestore';
 
       userPromise.then((user) => {
         if (user.exists) {
-          alert('User is in role category = ' + roleCollectionName);
-          // TODO: Load correct page.
+          // Replace login page as home page of the logged in user with the correct page for the specific user.
+          this.navCtrl.setRoot(this.roleCollectionPageMap[roleCollectionName]);
         }
       });
     }
+  }
+
+  public ionViewWillUnload() {
+    setTimeout(() => this.splashScreen.hide(), 100);
+  }
+
+  public hideSplash = () => {
+    this.splashScreen.hide();
   }
 
   // Fetch username and password from input fields. Log user in.
