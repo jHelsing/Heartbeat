@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, PopoverController } from 'ionic-angular';
 import { Nurse } from '../../models/nurse';
 import { NurseProvider } from '../../providers/nurse/nurse';
 import { Observable } from 'rxjs/Observable';
+import { PopoverComponent } from '../../components/popover/popover';
 
 @IonicPage()
 @Component({
@@ -12,7 +13,8 @@ import { Observable } from 'rxjs/Observable';
 export class NurseListPage {
   public nurses: Observable<Nurse[]>;
 
-  constructor(public navCtrl: NavController, public nurseProvider: NurseProvider) {
+  constructor(public navCtrl: NavController, public nurseProvider: NurseProvider,
+              public popoverCtrl: PopoverController) {
     this.nurses = nurseProvider.getNurses();
   }
 
@@ -26,5 +28,12 @@ export class NurseListPage {
 
   public removeNurse(nurse: Nurse) {
     this.nurseProvider.removeNurse(nurse);
+  }
+
+  public presentPopover(myEvent) {
+    const popover = this.popoverCtrl.create(PopoverComponent);
+    popover.present({
+      ev: myEvent,
+    });
   }
 }

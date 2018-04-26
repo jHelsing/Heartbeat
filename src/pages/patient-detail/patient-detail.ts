@@ -3,9 +3,10 @@ import { Component,
 import { IonicPage,
          NavController,
          NavParams,
-         AlertController,
+         ToastController,
          ModalController,
-         Select } from 'ionic-angular';
+         Select,
+         AlertController} from 'ionic-angular';
 import { PatientProvider } from '../../providers/patient/patient';
 import { CommentProvider } from '../../providers/comment/comment';
 import { UtilsProvider } from '../../providers/utils/utils';
@@ -28,9 +29,9 @@ export class PatientDetailPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public alertCtrl: AlertController,
               public modalCtrl: ModalController,
               public patientProvider: PatientProvider,
+              public toastCtrl: ToastController,
               private commentProvider: CommentProvider,
               private utl: UtilsProvider) {
     this.patient = navParams.get('patient');
@@ -52,8 +53,10 @@ export class PatientDetailPage {
 
   public transferPatient(patient: Patient) {
     this.patientProvider.updatePatient(patient, { doctor: this.utl.ref('doctors', this.newDoctor) });
-    const prompt = this.alertCtrl.create({
+    const prompt = this.toastCtrl.create({
       message: 'Patient transfered',
+      duration: 3000,
+      position: 'bot',
     });
     prompt.present();
     this.navCtrl.pop();

@@ -25,6 +25,7 @@ import { SpecialityProvider } from '../providers/speciality/speciality';
 import { PatientProvider } from '../providers/patient/patient';
 import { LoginProvider } from '../providers/login/login';
 import { UtilsProvider } from '../providers/utils/utils';
+import { PopoverComponent } from '../components/popover/popover';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { UtilsProvider } from '../providers/utils/utils';
     AdminTabs,
     NurseListPage,
     DoctorListPage,
+    PopoverComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +60,7 @@ import { UtilsProvider } from '../providers/utils/utils';
     AdminTabs,
     NurseListPage,
     DoctorListPage,
+    PopoverComponent,
   ],
   providers: [
     StatusBar,

@@ -30,13 +30,6 @@ export class UtilsProvider {
     });
   }
 
-  // Return a collection from a path or a reference
-  public col$<T>(ref: CollectionPredicate<T>, queryFn?): Observable<T[]> {
-    return this.col(ref, queryFn).snapshotChanges().map((doc) => {
-      return doc.map((d) => d.payload.doc.data()) as T[];
-    });
-  }
-
   // Return an extended collection (includes $id) from a path or a reference
   public colId$<T>(ref: CollectionPredicate<T>, queryFn?): Observable<any[]> {
     return this.col(ref, queryFn).snapshotChanges().map((doc) => {

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage,
          NavController,
          NavParams,
-         AlertController,
-         ViewController } from 'ionic-angular';
+         ViewController,
+         ToastController} from 'ionic-angular';
 import { UtilsProvider } from '../../providers/utils/utils';
 import { PatientProvider } from '../../providers/patient/patient';
 import { Room } from '../../models/room';
@@ -26,7 +26,7 @@ export class AddPatientPage {
   public add: boolean;
 
   constructor(public navCtrl: NavController,
-              public alertCtrl: AlertController,
+              public toastCtrl: ToastController,
               public utl: UtilsProvider,
               public patientProvider: PatientProvider,
               public viewCtrl: ViewController,
@@ -60,10 +60,13 @@ export class AddPatientPage {
       this.patientProvider.updatePatient(this.patient, this.clonedPatient);
       msg += 'updated';
     }
-    const prompt = this.alertCtrl.create({
+    const toast = this.toastCtrl.create({
       message: msg,
+      duration: 3000,
+      position: 'bot',
     });
-    prompt.present();
+    toast.present();
+
     this.closeModal();
   }
 

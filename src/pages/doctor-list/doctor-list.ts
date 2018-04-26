@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, ModalController } from 'ionic-angular';
+import { LoginPage } from '../../pages/login/login';
+import { LoginProvider } from '../../providers/login/login';
+import { PopoverComponent } from '../../components/popover/popover';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { Doctor } from '../../models/doctor';
@@ -14,7 +17,8 @@ import { DoctorRegistration } from '../add-doctor/add-doctor';
 export class DoctorListPage {
   public doctorObservable: Observable<Doctor[]>;
 
-  constructor(public navCtrl: NavController, public doctorProvider: DoctorProvider, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public doctorProvider: DoctorProvider, public modalCtrl: ModalController,
+              public popoverCtrl: PopoverController, public loginProvider: LoginProvider) {
     this.doctorObservable = doctorProvider.getDoctors();
   }
 
@@ -31,4 +35,10 @@ export class DoctorListPage {
     this.doctorProvider.updateDoctor(doctor, data);
   }
 
+  public presentPopover(myEvent) {
+    const popover = this.popoverCtrl.create(PopoverComponent);
+    popover.present({
+      ev: myEvent,
+    });
+  }
 }
