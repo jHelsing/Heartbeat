@@ -20,8 +20,8 @@
         <ion-input type="text" [(ngModel)]="clonedPatient.name" name="name" required #name="ngModel"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating>Age</ion-label>
-        <ion-input type="number" maxlength="3" [(ngModel)]="clonedPatient.age" required name="age" #age="ngModel"></ion-input>
+        <ion-label floating>Date of Birth</ion-label>
+        <ion-datetime [(ngModel)]="clonedPatient.dob" required name="dob" #dob="ngModel"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label floating>Gender</ion-label>

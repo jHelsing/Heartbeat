@@ -3,7 +3,7 @@ import { DocumentReference } from '@firebase/firestore-types';
 export class Patient {
   public $id?: string;
   public name?: string;
-  public age?: number;
+  public dob?: Date;
   public gender?: string;
   public bloodType?: string;
   public arrivalTime?: Date;
