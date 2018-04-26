@@ -10,17 +10,16 @@ import { LoginProvider } from '../../providers/login/login';
 export class PopoverComponent {
 
   public items: any;
-  public text: string;
 
   constructor(public viewCtrl: ViewController, public navCtrl: NavController,
               public loginProvider: LoginProvider, public app: App) {
     this.items = [
-      { item: 'Log Out' },
+      { title: 'Log Out' },
     ];
   }
 
   public itemClick(item: any) {
-    if (item.item === 'Log Out') {
+    if (item.title === 'Log Out') {
       this.viewCtrl.dismiss(item);
       this.loginProvider.logout();
       this.app.getRootNav().setRoot(LoginPage);
