@@ -40,10 +40,5 @@ export class DoctorListPage {
     popover.present({
       ev: myEvent,
     });
-
-    popover.onDidDismiss((popoverData) => {
-      this.loginProvider.logout();
-      this.navCtrl.setRoot(LoginPage);
-    });
   }
 }

@@ -35,9 +35,5 @@ export class NurseListPage {
     popover.present({
       ev: myEvent,
     });
-
-    popover.onDidDismiss((popoverData) => {
-      // Do something when popover closes.
-    });
   }
 }
