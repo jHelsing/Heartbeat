@@ -21,7 +21,7 @@
       <ion-card-header>Basic Info</ion-card-header>
       <ion-card-content>
         <p><strong>Name: </strong> {{patient.name}}</p>
-        <p><strong>Date of Birth: </strong>{{patient.dob}}</p>
+        <p><strong>Date of Birth: </strong>{{patient.dob}} ({{utl.dob2age(patient.dob)}} yo)</p>
         <p><strong>Gender: </strong>{{patient.gender}}</p>
         <p><strong>Doctor: </strong>Dr. {{patient.doctorObj.firstName}} {{patient.doctorObj.lastName}}</p>
         <p><strong>Room: </strong>{{patient.roomObj.name}}</p>

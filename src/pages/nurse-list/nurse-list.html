@@ -22,7 +22,7 @@
           <img src="http://i.pravatar.cc/150?u={{nurse.$id}}">
         </ion-avatar>
         <h2>{{nurse.name}}</h2>
-        <p>Date of Birth: {{nurse.dob}}</p>
+        <p>Date of Birth: {{nurse.dob}} ({{utl.dob2age(nurse.dob)}} yo)</p>
         <p>Room: {{nurse.room}}</p>
       </ion-item>
       <ion-item-options side="right">

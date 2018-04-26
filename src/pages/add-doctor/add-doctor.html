@@ -25,7 +25,8 @@
     </ion-item>
 
     <ion-item>
-      <ion-input type="number" placeholder="age" [(ngModel)]="doctor.age"></ion-input>
+      <ion-label>Date of Birth</ion-label>
+      <ion-datetime [(ngModel)]="doctor.dob" required name="dob"></ion-datetime>
     </ion-item>
 
     <ion-item>
@@ -71,4 +72,3 @@
       </button>
     </ion-buttons>
 </ion-content>
-

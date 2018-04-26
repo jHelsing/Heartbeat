@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController, ModalController } from 'ionic-angular';
 import { LoginPage } from '../../pages/login/login';
 import { LoginProvider } from '../../providers/login/login';
+import { UtilsProvider } from '../../providers/utils/utils';
 import { PopoverComponent } from '../../components/popover/popover';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
@@ -18,7 +19,7 @@ export class DoctorListPage {
   public doctorObservable: Observable<Doctor[]>;
 
   constructor(public navCtrl: NavController, public doctorProvider: DoctorProvider, public modalCtrl: ModalController,
-              public popoverCtrl: PopoverController, public loginProvider: LoginProvider) {
+              public popoverCtrl: PopoverController, public loginProvider: LoginProvider, private utl: UtilsProvider) {
     this.doctorObservable = doctorProvider.getDoctors();
   }
 
