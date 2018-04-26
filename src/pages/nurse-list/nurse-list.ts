@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, /*NavController, PopoverController, */ModalController } from 'ionic-angular';
 import { Nurse } from '../../models/nurse';
 import { NurseProvider } from '../../providers/nurse/nurse';
+import { UtilsProvider } from '../../providers/utils/utils';
 import { Observable } from 'rxjs/Observable';
 /*import { PopoverComponent } from '../../components/popover/popover';*/
 
@@ -16,7 +17,8 @@ export class NurseListPage {
   constructor(/*public navCtrl: NavController, */
               public nurseProvider: NurseProvider,
               /*public popoverCtrl: PopoverController,*/
-              public modalCtrl: ModalController) {
+              public modalCtrl: ModalController,
+              public utl: UtilsProvider) {
     this.nurses = nurseProvider.getNurses();
   }
 
