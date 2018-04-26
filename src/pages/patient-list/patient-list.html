@@ -4,8 +4,8 @@
       Patient List
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="goToAddPatient()">
-        <ion-icon name="add"></ion-icon>
+      <button ion-button icon-only (click)="openModalAddPatient()">
+        <ion-icon name="person-add"></ion-icon>
       </button>
       <button ion-button (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
@@ -24,7 +24,7 @@
           </p>
         </ion-avatar>
         <h2>{{patient.name}}</h2>
-        <p>Room: {{patient.room}}</p>
+        <p>Room: {{patient.roomObj.name}}</p>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="patientProvider.removePatient(patient)">

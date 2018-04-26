@@ -6,9 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PatientListPage } from '../pages/patient-list/patient-list';
-import { AddPatientPage } from '../pages/add-patient/add-patient';
 import { PatientDetailPage } from '../pages/patient-detail/patient-detail';
-import { UpdatePatientPage } from '../pages/update-patient/update-patient';
 import { NurseListPage } from '../pages/nurse-list/nurse-list';
 import { DoctorListPage } from '../pages/doctor-list/doctor-list';
 import { NurseProvider } from '../providers/nurse/nurse';
@@ -26,6 +24,7 @@ import { RoomProvider } from '../providers/room/room';
 import { SpecialityProvider } from '../providers/speciality/speciality';
 import { PatientProvider } from '../providers/patient/patient';
 import { LoginProvider } from '../providers/login/login';
+import { UtilsProvider } from '../providers/utils/utils';
 import { PopoverComponent } from '../components/popover/popover';
 
 @NgModule({
@@ -35,9 +34,7 @@ import { PopoverComponent } from '../components/popover/popover';
     HomePage,
     DoctorRegistration,
     PatientListPage,
-    AddPatientPage,
     PatientDetailPage,
-    UpdatePatientPage,
     AddCommentComponent,
     AdminTabs,
     NurseListPage,
@@ -58,9 +55,7 @@ import { PopoverComponent } from '../components/popover/popover';
     LoginPage,
     DoctorRegistration,
     PatientListPage,
-    AddPatientPage,
     PatientDetailPage,
-    UpdatePatientPage,
     AddCommentComponent,
     AdminTabs,
     NurseListPage,
@@ -78,6 +73,7 @@ import { PopoverComponent } from '../components/popover/popover';
     SpecialityProvider,
     PatientProvider,
     LoginProvider,
+    UtilsProvider,
   ],
 })
 export class AppModule {}

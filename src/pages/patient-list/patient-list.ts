@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, PopoverController } from 'ionic-angular';
+import { IonicPage,
+         NavParams,
+         NavController,
+         ModalController,
+         PopoverController } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Patient } from '../../models/patient';
 import { Observable } from 'rxjs/Observable';
@@ -17,14 +21,16 @@ import { PopoverComponent } from '../../components/popover/popover';
 export class PatientListPage {
   public patients;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
-              public patientProvider: PatientProvider, public popoverCtrl: PopoverController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public patientProvider: PatientProvider, public popoverCtrl: PopoverController,
+              public modalCtrl: ModalController) {
     const specificDoctor = navParams.get('doctor');
     this.patients = patientProvider.getPatients(specificDoctor);
   }
 
-  public goToAddPatient() {
-    this.navCtrl.push(AddPatientPage);
+  public openModalAddPatient() {
+    const addPatientPage = this.modalCtrl.create('AddPatientPage');
+    addPatientPage.present();
   }
 
   public viewDetails(patient) {

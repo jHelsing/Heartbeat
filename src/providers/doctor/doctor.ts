@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { AlertController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 import { Doctor } from '../../models/doctor';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
@@ -11,7 +11,7 @@ export class DoctorProvider {
   private doctorCollection: AngularFirestoreCollection<Doctor>;
   private doctorObservable: Observable<Doctor[]>;
 
-  constructor(public fireStore: AngularFirestore, public alertCtrl: AlertController) {
+  constructor(public fireStore: AngularFirestore, public toastCtrl: ToastController) {
     this.doctorCollection = fireStore.collection<Doctor>('/doctors');
     this.doctorObservable = this.doctorCollection.snapshotChanges().map((actions) => actions.map((doctorAction) => {
        const data = doctorAction.payload.doc.data() as Doctor;
@@ -34,10 +34,10 @@ export class DoctorProvider {
     delete doctor.room;
     delete doctor.speciality;
     this.doctorCollection.add(doctor);
-    const alert = this.alertCtrl.create({
-      title: 'Doctor created',
-      subTitle: doctor.firstName + ' got added as a doctor.',
-      buttons: ['OK'],
+    const alert = this.toastCtrl.create({
+      message: 'Doctor created',
+      duration: 3000,
+      position: 'bot',
     });
     alert.present();
   }

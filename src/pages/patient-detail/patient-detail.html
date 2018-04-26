@@ -2,8 +2,11 @@
   <ion-navbar color="primary">
     <ion-title>{{patient.name}}</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="goToUpdatePatient(patient)">
+      <button ion-button icon-only (click)="openModalUpdatePatient()">
         <ion-icon name="create"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="openDoctorsList()">
+        <ion-icon name="swap"></ion-icon>
       </button>
       <button ion-button icon-only (click)="addComment()">
         <ion-icon name="add"></ion-icon>
@@ -18,13 +21,13 @@
       <ion-card-header>Basic Info</ion-card-header>
       <ion-card-content>
         <p><strong>Name: </strong> {{patient.name}}</p>
-        <p><strong>Date of Birth: </strong>{{patient.age}}</p>
+        <p><strong>Date of Birth: </strong>{{patient.dob}}</p>
         <p><strong>Gender: </strong>{{patient.gender}}</p>
-        <p><strong>Doctor: </strong>Dr. {{patient.doctor}}</p>
-        <p><strong>Room: </strong>{{patient.room}}</p>
+        <p><strong>Doctor: </strong>Dr. {{patient.doctorObj.firstName}} {{patient.doctorObj.lastName}}</p>
+        <p><strong>Room: </strong>{{patient.roomObj.name}}</p>
         <p><strong>Arrival Time: </strong>{{patient.arrivalTime | date : "yyyy-MM-dd"}}</p>
         <p><strong>Blood Type: </strong>{{patient.bloodType}}</p>
-        <p><strong>Allergies: </strong>{{patient.allergy}}</p>
+        <p><strong>Allergies: </strong>{{patient.allergyObj.name}}</p>
         <p><strong>Diet: </strong>{{patient.diet}}</p>
       </ion-card-content>
     </ion-card>
@@ -58,3 +61,18 @@
     </ion-item-group>
   </ion-list>
 </ion-content>
+
+<form #patientForm="ngForm">
+  <ion-item>
+    <ion-label>Transfer Patient</ion-label>
+    <ion-select [(ngModel)]="newDoctor" name="doctor" multiple="false"
+                interface="action-sheet" #select
+                (ionChange)="transferPatient(patient)">
+      <ion-option *ngFor="let doctor of doctors | async"
+                  value="{{doctor.$id}}"
+                  selected="{{doctor.$id == newDoctor}}">
+        {{doctor.firstName}} {{doctor.lastName}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+</form>

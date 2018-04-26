@@ -14,7 +14,7 @@ import { DoctorRegistration } from '../add-doctor/add-doctor';
 export class HomePage {
   public nurses: Observable<Nurse[]>;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public nurseProvider: NurseProvider) {
+  constructor(public navCtrl: NavController, public nurseProvider: NurseProvider) {
     this.nurses = nurseProvider.getNurses();
   }
 
