@@ -32,7 +32,6 @@ export class AddDoctorPage {
               public viewCtrl: ViewController,
               public navParams: NavParams) {
     this.doctor = navParams.get('doctor');
-    console.log(this.doctor);
     this.addingNewDoctor = this.doctor == null || this.doctor === undefined;
     this.clonedDoctor = Object.assign({}, this.doctor);
     if (this.addingNewDoctor) {
