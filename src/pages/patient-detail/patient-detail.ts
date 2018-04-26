@@ -5,8 +5,7 @@ import { IonicPage,
          NavParams,
          ToastController,
          ModalController,
-         Select,
-         AlertController} from 'ionic-angular';
+         Select} from 'ionic-angular';
 import { PatientProvider } from '../../providers/patient/patient';
 import { CommentProvider } from '../../providers/comment/comment';
 import { UtilsProvider } from '../../providers/utils/utils';

@@ -66,7 +66,6 @@ export class AddPatientPage {
       position: 'bot',
     });
     toast.present();
-
     this.closeModal();
   }
 
