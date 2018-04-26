@@ -1,8 +1,5 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>
-      Doctors
-    </ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="addDoctorModal()">
         <ion-icon name="person-add"></ion-icon>
@@ -16,6 +13,7 @@
 
 <ion-content>
   <ion-list>
+    <ion-list-header>Doctors</ion-list-header>
     <ion-item-sliding #item *ngFor="let doctor of doctorObservable | async">
       <ion-item (click)="viewDetails(doctor)">
         <ion-avatar item-start>

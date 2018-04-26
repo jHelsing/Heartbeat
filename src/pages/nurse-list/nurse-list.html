@@ -1,8 +1,5 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>
-      Nurses
-    </ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="openModalAddUpdateNurse()">
         <ion-icon name="person-add"></ion-icon>
@@ -16,6 +13,7 @@
 
 <ion-content>
   <ion-list>
+    <ion-list-header>Nurses</ion-list-header>
     <ion-item-sliding #item *ngFor="let nurse of nurses | async">
       <ion-item (click)="openModalAddUpdateNurse({nurse: {$id: nurse.$id, name: nurse.name, dob: nurse.dob, roomRef: nurse.roomRef}})">
         <ion-avatar item-start>
