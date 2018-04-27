@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
-import { Doctor } from '../../models/doctor';
 import { Speciality } from '../../models/speciality';
 import { Room } from '../../models/room';
 import { Observable } from 'rxjs/Rx';
@@ -18,7 +17,6 @@ import { SpecialityProvider } from '../../providers/speciality/speciality';
 export class AddDoctorPage {
   public doctor;
   public clonedDoctor;
-  public doctorObservable: Observable<Doctor[]>;
   public roomObservable: Observable<Room[]>;
   public specialityObservable: Observable<Speciality[]>;
   public addingNewDoctor: boolean; // False is updating existing doctor.
@@ -36,8 +34,8 @@ export class AddDoctorPage {
     this.clonedDoctor = Object.assign({}, this.doctor);
     if (this.addingNewDoctor) {
       this.clonedDoctor.roomRef = { id: undefined };
+      this.clonedDoctor.specialityRef = { id: undefined };
     }
-    this.doctorObservable = doctorProvider.getDoctors();
     this.roomObservable = roomProvider.getRooms();
     this.specialityObservable = specialityProvider.getSpecialities();
   }
@@ -55,8 +53,8 @@ export class AddDoctorPage {
       this.doctorProvider.addDoctor(this.clonedDoctor);
       msg += 'added';
     } else {
-      delete this.clonedDoctor.room;
-      delete this.clonedDoctor.speciality;
+      delete this.clonedDoctor.roomObj;
+      delete this.clonedDoctor.specialityObj;
       delete this.clonedDoctor.$id;
       this.doctorProvider.updateDoctor(this.doctor, this.clonedDoctor);
       msg += 'updated';

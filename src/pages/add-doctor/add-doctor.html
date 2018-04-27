@@ -37,7 +37,7 @@
 
       <ion-item>
         <ion-label>Speciality</ion-label>
-        <ion-select [(ngModel)]="clonedDoctor.speciality" required name="specialityRef">
+        <ion-select [(ngModel)]="clonedDoctor.specialityRef.id" required name="specialityRef">
           <ion-option *ngFor="let speciality of specialityObservable | async" [value]="speciality.$id" required>{{speciality.name}}</ion-option>
         </ion-select>
       </ion-item>
@@ -62,7 +62,7 @@
 
       <ion-item>
         <ion-label>Room</ion-label>
-        <ion-select [(ngModel)]="clonedDoctor.room" name="roomRef">
+        <ion-select [(ngModel)]="clonedDoctor.roomRef.id" name="roomRef">
           <ion-option *ngFor="let room of roomObservable | async" [value]="room.$id" required>{{room.name}}</ion-option>
         </ion-select>
       </ion-item>

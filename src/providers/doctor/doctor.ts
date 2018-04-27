@@ -25,7 +25,7 @@ export class DoctorProvider {
        const combined = Observable.combineLatest(roomObservable, specialityObservable);
 
        return combined.map(([roomObj, specialityObj]) => {
-         return { ...data, $id, room: roomObj.name, speciality: specialityObj.name };
+         return { ...data, $id, roomObj, specialityObj };
        });
      })).flatMap((doctors) => Observable.combineLatest(doctors));
   }
