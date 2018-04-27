@@ -52,7 +52,7 @@
 
       <ion-item>
         <ion-label floating>Allergies</ion-label>
-        <ion-select [(ngModel)]="clonedPatient.allergy.id" required name="allergy">
+        <ion-select [(ngModel)]="clonedPatient.allergyRef.id" required name="allergyRef">
           <ion-option *ngFor="let allergy of allergies | async" value="{{allergy.$id}}">{{allergy.name}}</ion-option>
         </ion-select>
       </ion-item>
@@ -64,7 +64,7 @@
 
       <ion-item>
         <ion-label floating>Assign Doctor</ion-label>
-        <ion-select [(ngModel)]="clonedPatient.doctor.id" required name="doctor">
+        <ion-select [(ngModel)]="clonedPatient.doctorRef.id" required name="doctorRef">
           <ion-option *ngFor="let doctor of doctors | async" value="{{doctor.$id}}">{{doctor.firstName + " " + doctor.lastName}}</ion-option>
         </ion-select>
       </ion-item>

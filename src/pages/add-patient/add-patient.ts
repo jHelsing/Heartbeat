@@ -35,9 +35,9 @@ export class AddPatientPage {
     this.addingNewPatient = this.patient == null || this.patient === undefined;
     this.clonedPatient = Object.assign({}, this.patient);
     if (this.addingNewPatient) {
-      this.clonedPatient.allergy = { id: undefined };
+      this.clonedPatient.allergyRef = { id: undefined };
       this.clonedPatient.roomRef = { id: undefined };
-      this.clonedPatient.doctor = { id: undefined };
+      this.clonedPatient.doctorRef = { id: undefined };
     }
     this.rooms = patientProvider.getRooms();
     this.allergies = patientProvider.getAllergies();
@@ -46,8 +46,8 @@ export class AddPatientPage {
 
   public addOrUpdatePatient(patient) {
     this.clonedPatient.roomRef = this.utl.ref('rooms', patient.roomRef);
-    this.clonedPatient.allergy = this.utl.ref('allergies', patient.allergy);
-    this.clonedPatient.doctor = this.utl.ref('doctors', patient.doctor);
+    this.clonedPatient.allergyRef = this.utl.ref('allergies', patient.allergyRef);
+    this.clonedPatient.doctorRef = this.utl.ref('doctors', patient.doctorRef);
     let msg = 'Patient ';
     if (this.addingNewPatient) {
       this.patientProvider.addPatient(this.clonedPatient);

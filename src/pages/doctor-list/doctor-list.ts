@@ -32,7 +32,7 @@ export class DoctorListPage {
     this.navCtrl.push(DoctorDetailPage, { doctor });
   }
 
-  // Delete on cascade
+  // Delete a doctor from DB and transfer his/her patients on cascade
   public removeDoctor(doctor: Doctor) {
     // First transfer all associated patients to the default doctor
     const defaultDoctor = this.fireStore.doc('doctors/unassigned').ref;

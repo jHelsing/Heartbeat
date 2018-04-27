@@ -35,7 +35,7 @@ export class PatientDetailPage {
               private utl: UtilsProvider) {
     this.patient = navParams.get('patient');
     this.doctors = patientProvider.getDoctors();
-    this.newDoctor = this.patient.doctor.id;
+    this.newDoctor = this.patient.doctorRef.id;
     this.comments = this.commentProvider.getComments(this.patient.$id);
   }
 
@@ -64,6 +64,5 @@ export class PatientDetailPage {
   public addComment() {
     const commentModal = this.modalCtrl.create(AddCommentComponent, { patientId: this.patient.$id }, {});
     commentModal.present();
-
   }
 }

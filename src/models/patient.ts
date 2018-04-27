@@ -3,13 +3,12 @@ import { DocumentReference } from '@firebase/firestore-types';
 export interface Patient {
   $id?: string;
   name: string;
-  dateOfBirth: Date;
   gender: string;
   bloodType: string;
-  arrivalTime: Date;
-  allergy: DocumentReference;
   diet: string;
-  doctor: DocumentReference;
-  treatments: string;
+  dateOfBirth: Date;
+  arrivalTime: Date;
+  allergyRef: DocumentReference;
+  doctorRef: DocumentReference;
   roomRef: DocumentReference;
 }
