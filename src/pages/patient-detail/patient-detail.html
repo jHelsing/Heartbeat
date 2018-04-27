@@ -21,10 +21,10 @@
     <ion-card>
       <ion-card-content>
         <p><strong>Name: </strong> {{patient.name}}</p>
-        <p><strong>Date of Birth: </strong>{{patient.dob}} ({{utl.dob2age(patient.dob)}} yo)</p>
+        <p><strong>Date of Birth: </strong>{{patient.dateOfBirth}} ({{utl.dob2age(patient.dateOfBirth)}} yo)</p>
         <p><strong>Gender: </strong>{{patient.gender}}</p>
         <p><strong>Doctor: </strong>Dr. {{patient.doctorObj.firstName}} {{patient.doctorObj.lastName}}</p>
-        <p><strong>Room: </strong>{{patient.roomObj.name}}</p>
+        <p><strong>Office: </strong>{{patient.roomObj.name}}</p>
         <p><strong>Arrival Time: </strong>{{patient.arrivalTime | date : "yyyy-MM-dd"}}</p>
         <p><strong>Blood Type: </strong>{{patient.bloodType}}</p>
         <p><strong>Allergies: </strong>{{patient.allergyObj.name}}</p>

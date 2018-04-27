@@ -22,13 +22,13 @@ export class HomePage {
     this.navCtrl.push(AddDoctorPage);
   }
 
-  public addNursePrompt() {
+  /*public addNursePrompt() {
     this.nurseProvider.addNursePrompt();
   }
 
   public updateNursePrompt(nurse: Nurse) {
     this.nurseProvider.updateNursePrompt(nurse);
-  }
+  }*/
 
   public removeNurse(nurse: Nurse) {
     this.nurseProvider.removeNurse(nurse);

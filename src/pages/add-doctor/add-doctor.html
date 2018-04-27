@@ -23,7 +23,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-label>Gender</ion-label>
+        <ion-label floating>Gender</ion-label>
         <ion-select [(ngModel)]="clonedDoctor.gender" required name="gender">
           <ion-option value="Female">Female</ion-option>
           <ion-option value="Male">Male</ion-option>
@@ -31,12 +31,12 @@
       </ion-item>
 
       <ion-item>
-        <ion-label>Date of Birth</ion-label>
-        <ion-datetime [(ngModel)]="clonedDoctor.dob" required name="dob"></ion-datetime>
+        <ion-label floating>Date of Birth</ion-label>
+        <ion-datetime [(ngModel)]="clonedDoctor.dateOfBirth" required name="dateOfBirth"></ion-datetime>
       </ion-item>
 
       <ion-item>
-        <ion-label>Speciality</ion-label>
+        <ion-label floating>Speciality</ion-label>
         <ion-select [(ngModel)]="clonedDoctor.specialityRef.id" required name="specialityRef">
           <ion-option *ngFor="let speciality of specialityObservable | async" [value]="speciality.$id" required>{{speciality.name}}</ion-option>
         </ion-select>
@@ -51,17 +51,17 @@
       </ion-item>
 
       <ion-item>
-        <ion-label>Working hours (start)</ion-label>
+        <ion-label floating>Working hours (start)</ion-label>
         <ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="clonedDoctor.workHoursStart" required name="workHoursStart"></ion-datetime>
       </ion-item>
 
       <ion-item>
-        <ion-label>Working hours (end)</ion-label>
+        <ion-label floating>Working hours (end)</ion-label>
         <ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="clonedDoctor.workHoursEnd" required name="workHoursEnd"></ion-datetime>
       </ion-item>
 
       <ion-item>
-        <ion-label>Room</ion-label>
+        <ion-label floating>Room</ion-label>
         <ion-select [(ngModel)]="clonedDoctor.roomRef.id" name="roomRef">
           <ion-option *ngFor="let room of roomObservable | async" [value]="room.$id" required>{{room.name}}</ion-option>
         </ion-select>

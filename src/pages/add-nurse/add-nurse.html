@@ -19,12 +19,12 @@
       </ion-item>
 
       <ion-item>
-        <ion-label>Date of Birth</ion-label>
-        <ion-datetime [(ngModel)]="clonedNurse.dob" required name="dob"></ion-datetime>
+        <ion-label floating>Date of Birth</ion-label>
+        <ion-datetime [(ngModel)]="clonedNurse.dateOfBirth" required name="dateOfBirth"></ion-datetime>
       </ion-item>
 
       <ion-item>
-        <ion-label>Room</ion-label>
+        <ion-label floating>Room</ion-label>
         <ion-select [(ngModel)]="clonedNurse.roomRef.id" required name="roomRef">
           <ion-option *ngFor="let room of rooms | async" value="{{room.$id}}">{{room.name}}</ion-option>
         </ion-select>

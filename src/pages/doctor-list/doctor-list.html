@@ -20,8 +20,8 @@
           <img src="http://i.pravatar.cc/150?u={{doctor.$id}}">
         </ion-avatar>
         <h2>{{doctor.firstName}} {{doctor.lastName}}</h2>
-        <p>Date of Birth: {{doctor.dob}} ({{utl.dob2age(doctor.dob)}} yo)</p>
-        <p>Room: {{doctor.roomObj.name}}</p>
+        <p>Speciality: {{doctor.specialityObj.name}}</p>
+        <p>Office: {{doctor.roomObj.name}}</p>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="removeDoctor(doctor)">

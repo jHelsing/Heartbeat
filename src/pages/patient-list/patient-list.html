@@ -22,6 +22,7 @@
           </p>
         </ion-avatar>
         <h2>{{patient.name}}</h2>
+        <p>Date of Birth: {{patient.dateOfBirth}} ({{utl.dob2age(patient.dateOfBirth)}} yo)</p>
         <p>Room: {{patient.roomObj.name}}</p>
       </ion-item>
       <ion-item-options side="right">
