@@ -52,6 +52,12 @@
       </ion-item>
 
       <!-- TODO: Add image picker functionality -->
+      <ion-item>
+        <ion-label color="primary" stacked>Severity</ion-label>
+        <ion-select [(ngModel)]="severity.id" name="severity" id="severity" interface="popover">
+          <ion-option *ngFor="let severity of severities" [value]="severity.id">{{severity.desc}}</ion-option>
+        </ion-select>
+      </ion-item>
 
       <button ion-button block [disabled]="!commentForm.form.valid" type="submit">Add Comment</button>
     </form>

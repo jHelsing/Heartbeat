@@ -62,7 +62,8 @@ export class PatientDetailPage {
   }
 
   public addComment() {
-    const commentModal = this.modalCtrl.create(AddCommentComponent, { patientId: this.patient.$id }, {});
+    const commentModal = this.modalCtrl.create(AddCommentComponent,
+      { patientId: this.patient.$id, severity: this.patient.severity }, {});
     commentModal.present();
   }
 }
