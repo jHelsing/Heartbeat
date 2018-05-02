@@ -14,8 +14,14 @@ export class CommentProvider {
 
   public uploadComment(comment: Comment, patientId: string) {
     comment.patient = this.fireStore.doc('patients/' + patientId).ref;
-    this.commentsCollection.add({ title: comment.title, category: comment.category, description: comment.description,
-      patient: comment.patient, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+    if (comment.imageUrl) {
+      this.commentsCollection.add({ title: comment.title, category: comment.category, description: comment.description,
+        patient: comment.patient, createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        imageUrl: comment.imageUrl });
+    } else {
+      this.commentsCollection.add({ title: comment.title, category: comment.category, description: comment.description,
+        patient: comment.patient, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+    }
   }
 
   public getComments(patientId: string): Observable<Comment[]> {

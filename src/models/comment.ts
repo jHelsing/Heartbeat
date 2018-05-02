@@ -7,6 +7,6 @@ export class Comment {
   public category: string;
   public description: string;
   public patient: DocumentReference;
-  // public imageUrls: string[];
+  public imageUrl?: string;
   public createdAt: FieldValue;
 }
