@@ -29,7 +29,7 @@
         <p><strong>Blood Type: </strong>{{patient.bloodType}}</p>
         <p><strong>Allergies: </strong>{{patient.allergyObj.name}}</p>
         <p><strong>Diet: </strong>{{patient.diet}}</p>
-        <p *ngIf = "patient.severity == 0"><strong>Severity: </strong>Unknown</p>
+        <p *ngIf = "patient.severity == 0"><strong>Severity: </strong>Not available</p>
         <p *ngIf = "patient.severity == 1"><strong>Severity: </strong>Low</p>
         <p *ngIf = "patient.severity == 2"><strong>Severity: </strong>Medium</p>
         <p *ngIf = "patient.severity == 3"><strong>Severity: </strong>High</p>

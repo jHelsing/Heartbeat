@@ -12,7 +12,7 @@ export class AddCommentComponent {
 
   private comment: Comment = new Comment();
   private categories = ['Diagnosis', 'Treatment', 'Note'];
-  private severities = [{ id: 0, desc: 'Not Set' }, { id: 1, desc: 'Low' }, { id: 2, desc: 'Medium' },
+  private severities = [{ id: 0, desc: 'Not available' }, { id: 1, desc: 'Low' }, { id: 2, desc: 'Medium' },
    { id: 3, desc: 'High' }];
   private patientId: string;
   private severity;
@@ -27,11 +27,11 @@ export class AddCommentComponent {
   public addComment() {
     this.commentProvider.uploadComment(this.comment, this.patientId);
     this.patientProvider.updatePatientById(this.patientId, { severity: this.severity.id });
-    this.dismiss();
+    this.dismiss(this.severity.id);
   }
 
-  public dismiss() {
-    this.viewCtrl.dismiss();
+  public dismiss(data?) {
+    this.viewCtrl.dismiss(data);
   }
 
 }
