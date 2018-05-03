@@ -30,6 +30,10 @@
         </ion-select>
       </ion-item>
 
+      <ion-item>
+        <ion-input type="text" placeholder="Profile image URL" [(ngModel)]="clonedNurse.imageUrl" name="imageUrl"></ion-input>
+      </ion-item>
+
     </ion-list>
     <ion-buttons end>
       <button ion-button block [disabled]="!nurseForm.form.valid" type="submit">
