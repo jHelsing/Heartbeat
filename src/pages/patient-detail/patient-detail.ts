@@ -21,6 +21,8 @@ import { Observable } from 'rxjs/Observable';
 })
 export class PatientDetailPage {
   @ViewChild('select') public select: Select;
+  public uId;
+  public uRole;
   public patient;
   public doctors;
   public newDoctor;
@@ -33,6 +35,8 @@ export class PatientDetailPage {
               public toastCtrl: ToastController,
               private commentProvider: CommentProvider,
               private utl: UtilsProvider) {
+    this.uId = navParams.get('uId');
+    this.uRole = navParams.get('uRole');
     this.patient = navParams.get('patient');
     this.doctors = patientProvider.getDoctors();
     this.newDoctor = this.patient.doctorRef.id;
@@ -51,7 +55,7 @@ export class PatientDetailPage {
   }
 
   public transferPatient(patient: Patient) {
-    this.patientProvider.updatePatient(patient, { doctor: this.utl.ref('doctors', this.newDoctor) });
+    this.patientProvider.updatePatient(patient, { doctorRef: this.utl.ref('doctors', this.newDoctor) });
     const prompt = this.toastCtrl.create({
       message: 'Patient transfered',
       duration: 3000,
@@ -63,7 +67,7 @@ export class PatientDetailPage {
 
   public addComment() {
     const commentModal = this.modalCtrl.create(AddCommentComponent,
-      { patientId: this.patient.$id, severity: this.patient.severity }, {});
+      { patientId: this.patient.$id, severity: this.patient.severity, uId: this.uId, uRole: this.uRole }, {});
     commentModal.onDidDismiss((newSeverity) => {
       this.patient.severity = newSeverity;
     });

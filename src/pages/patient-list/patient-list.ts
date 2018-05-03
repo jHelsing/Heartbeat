@@ -16,13 +16,16 @@ import { PopoverComponent } from '../../components/popover/popover';
   templateUrl: 'patient-list.html',
 })
 export class PatientListPage {
+  public uId;
+  public uRole;
   public patients;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public patientProvider: PatientProvider, public popoverCtrl: PopoverController,
               public modalCtrl: ModalController, public utl: UtilsProvider) {
-    const specificDoctor = navParams.get('doctor');
-    this.patients = patientProvider.getPatients(specificDoctor);
+    this.uId = navParams.get('uId');
+    this.uRole = navParams.get('uRole');
+    this.patients = patientProvider.getPatients(this.uRole === 'doctors' ? this.uId : null);
   }
 
   public openModalAddPatient() {
@@ -31,7 +34,7 @@ export class PatientListPage {
   }
 
   public viewDetails(patient) {
-    this.navCtrl.push(PatientDetailPage, { patient });
+    this.navCtrl.push(PatientDetailPage, { patient, uId: this.uId, uRole: this.uRole });
   }
 
   public presentPopover(myEvent) {

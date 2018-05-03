@@ -42,6 +42,7 @@
         <ion-card-header>{{comment.category}}</ion-card-header>
         <ion-card-content>
           <p><strong>{{comment.title}}</strong></p>
+          <p><strong>by </strong>{{comment.createdBy}}</p>
           <p>{{comment.description}}</p>
           <ion-note>{{comment.createdAt | date: 'yyyy-MM-dd'}}</ion-note>
         </ion-card-content>
@@ -51,6 +52,7 @@
         <ion-card-header>{{comment.category}}</ion-card-header>
         <ion-card-content>
           <p><strong>{{comment.title}}</strong></p>
+          <p><strong>by </strong>{{comment.createdBy}}</p>
           <ion-note>Start date: {{comment.createdAt | date: 'yyyy-MM-dd'}}</ion-note>
         </ion-card-content>
       </ion-card>
@@ -58,7 +60,7 @@
       <ion-card *ngSwitchCase="'Diagnosis'">
         <ion-card-header>Diagnosed with {{comment.title}}</ion-card-header>
         <ion-card-content>
-          <p><strong>Diagnosed by </strong>Dr. xxx</p>
+          <p><strong>Diagnosed by </strong>{{comment.createdBy}}</p>
           <ion-note>{{comment.createdAt | date: 'yyyy-MM-dd'}}</ion-note>
         </ion-card-content>
       </ion-card>
