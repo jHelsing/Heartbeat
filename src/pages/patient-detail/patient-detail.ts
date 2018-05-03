@@ -51,7 +51,7 @@ export class PatientDetailPage {
   }
 
   public transferPatient(patient: Patient) {
-    this.patientProvider.updatePatient(patient, { doctorRef: this.utl.ref('doctors', 
+    this.patientProvider.updatePatient(patient, { doctorRef: this.utl.ref('doctors',
 this.newDoctor) });
     const prompt = this.toastCtrl.create({
       message: 'Patient transfered',
@@ -65,5 +65,9 @@ this.newDoctor) });
   public addComment() {
     const commentModal = this.modalCtrl.create(AddCommentComponent, { patientId: this.patient.$id }, {});
     commentModal.present();
+  }
+
+  public viewCommentDetails(comment: Comment) {
+    alert('viewing details of ' + comment.title);
   }
 }
