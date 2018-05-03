@@ -26,7 +26,7 @@ import { PatientProvider } from '../providers/patient/patient';
 import { LoginProvider } from '../providers/login/login';
 import { UtilsProvider } from '../providers/utils/utils';
 import { PopoverComponent } from '../components/popover/popover';
-import { IonicStorageModule } from '@ionic/Storage';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [

@@ -11,7 +11,7 @@ export class PatientProvider {
   // dId is the doctor's id, when one is specified
   public getPatients(doctorId?) {
     let patientsLst = doctorId
-        ? this.utl.colId$('patients', (ref) => ref.where('doctor', '==', this.utl.ref('doctors', doctorId)))
+        ? this.utl.colId$('patients', (ref) => ref.where('doctorRef', '==', this.utl.ref('doctors', doctorId)))
         : this.utl.colId$('patients');
 
     patientsLst = patientsLst.map((patientDoc) => patientDoc.map((patient) => {

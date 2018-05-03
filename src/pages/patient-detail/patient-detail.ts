@@ -21,8 +21,6 @@ import { Observable } from 'rxjs/Observable';
 })
 export class PatientDetailPage {
   @ViewChild('select') public select: Select;
-  public userId;
-  public userRole;
   public patient;
   public doctors;
   public newDoctor;
@@ -36,8 +34,6 @@ export class PatientDetailPage {
               public toastCtrl: ToastController,
               private commentProvider: CommentProvider,
               private utl: UtilsProvider) {
-    this.userId = navParams.get('userId');
-    this.userRole = navParams.get('userRole');
     this.patient = navParams.get('patient');
     this.doctors = patientProvider.getDoctors();
     this.newDoctor = this.patient.doctorRef.id;
@@ -68,7 +64,7 @@ export class PatientDetailPage {
 
   public addComment() {
     const commentModal = this.modalCtrl.create(AddCommentComponent,
-      { patientId: this.patient.$id, severity: this.patient.severity, userId: this.userId, userRole: this.userRole }, {});
+      { patientId: this.patient.$id, severity: this.patient.severity }, {});
     commentModal.onDidDismiss((newSeverity) => {
       this.patient.severity = newSeverity;
     });

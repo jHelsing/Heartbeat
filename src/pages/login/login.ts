@@ -5,7 +5,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { AdminTabs } from '../admin-tabs/admin-tabs';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { PatientListPage } from '../patient-list/patient-list';
-import { Storage } from '@ionic/Storage';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -41,9 +41,9 @@ import { Storage } from '@ionic/Storage';
 
       userPromise.then((user) => {
         if (user.exists) {
-          this.storage.set('userRole', roleCollectionName);
+          this.storage.set('user', { id: userID, role: roleCollectionName });
           // Replace login page as home page of the logged in user with the correct page for the specific user.
-          this.navCtrl.setRoot(this.roleCollectionPageMap[roleCollectionName], { userId: userID, userRole: roleCollectionName });
+          this.navCtrl.setRoot(this.roleCollectionPageMap[roleCollectionName]);
         }
       });
     }
@@ -77,7 +77,7 @@ import { Storage } from '@ionic/Storage';
 
   // Log user out.
   public logout() {
-    this.storage.remove('userRole');
+    this.storage.remove('user');
     this.loginProvider.logout();
   }
 
