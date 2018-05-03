@@ -1,3 +1,21 @@
 page-patient-detail {
+  $border-width: 4px;
 
+  ion-card {
+    &.danger {
+      border-left: $border-width solid color($colors, danger);
+    }
+
+    &.success {
+      border-left: $border-width solid color($colors, success);
+    }
+
+    &.info {
+      border-left: $border-width solid color($colors, info);
+    }
+
+    &.warning {
+      border-left: $border-width solid color($colors, warning);
+    }
+  }
 }
