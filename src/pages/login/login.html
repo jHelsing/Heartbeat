@@ -7,21 +7,30 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content id ="mainBody" padding = "true">
 
-    <ion-item>
-      <ion-label color="primary" stacked>Email</ion-label>
-      <ion-input [(ngModel)]="inputEmail" type="email" placeholder="johndoe@work.com"></ion-input>
-    </ion-item>
+  <div id="logoParent" class="row row-responsive">
+    <div id="logoChild" class="col col-50">
+      <img id="logoImage" src="/assets/img/mainLogo.png">
+    </div>
+  </div>
 
-    <ion-item>
-      <ion-label color="primary" stacked>Password</ion-label>
-      <ion-input [(ngModel)]="inputPassword" type="password" placeholder=""></ion-input>
+  <div id="parent" class = "row responsive-sm">
+    <div id="loginElements" class="col col-50">
+      <ion-item>
+        <ion-label color="primary" stacked>Email</ion-label>
+        <ion-input [(ngModel)]="inputEmail" type="email" placeholder="johndoe@work.com"></ion-input>
+      </ion-item>
 
-    </ion-item>
+      <ion-item>
+        <ion-label color="primary" stacked>Password</ion-label>
+        <ion-input [(ngModel)]="inputPassword" type="password" placeholder=""></ion-input>
 
-    <button ion-button (click)="login()">
-      Login
-    </button>
+      </ion-item>
 
+      <button ion-button (click)="login()">
+        Login
+      </button>
+    </div>
+  </div>
 </ion-content>
