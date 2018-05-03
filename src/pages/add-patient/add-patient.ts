@@ -38,6 +38,7 @@ export class AddPatientPage {
       this.clonedPatient.allergyRef = { id: undefined };
       this.clonedPatient.roomRef = { id: undefined };
       this.clonedPatient.doctorRef = { id: undefined };
+      this.clonedPatient.severity = 0;
     }
     this.rooms = patientProvider.getRooms();
     this.allergies = patientProvider.getAllergies();

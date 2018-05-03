@@ -29,6 +29,7 @@
         <p><strong>Blood Type: </strong>{{patient.bloodType}}</p>
         <p><strong>Allergies: </strong>{{patient.allergyObj.name}}</p>
         <p><strong>Diet: </strong>{{patient.diet}}</p>
+        <p><strong>Severity: </strong>{{severities[patient.severity]}}</p>
       </ion-card-content>
     </ion-card>
     <ion-list-header>History</ion-list-header>
@@ -39,23 +40,34 @@
         <ion-card-content>
           <p><strong>{{comment.title}}</strong></p>
           <p>{{comment.description}}</p>
-          <ion-note>{{comment.createdAt | date: 'yyyy-MM-dd'}}</ion-note>
+          <ion-note>
+            <span class="author">{{comment.createdBy}}</span>
+            – {{comment.createdAt | date: 'yyyy-MM-dd'}}
+          </ion-note>
         </ion-card-content>
       </ion-card>
       <!-- TREATMENT -->
       <ion-card *ngSwitchCase="'Treatment'" class="success">
         <ion-card-header>{{comment.category}}</ion-card-header>
         <ion-card-content>
-          <p><strong>{{comment.title}}</strong></p>
-          <ion-note>Start date: {{comment.createdAt | date: 'yyyy-MM-dd'}}</ion-note>
+            <p><strong>{{comment.title}}</strong></p>
+          <p>{{comment.description}}</p>
+          <ion-note>
+            <span class="author">{{comment.createdBy}}</span>
+            – {{comment.createdAt | date: 'yyyy-MM-dd'}}
+          </ion-note>
         </ion-card-content>
       </ion-card>
       <!-- DIAGNOSIS -->
       <ion-card *ngSwitchCase="'Diagnosis'" class="danger">
-        <ion-card-header>Diagnosed with {{comment.title}}</ion-card-header>
+        <ion-card-header>{{comment.category}}</ion-card-header>
         <ion-card-content>
-          <p><strong>Diagnosed by </strong>Dr. xxx</p>
-          <ion-note>{{comment.createdAt | date: 'yyyy-MM-dd'}}</ion-note>
+          <p><strong>{{comment.title}}</strong></p>
+          <p>{{comment.description}}</p>
+          <ion-note>
+            <span class="author">{{comment.createdBy}}</span>
+            – {{comment.createdAt | date: 'yyyy-MM-dd'}}
+          </ion-note>
         </ion-card-content>
       </ion-card>
     </ion-item-group>

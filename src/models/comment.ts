@@ -9,4 +9,5 @@ export class Comment {
   public patient: DocumentReference;
   // public imageUrls: string[];
   public createdAt: FieldValue;
+  public createdBy: string;  // Copy the current author's name for avoiding future errors if that reference is removed
 }
