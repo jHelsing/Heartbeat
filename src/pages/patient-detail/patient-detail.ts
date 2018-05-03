@@ -51,7 +51,8 @@ export class PatientDetailPage {
   }
 
   public transferPatient(patient: Patient) {
-    this.patientProvider.updatePatient(patient, { doctor: this.utl.ref('doctors', this.newDoctor) });
+    this.patientProvider.updatePatient(patient, { doctorRef: this.utl.ref('doctors', 
+this.newDoctor) });
     const prompt = this.toastCtrl.create({
       message: 'Patient transfered',
       duration: 3000,
