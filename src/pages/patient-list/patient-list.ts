@@ -21,7 +21,7 @@ export class PatientListPage {
   public role: string;
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public patientProvider: PatientProvider, public popoverCtrl: PopoverController,
-              public modalCtrl: ModalController, public utl: UtilsProvider, public storage: Storage) {
+              public modalCtrl: ModalController, public utl: UtilsProvider, storage: Storage) {
     const specificDoctor = navParams.get('doctor');
     this.patients = patientProvider.getPatients(specificDoctor);
     storage.get('userRole').then((data) => {
