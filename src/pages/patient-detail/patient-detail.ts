@@ -21,10 +21,13 @@ import { Observable } from 'rxjs/Observable';
 })
 export class PatientDetailPage {
   @ViewChild('select') public select: Select;
+  public userId;
+  public userRole;
   public patient;
   public doctors;
   public newDoctor;
   public comments: Observable<Comment[]>;
+  public severities = ['Not Available', 'Low', 'Medium', 'High'];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -33,6 +36,8 @@ export class PatientDetailPage {
               public toastCtrl: ToastController,
               private commentProvider: CommentProvider,
               private utl: UtilsProvider) {
+    this.userId = navParams.get('userId');
+    this.userRole = navParams.get('userRole');
     this.patient = navParams.get('patient');
     this.doctors = patientProvider.getDoctors();
     this.newDoctor = this.patient.doctorRef.id;
@@ -51,8 +56,7 @@ export class PatientDetailPage {
   }
 
   public transferPatient(patient: Patient) {
-    this.patientProvider.updatePatient(patient, { doctorRef: this.utl.ref('doctors', 
-this.newDoctor) });
+    this.patientProvider.updatePatient(patient, { doctorRef: this.utl.ref('doctors', this.newDoctor) });
     const prompt = this.toastCtrl.create({
       message: 'Patient transfered',
       duration: 3000,
@@ -63,7 +67,11 @@ this.newDoctor) });
   }
 
   public addComment() {
-    const commentModal = this.modalCtrl.create(AddCommentComponent, { patientId: this.patient.$id }, {});
+    const commentModal = this.modalCtrl.create(AddCommentComponent,
+      { patientId: this.patient.$id, severity: this.patient.severity, userId: this.userId, userRole: this.userRole }, {});
+    commentModal.onDidDismiss((newSeverity) => {
+      this.patient.severity = newSeverity;
+    });
     commentModal.present();
   }
 }

@@ -8,6 +8,7 @@ export interface Patient {
   diet: string;
   dateOfBirth: Date;
   arrivalTime: Date;
+  severity: number;
   allergyRef: DocumentReference;
   doctorRef: DocumentReference;
   roomRef: DocumentReference;

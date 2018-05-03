@@ -12,15 +12,16 @@ export class CommentProvider {
     this.commentsCollection = fireStore.collection<Comment>('/comments');
   }
 
-  public uploadComment(comment: Comment, patientId: string) {
+  public uploadComment(comment: Comment, patientId: string, author: string) {
     comment.patient = this.fireStore.doc('patients/' + patientId).ref;
     if (comment.imageUrl) {
       this.commentsCollection.add({ title: comment.title, category: comment.category, description: comment.description,
         patient: comment.patient, createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        imageUrl: comment.imageUrl });
+        imageUrl: comment.imageUrl, createdBy: author });
     } else {
       this.commentsCollection.add({ title: comment.title, category: comment.category, description: comment.description,
-        patient: comment.patient, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+        patient: comment.patient, createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        createdBy: author });
     }
   }
 

@@ -1,6 +1,12 @@
 page-patient-detail {
   $border-width: 4px;
 
+  span {
+    &.author {
+      font-weight: bold;
+    }
+  }
+
   ion-card {
     &.danger {
       border-left: $border-width solid color($colors, danger);
