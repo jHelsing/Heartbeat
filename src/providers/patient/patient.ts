@@ -49,6 +49,10 @@ export class PatientProvider {
     this.utl.col('patients').doc(patient.$id).update(data);
   }
 
+  public updatePatientById(patientId, data) {
+    this.utl.col('patients').doc(patientId).update(data);
+  }
+
   public removePatient(patient: Patient) {
     this.utl.col('patients').doc(patient.$id).delete();
   }

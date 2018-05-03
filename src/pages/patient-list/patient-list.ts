@@ -17,16 +17,20 @@ import { Storage } from '@ionic/Storage';
   templateUrl: 'patient-list.html',
 })
 export class PatientListPage {
+  public userId;
+  public userRole;
   public patients;
   public role: string;
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public patientProvider: PatientProvider, public popoverCtrl: PopoverController,
               public modalCtrl: ModalController, public utl: UtilsProvider, storage: Storage) {
-    const specificDoctor = navParams.get('doctor');
-    this.patients = patientProvider.getPatients(specificDoctor);
     storage.get('userRole').then((data) => {
       this.role = data;
     });
+    this.userId = navParams.get('userId');
+    this.userRole = navParams.get('userRole');
+    this.patients = patientProvider.getPatients(this.userRole === 'doctors' ? this.userId : null);
+
   }
 
   public openModalAddPatient() {
@@ -35,7 +39,7 @@ export class PatientListPage {
   }
 
   public viewDetails(patient) {
-    this.navCtrl.push(PatientDetailPage, { patient });
+    this.navCtrl.push(PatientDetailPage, { patient, userId: this.userId, userRole: this.userRole });
   }
 
   public presentPopover(myEvent) {
