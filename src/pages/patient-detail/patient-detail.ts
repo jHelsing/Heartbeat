@@ -27,6 +27,7 @@ export class PatientDetailPage {
   public doctors;
   public newDoctor;
   public comments: Observable<Comment[]>;
+  public severities = ['Not Available', 'Low', 'Medium', 'High'];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
