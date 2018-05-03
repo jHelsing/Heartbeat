@@ -5,6 +5,7 @@ import { Room } from '../../models/room';
 import { Observable } from 'rxjs/Rx';
 import { UtilsProvider } from '../../providers/utils/utils';
 import { DoctorProvider } from '../../providers/doctor/doctor';
+import { LoginProvider } from '../../providers/login/login';
 import { RoomProvider } from '../../providers/room/room';
 import { SpecialityProvider } from '../../providers/speciality/speciality';
 
@@ -27,6 +28,7 @@ export class AddDoctorPage {
               public utl: UtilsProvider,
               public roomProvider: RoomProvider,
               public specialityProvider: SpecialityProvider,
+              public loginProvider: LoginProvider,
               public viewCtrl: ViewController,
               public navParams: NavParams) {
     this.doctor = navParams.get('doctor');
@@ -50,8 +52,12 @@ export class AddDoctorPage {
     this.clonedDoctor.specialityRef = this.utl.ref('specialties', doctor.specialityRef);
     let msg = 'Doctor ';
     if (this.addingNewDoctor) {
-      this.doctorProvider.addDoctor(this.clonedDoctor);
       msg += 'added';
+      this.loginProvider.signup(this.clonedDoctor.email, this.clonedDoctor.password).then((newUser) => {
+        this.utl.col('doctors').doc(newUser.uid).set(this.clonedDoctor);
+      }).catch((error) => {
+        msg = 'An error ocurred while adding a new doctor (existing email)';
+      });
     } else {
       delete this.clonedDoctor.roomObj;
       delete this.clonedDoctor.specialityObj;

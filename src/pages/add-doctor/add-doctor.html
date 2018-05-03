@@ -43,11 +43,11 @@
       </ion-item>
 
       <ion-item>
-        <ion-input type="email" placeholder="Email" [(ngModel)]="clonedDoctor.email" required name="email"></ion-input>
+        <ion-input type="email" placeholder="Email" [(ngModel)]="clonedDoctor.email" required name="email" disabled="{{!addingNewDoctor}}"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input type="password" placeholder="Password" [(ngModel)]="clonedDoctor.password" required name="password"></ion-input>
+        <ion-input type="password" placeholder="Password" [(ngModel)]="clonedDoctor.password" required name="password" disabled="{{!addingNewDoctor}}"></ion-input>
       </ion-item>
 
       <ion-item>
