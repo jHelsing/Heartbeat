@@ -26,6 +26,7 @@ import { PatientProvider } from '../providers/patient/patient';
 import { LoginProvider } from '../providers/login/login';
 import { UtilsProvider } from '../providers/utils/utils';
 import { PopoverComponent } from '../components/popover/popover';
+import { RolesProvider } from '../providers/roles/roles';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { PopoverComponent } from '../components/popover/popover';
     PatientProvider,
     LoginProvider,
     UtilsProvider,
+    RolesProvider,
   ],
 })
 export class AppModule {}

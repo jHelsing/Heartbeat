@@ -5,6 +5,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { AdminTabs } from '../admin-tabs/admin-tabs';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { PatientListPage } from '../patient-list/patient-list';
+import { RolesProvider } from '../../providers/roles/roles';
 
 @IonicPage()
 @Component({
@@ -16,23 +17,18 @@ import { PatientListPage } from '../patient-list/patient-list';
   // Used to read the input fields from HTML elements with [(ngModel)].
   private inputEmail: string = '';
   private inputPassword: string = '';
-  private roleCollectionNames = ['nurses', 'doctors', 'administrators'];
-  private roleCollectionPageMap = {
-    nurses: PatientListPage,
-    doctors: PatientListPage,
-    administrators: AdminTabs,
-  };
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public loginProvider: LoginProvider, public fireStore: AngularFirestore,
-              public toastController: ToastController, public splashScreen: SplashScreen) {
+              public toastController: ToastController, public splashScreen: SplashScreen,
+              public rolesProvider: RolesProvider) {
 
     // Check if the current device is already logged in as a user. If so, continue that session.
     this.loginProvider.checkLoggedIn(this.loadCorrectPage, this.hideSplash);
   }
 
   public loadCorrectPage = (userID) => {
-    for (const roleCollectionName of this.roleCollectionNames) {
+    for (const roleCollectionName of this.rolesProvider.getRoleCollectionNames()) {
 
       // Look for userID in collection. If it exists in category, user has role.
       const userPromise = this.fireStore.collection<any>('/' + roleCollectionName).doc(userID).ref.get();
@@ -40,7 +36,7 @@ import { PatientListPage } from '../patient-list/patient-list';
       userPromise.then((user) => {
         if (user.exists) {
           // Replace login page as home page of the logged in user with the correct page for the specific user.
-          this.navCtrl.setRoot(this.roleCollectionPageMap[roleCollectionName]);
+          this.navCtrl.setRoot(this.rolesProvider.getPage(roleCollectionName));
         }
       });
     }
