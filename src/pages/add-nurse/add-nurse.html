@@ -24,6 +24,14 @@
       </ion-item>
 
       <ion-item>
+        <ion-input type="email" placeholder="Email" [(ngModel)]="clonedNurse.email" required name="email" disabled="{{!addingNewNurse}}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="password" placeholder="Password" [(ngModel)]="clonedNurse.password" required name="password" disabled="{{!addingNewNurse}}"></ion-input>
+      </ion-item>
+
+      <ion-item>
         <ion-label floating>Room</ion-label>
         <ion-select [(ngModel)]="clonedNurse.roomRef.id" required name="roomRef">
           <ion-option *ngFor="let room of rooms | async" value="{{room.$id}}">{{room.name}}</ion-option>

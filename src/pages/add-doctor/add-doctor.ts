@@ -50,31 +50,34 @@ export class AddDoctorPage {
   public addOrUpdateDoctor(doctor) {
     this.clonedDoctor.roomRef = this.utl.ref('rooms', doctor.roomRef);
     this.clonedDoctor.specialityRef = this.utl.ref('specialties', doctor.specialityRef);
-    let msg = 'Doctor ';
     if (this.addingNewDoctor) {
-      msg += 'added';
       this.loginProvider.signup(this.clonedDoctor.email, this.clonedDoctor.password).then((newUser) => {
         this.utl.col('doctors').doc(newUser.uid).set(this.clonedDoctor);
-      }).catch((error) => {
-        msg = 'An error ocurred while adding a new doctor (existing email)';
+        this.showPopupAndClose('Doctor added');
+      })
+      .catch((err) => {
+        this.showPopupAndClose(err.message);
       });
     } else {
       delete this.clonedDoctor.roomObj;
       delete this.clonedDoctor.specialityObj;
       delete this.clonedDoctor.$id;
       this.doctorProvider.updateDoctor(this.doctor, this.clonedDoctor);
-      msg += 'updated';
+      this.showPopupAndClose('Doctor updated');
     }
+  }
+
+  public closeModal() {
+    this.viewCtrl.dismiss();
+  }
+
+  private showPopupAndClose(msg: string) {
     const toast = this.toastCtrl.create({
       message: msg,
       duration: 3000,
       position: 'bot',
     });
     toast.present();
-    this.goBack();
-  }
-
-  public goBack() {
-    this.viewCtrl.dismiss();
+    this.closeModal();
   }
 }

@@ -5,4 +5,6 @@ export interface Nurse {
   name: string;
   dateOfBirth: Date;
   roomRef: DocumentReference;
+  email: string;
+  password: string;
 }
