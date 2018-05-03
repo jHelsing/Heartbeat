@@ -13,8 +13,8 @@ import { UtilsProvider } from '../../providers/utils/utils';
 })
 export class AddCommentComponent {
 
-  public uId;
-  public uRole;
+  public userId;
+  public userRole;
   private comment: Comment = new Comment();
   private categories = ['Diagnosis', 'Treatment', 'Note'];
   private severities = [{ id: 0, desc: 'Not available' }, { id: 1, desc: 'Low' }, { id: 2, desc: 'Medium' },
@@ -25,20 +25,20 @@ export class AddCommentComponent {
 
   constructor(navParams: NavParams, private viewCtrl: ViewController, private utl: UtilsProvider,
               private commentProvider: CommentProvider, private patientProvider: PatientProvider) {
-    this.uId = navParams.get('uId');
-    this.uRole = navParams.get('uRole');
+    this.userId = navParams.get('userId');
+    this.userRole = navParams.get('userRole');
     this.comment.category = 'Diagnosis';
     this.patientId = navParams.get('patientId');
     this.severity = { id: navParams.get('severity') };
 
-    if (this.uRole === 'administrators') {
+    if (this.userRole === 'administrators') {
       this.createdBy = '[admin]';
-    } else if (this.uRole === 'doctors') {
-      this.utl.col('doctors').doc<Doctor>(this.uId).valueChanges().subscribe((data) => {
+    } else if (this.userRole === 'doctors') {
+      this.utl.col('doctors').doc<Doctor>(this.userId).valueChanges().subscribe((data) => {
         this.createdBy = 'Dr. ' + data.firstName + ' ' + data.lastName;
       });
-    } else if (this.uRole === 'nurses') {
-      this.utl.col('nurses').doc<Nurse>(this.uId).valueChanges().subscribe((data) => {
+    } else if (this.userRole === 'nurses') {
+      this.utl.col('nurses').doc<Nurse>(this.userId).valueChanges().subscribe((data) => {
         this.createdBy = data.name;
       });
     }

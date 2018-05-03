@@ -40,7 +40,7 @@ import { PatientListPage } from '../patient-list/patient-list';
       userPromise.then((user) => {
         if (user.exists) {
           // Replace login page as home page of the logged in user with the correct page for the specific user.
-          this.navCtrl.setRoot(this.roleCollectionPageMap[roleCollectionName], { uId: userID, uRole: roleCollectionName });
+          this.navCtrl.setRoot(this.roleCollectionPageMap[roleCollectionName], { userId: userID, userRole: roleCollectionName });
         }
       });
     }
