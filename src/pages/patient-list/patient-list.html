@@ -25,8 +25,8 @@
         <p>Date of Birth: {{patient.dateOfBirth}} ({{utl.dob2age(patient.dateOfBirth)}} yo)</p>
         <p>Room: {{patient.roomObj.name}}</p>
         <ion-badge item-end *ngIf = "patient.severity == 0" color="light">N/A</ion-badge>
-        <ion-badge item-end *ngIf = "patient.severity == 1" color="secondary">Low</ion-badge>
-        <ion-badge item-end *ngIf = "patient.severity == 2" color="primary">Med</ion-badge>
+        <ion-badge item-end *ngIf = "patient.severity == 1" color="success">Low</ion-badge>
+        <ion-badge item-end *ngIf = "patient.severity == 2" color="warning">Med</ion-badge>
         <ion-badge item-end *ngIf = "patient.severity == 3" color="danger">High</ion-badge>
       </ion-item>
       <ion-item-options side="right">
