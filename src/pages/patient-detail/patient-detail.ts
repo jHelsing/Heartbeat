@@ -68,8 +68,7 @@ this.newDoctor) });
   }
 
   public viewCommentDetails(comment: Comment) {
-    alert('viewing details of ' + comment.title);
-    const addPatientPage = this.modalCtrl.create('CommentDetailPage');
-    addPatientPage.present();
+    const CommentDetailPage = this.modalCtrl.create('CommentDetailPage', { commentData: comment });
+    CommentDetailPage.present();
   }
 }

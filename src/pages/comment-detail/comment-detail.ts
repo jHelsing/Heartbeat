@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { Comment } from '../../models/comment';
 
 /**
  * Generated class for the CommentDetailPage page.
@@ -15,11 +16,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CommentDetailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private comment: Comment;
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public viewCtrl: ViewController) {
+
+    this.comment = navParams.get('commentData');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CommentDetailPage');
+  public closeModal() {
+    this.viewCtrl.dismiss();
   }
 
 }
