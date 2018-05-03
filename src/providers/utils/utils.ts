@@ -45,4 +45,15 @@ export class UtilsProvider {
   public ref(col: string, doc: string): DocumentReference {
     return this.doc(col + '/' + doc).ref;
   }
+
+  // Return the current age (in years) from a date
+  public dob2age(dobStr: string): number {
+    const dob = new Date(dobStr);
+    const now = new Date();
+    const age = now.getFullYear() - dob.getFullYear();
+    return now.getMonth() > dob.getMonth() ||
+           now.getMonth() === dob.getMonth() && now.getDay() >= dob.getDay()
+      ? age
+      : age - 1;
+  }
 }

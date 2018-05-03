@@ -17,8 +17,8 @@ export class PatientProvider {
     patientsLst = patientsLst.map((patientDoc) => patientDoc.map((patient) => {
       // Get the observables of the referenced Room, Allergy and Doctor documents
       const roomObs = this.utl.doc$(patient.roomRef.path);
-      const allergyObs = this.utl.doc$(patient.allergy.path);
-      const doctorObs = this.utl.doc$(patient.doctor.path);
+      const allergyObs = this.utl.doc$(patient.allergyRef.path);
+      const doctorObs = this.utl.doc$(patient.doctorRef.path);
       // Combine for extending the Patient object with referenced data
       const combined = Observable.combineLatest(roomObs, allergyObs, doctorObs);
       return combined.map(([roomObj, allergyObj, doctorObj]) => {

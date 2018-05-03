@@ -4,16 +4,16 @@ import { Nurse } from '../../models/nurse';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { AlertController } from 'ionic-angular';
-import { DocumentReference } from '@firebase/firestore-types';
+// import { DocumentReference } from '@firebase/firestore-types';
 
 @Injectable()
 export class NurseProvider {
   private nursesCollection: AngularFirestoreCollection<Nurse>;
   private nurses: Observable<Nurse[]>;
-  private exampleRoomRef: DocumentReference;
+  // private exampleRoomRef: DocumentReference;
 
   constructor(public fireStore: AngularFirestore, public alertCtrl: AlertController) {
-    this.exampleRoomRef = fireStore.doc('rooms/exampleRoom').ref; // Temporary example reference
+    // this.exampleRoomRef = fireStore.doc('rooms/exampleRoom').ref; // Temporary example reference
     this.nursesCollection = fireStore.collection<Nurse>('/nurses');
 
     this.nurses = this.nursesCollection.snapshotChanges().map((actions) => actions.map((nurseAction) => {
@@ -46,7 +46,7 @@ export class NurseProvider {
     this.nursesCollection.doc(nurse.$id).delete();
   }
 
-  public addNursePrompt() {
+  /*public addNursePrompt() {
     const prompt = this.alertCtrl.create({
       title: 'Add Nurse',
       message: 'Add a new nurse.',
@@ -103,6 +103,6 @@ export class NurseProvider {
       ],
     });
     prompt.present();
-  }
+  }*/
 
 }

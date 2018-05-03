@@ -1,19 +1,14 @@
 import { DocumentReference } from '@firebase/firestore-types';
 
-export class Patient {
-  public $id?: string;
-  public name?: string;
-  public dob?: Date;
-  public gender?: string;
-  public bloodType?: string;
-  public arrivalTime?: Date;
-  public allergy?: DocumentReference;
-  public diet?: string;
-  public doctor?: DocumentReference;
-  public treatments?: string;
-  public roomRef?: DocumentReference;
-
-  constructor() {
-    this.$id = '';
-  }
+export interface Patient {
+  $id?: string;
+  name: string;
+  gender: string;
+  bloodType: string;
+  diet: string;
+  dateOfBirth: Date;
+  arrivalTime: Date;
+  allergyRef: DocumentReference;
+  doctorRef: DocumentReference;
+  roomRef: DocumentReference;
 }

@@ -1,8 +1,5 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>
-      Patient List
-    </ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="openModalAddPatient()">
         <ion-icon name="person-add"></ion-icon>
@@ -16,14 +13,16 @@
 
 <ion-content>
   <ion-list>
+    <ion-list-header>Patients</ion-list-header>
     <ion-item-sliding #item *ngFor="let patient of patients | async">
       <ion-item (click)="viewDetails(patient)">
         <ion-avatar item-start>
-          <p class="avatar-base avatar-color-{{patient.name.toUpperCase().charCodeAt(0) - 64}}">
+          <p class="avatar-base" [ngStyle]="{'background-color': patient.roomObj.color}">
             {{patient.name.charAt(0).toUpperCase()}}
           </p>
         </ion-avatar>
         <h2>{{patient.name}}</h2>
+        <p>Date of Birth: {{patient.dateOfBirth}} ({{utl.dob2age(patient.dateOfBirth)}} yo)</p>
         <p>Room: {{patient.roomObj.name}}</p>
       </ion-item>
       <ion-item-options side="right">

@@ -4,11 +4,8 @@ import { IonicPage,
          NavController,
          ModalController,
          PopoverController } from 'ionic-angular';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Patient } from '../../models/patient';
-import { Observable } from 'rxjs/Observable';
-import { AddPatientPage } from '../add-patient/add-patient';
 import { PatientDetailPage } from '../patient-detail/patient-detail';
+import { UtilsProvider } from '../../providers/utils/utils';
 import { PatientProvider } from '../../providers/patient/patient';
 import 'rxjs/Rx';
 import { PopoverComponent } from '../../components/popover/popover';
@@ -23,7 +20,7 @@ export class PatientListPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public patientProvider: PatientProvider, public popoverCtrl: PopoverController,
-              public modalCtrl: ModalController) {
+              public modalCtrl: ModalController, public utl: UtilsProvider) {
     const specificDoctor = navParams.get('doctor');
     this.patients = patientProvider.getPatients(specificDoctor);
   }
