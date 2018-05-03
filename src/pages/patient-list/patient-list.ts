@@ -9,6 +9,7 @@ import { UtilsProvider } from '../../providers/utils/utils';
 import { PatientProvider } from '../../providers/patient/patient';
 import 'rxjs/Rx';
 import { PopoverComponent } from '../../components/popover/popover';
+import { Storage } from '@ionic/Storage';
 
 @IonicPage()
 @Component({
@@ -17,12 +18,15 @@ import { PopoverComponent } from '../../components/popover/popover';
 })
 export class PatientListPage {
   public patients;
-
+  public role: string;
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public patientProvider: PatientProvider, public popoverCtrl: PopoverController,
-              public modalCtrl: ModalController, public utl: UtilsProvider) {
+              public modalCtrl: ModalController, public utl: UtilsProvider, public storage: Storage) {
     const specificDoctor = navParams.get('doctor');
     this.patients = patientProvider.getPatients(specificDoctor);
+    storage.get('userRole').then((data) => {
+      this.role = data;
+    });
   }
 
   public openModalAddPatient() {
