@@ -5,5 +5,5 @@ export interface Nurse {
   name: string;
   dateOfBirth: Date;
   roomRef: DocumentReference;
-  imageUrl?: String;
+  imageUrl?: string;
 }
