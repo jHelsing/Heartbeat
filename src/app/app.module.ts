@@ -43,7 +43,12 @@ import { PopoverComponent } from '../components/popover/popover';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,
+      {
+        scrollAssist: false,
+        autoFocusAssist: false,
+      },
+    ),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
