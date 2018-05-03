@@ -32,9 +32,7 @@ export class AddCommentComponent {
     this.severity = { id: navParams.get('severity') };
 
     if (this.uRole === 'administrators') {
-      this.utl.col('administrators').doc(this.uId).valueChanges().subscribe((data) => {
-        this.createdBy = data.name + ' [admin]';
-      });
+      this.createdBy = '[admin]';
     } else if (this.uRole === 'doctors') {
       this.utl.col('doctors').doc<Doctor>(this.uId).valueChanges().subscribe((data) => {
         this.createdBy = 'Dr. ' + data.firstName + ' ' + data.lastName;
