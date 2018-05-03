@@ -32,13 +32,15 @@ export class AddCommentComponent {
     this.severity = { id: navParams.get('severity') };
 
     if (this.uRole === 'administrators') {
-      this.createdBy = '[administrator]';
+      this.utl.col('administrators').doc(this.uId).valueChanges().subscribe((data) => {
+        this.createdBy = data.name + ' [admin]';
+      });
     } else if (this.uRole === 'doctors') {
-      this.utl.col('doctors').doc<Doctor>(this.uId).valueChanges().subscribe(data => {
+      this.utl.col('doctors').doc<Doctor>(this.uId).valueChanges().subscribe((data) => {
         this.createdBy = 'Dr. ' + data.firstName + ' ' + data.lastName;
       });
     } else if (this.uRole === 'nurses') {
-      this.utl.col('nurses').doc<Nurse>(this.uId).valueChanges().subscribe(data => {
+      this.utl.col('nurses').doc<Nurse>(this.uId).valueChanges().subscribe((data) => {
         this.createdBy = data.name;
       });
     }
