@@ -1,3 +1,12 @@
 popover {
-
+  .list-md {
+    margin: 0;
+  }
+  .item-md:nth-child(1) {
+    font-weight: bold;
+  }
+  .item-md:nth-child(2):hover {
+    background-color: #ddd;
+    cursor: pointer;
+  }
 }
