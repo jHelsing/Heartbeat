@@ -15,9 +15,10 @@
   <ion-list>
     <ion-list-header>Nurses</ion-list-header>
     <ion-item-sliding #item *ngFor="let nurse of nurses | async">
-      <ion-item (click)="openModalAddUpdateNurse({nurse: {$id: nurse.$id, name: nurse.name, dateOfBirth: nurse.dateOfBirth, roomRef: nurse.roomRef}})">
+      <ion-item (click)="openModalAddUpdateNurse(nurse)">
         <ion-avatar item-start>
-          <img src="http://i.pravatar.cc/150?u={{nurse.$id}}">
+          <img *ngIf="nurse.imageUrl" src="{{nurse.imageUrl}}">
+          <img *ngIf="!nurse.imageUrl" src="http://i.pravatar.cc/150?u={{nurse.$id}}">
         </ion-avatar>
         <h2>{{nurse.name}}</h2>
         <p>Office: {{nurse.room}}</p>

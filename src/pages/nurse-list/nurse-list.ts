@@ -23,17 +23,9 @@ export class NurseListPage {
   }
 
   public openModalAddUpdateNurse(nurse) {
-    const addNursePage = this.modalCtrl.create('AddNursePage', nurse);
+    const addNursePage = this.modalCtrl.create('AddNursePage', { nurse });
     addNursePage.present();
   }
-
-  /*public addNursePrompt() {
-    this.nurseProvider.addNursePrompt();
-  }
-
-  public updateNursePrompt(nurse: Nurse) {
-    this.nurseProvider.updateNursePrompt(nurse);
-  }*/
 
   public removeNurse(nurse: Nurse) {
     this.nurseProvider.removeNurse(nurse);
