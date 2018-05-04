@@ -19,6 +19,7 @@ import { Observable } from 'rxjs/Observable';
 export class AddNursePage {
   public nurse: Nurse;
   public clonedNurse;
+  public password;
   public rooms: Observable<Room[]>;
   public addingNewNurse: boolean; // False is updating existing nurse.
 
@@ -41,7 +42,7 @@ export class AddNursePage {
   public addOrUpdateNurse(nurse) {
     this.clonedNurse.roomRef = this.utl.ref('rooms', nurse.roomRef);
     if (this.addingNewNurse) {
-      this.loginProvider.signup(this.clonedNurse.email, this.clonedNurse.password).then((newUser) => {
+      this.loginProvider.signup(this.clonedNurse.email, this.password).then((newUser) => {
         this.utl.col('nurses').doc(newUser.uid).set(this.clonedNurse);
         this.showPopupAndClose('Nurse added');
       })

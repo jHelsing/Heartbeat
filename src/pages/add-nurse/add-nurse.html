@@ -19,16 +19,16 @@
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Date of Birth</ion-label>
-        <ion-datetime [(ngModel)]="clonedNurse.dateOfBirth" required name="dateOfBirth"></ion-datetime>
-      </ion-item>
-
-      <ion-item>
         <ion-input type="email" placeholder="Email" [(ngModel)]="clonedNurse.email" required name="email" disabled="{{!addingNewNurse}}"></ion-input>
       </ion-item>
 
+      <ion-item *ngIf="addingNewNurse">
+        <ion-input type="password" placeholder="Password" [(ngModel)]="password" required name="password"></ion-input>
+      </ion-item>
+
       <ion-item>
-        <ion-input type="password" placeholder="Password" [(ngModel)]="clonedNurse.password" required name="password" disabled="{{!addingNewNurse}}"></ion-input>
+        <ion-label floating>Date of Birth</ion-label>
+        <ion-datetime [(ngModel)]="clonedNurse.dateOfBirth" required name="dateOfBirth"></ion-datetime>
       </ion-item>
 
       <ion-item>

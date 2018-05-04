@@ -18,6 +18,7 @@ import { SpecialityProvider } from '../../providers/speciality/speciality';
 export class AddDoctorPage {
   public doctor;
   public clonedDoctor;
+  public password;
   public roomObservable: Observable<Room[]>;
   public specialityObservable: Observable<Speciality[]>;
   public addingNewDoctor: boolean; // False is updating existing doctor.
@@ -51,7 +52,7 @@ export class AddDoctorPage {
     this.clonedDoctor.roomRef = this.utl.ref('rooms', doctor.roomRef);
     this.clonedDoctor.specialityRef = this.utl.ref('specialties', doctor.specialityRef);
     if (this.addingNewDoctor) {
-      this.loginProvider.signup(this.clonedDoctor.email, this.clonedDoctor.password).then((newUser) => {
+      this.loginProvider.signup(this.clonedDoctor.email, this.password).then((newUser) => {
         this.utl.col('doctors').doc(newUser.uid).set(this.clonedDoctor);
         this.showPopupAndClose('Doctor added');
       })

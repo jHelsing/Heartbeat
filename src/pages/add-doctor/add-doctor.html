@@ -23,6 +23,14 @@
       </ion-item>
 
       <ion-item>
+        <ion-input type="email" placeholder="Email" [(ngModel)]="clonedDoctor.email" required name="email" disabled="{{!addingNewDoctor}}"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="addingNewDoctor">
+        <ion-input type="password" placeholder="Password" [(ngModel)]="password" required name="password"></ion-input>
+      </ion-item>
+
+      <ion-item>
         <ion-label floating>Gender</ion-label>
         <ion-select [(ngModel)]="clonedDoctor.gender" required name="gender">
           <ion-option value="Female">Female</ion-option>
@@ -40,14 +48,6 @@
         <ion-select [(ngModel)]="clonedDoctor.specialityRef.id" required name="specialityRef">
           <ion-option *ngFor="let speciality of specialityObservable | async" [value]="speciality.$id">{{speciality.name}}</ion-option>
         </ion-select>
-      </ion-item>
-
-      <ion-item>
-        <ion-input type="email" placeholder="Email" [(ngModel)]="clonedDoctor.email" required name="email" disabled="{{!addingNewDoctor}}"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input type="password" placeholder="Password" [(ngModel)]="clonedDoctor.password" required name="password" disabled="{{!addingNewDoctor}}"></ion-input>
       </ion-item>
 
       <ion-item>
