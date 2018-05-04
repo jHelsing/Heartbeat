@@ -70,4 +70,9 @@ export class PatientDetailPage {
     });
     commentModal.present();
   }
+
+  public viewCommentDetails(comment: Comment) {
+    const CommentDetailPage = this.modalCtrl.create('CommentDetailPage', { commentData: comment });
+    CommentDetailPage.present();
+  }
 }
