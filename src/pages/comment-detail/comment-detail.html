@@ -7,18 +7,22 @@
 </ion-header>
 
 <ion-content>
-<ion-list>
-  <ion-list-header>Comment</ion-list-header>
-<ion-card>
-  <ion-card-content>
-
-    <p><strong>Title: </strong> {{comment.title}}</p>
-    <p><strong>Category: </strong>{{comment.category}}</p>
-    <p><strong>Description: </strong>{{comment.description}}</p>
-    <p><strong>patient: </strong>{{comment.patient}}</p>
-    <p><strong>createdAt: </strong>{{comment.createdAt | date : "yyyy-MM-dd"}}</p>
-
-  </ion-card-content>
-</ion-card>
-</ion-list>
+  <ion-list>
+    <ion-list-header>Comment</ion-list-header>
+    <ion-card>
+      <ion-card-content>
+        <p><strong>Title: </strong> {{comment.title}}</p>
+        <p><strong>Category: </strong>{{comment.category}}</p>
+        <p><strong>Description: </strong>{{comment.description}}</p>
+        <p><strong>Patient: </strong>{{comment.patient}}</p>
+        <p><strong>Created at: </strong>{{comment.createdAt | date : "yyyy-MM-dd"}}</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-list-header>Attachments</ion-list-header>
+    <ion-card>
+      <ion-card-content>
+        <img *ngIf="comment.imageUrl" src="{{comment.imageUrl}}">
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
 </ion-content>
