@@ -67,11 +67,24 @@ export class PatientDetailPage {
   }
 
   public addComment() {
-    const commentModal = this.modalCtrl.create(AddCommentComponent,
-      { patientId: this.patient.$id, severity: this.patient.severity, userId: this.userId, userRole: this.userRole }, {});
+    const commentModal = this.modalCtrl.create(
+      AddCommentComponent,
+      {
+        patientId: this.patient.$id,
+        severity: this.patient.severity,
+        userId: this.userId,
+        userRole: this.userRole,
+      },
+      {},
+    );
     commentModal.onDidDismiss((newSeverity) => {
       this.patient.severity = newSeverity;
     });
     commentModal.present();
+  }
+
+  public viewCommentDetails(comment: Comment) {
+    const CommentDetailPage = this.modalCtrl.create('CommentDetailPage', { commentData: comment });
+    CommentDetailPage.present();
   }
 }

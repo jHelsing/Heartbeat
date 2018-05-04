@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button (click)="closeModal()">Close</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>Comment</ion-list-header>
+    <ion-card>
+      <ion-card-content>
+        <p><strong>Title: </strong> {{comment.title}}</p>
+        <p><strong>Category: </strong>{{comment.category}}</p>
+        <p><strong>Description: </strong>{{comment.description}}</p>
+        <p><strong>Patient: </strong>{{comment.patient}}</p>
+        <p><strong>Created at: </strong>{{comment.createdAt | date : "yyyy-MM-dd"}}</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-list-header *ngIf="comment.imageUrl" >Attachments</ion-list-header>
+    <ion-card *ngIf="comment.imageUrl">
+      <ion-card-content>
+        <img src="{{comment.imageUrl}}">
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>
