@@ -23,8 +23,6 @@ export class CommentDetailPage {
               public viewCtrl: ViewController) {
 
     this.comment = navParams.get('commentData');
-    //alert(this.comment.patients.name);
-    alert(JSON.stringify(this.comment.patients));
 
   }
 
