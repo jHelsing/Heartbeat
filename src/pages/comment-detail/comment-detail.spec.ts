@@ -15,6 +15,26 @@ import { NavParamsMock, ViewControllerMock } from 'ionic-mocks';
 let comp: CommentDetailPage;
 let fixture: ComponentFixture<CommentDetailPage>;
 
+const navParams = {
+  title: 'TITLE',
+  category: 'CATEGORY',
+  description: 'DESCRIPTION',
+  patient: {
+    id: 'ID',
+    name: 'NAME',
+    gender: 'M',
+    bloodType: 'A',
+    diet: 'DIET',
+    dateOfBirth: '2018-05-03',
+    arrivalTime: '2018-05-04',
+    allergyRef: { name: 'ALERGY' },
+    doctorRef: { name: 'DOCTOR' },
+    roomRef: { name: 'ROOM' },
+  },
+  imageUrl: 'img',
+  createdAt: '2018-05-05',
+};
+
 describe('Page: Comment Dtails Page', () => {
 
   beforeEach(async(() => {
@@ -25,7 +45,7 @@ describe('Page: Comment Dtails Page', () => {
 
       providers: [
         NavController,
-        { provide: NavParams, useFactory: () => NavParamsMock.instance() },
+        { provide: NavParams, useFactory: () => NavParamsMock.instance(navParams) },
         { provide: ViewController, useFactory: () => ViewControllerMock.instance() },
       ],
 
