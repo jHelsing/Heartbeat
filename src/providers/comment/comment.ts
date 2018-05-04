@@ -14,8 +14,7 @@ export class CommentProvider {
 
   public uploadComment(comment: Comment, patientId: string, author: string) {
     comment.patient = this.fireStore.doc('patients/' + patientId).ref;
-    this.commentsCollection.add({ title: comment.title, category: comment.category, description: comment.description,
-      patient: comment.patient, createdAt: firebase.firestore.FieldValue.serverTimestamp(), createdBy: author });
+    this.commentsCollection.add({... comment, createdAt: firebase.firestore.FieldValue.serverTimestamp(), createdBy: author});
   }
 
   public getComments(patientId: string): Observable<Comment[]> {
