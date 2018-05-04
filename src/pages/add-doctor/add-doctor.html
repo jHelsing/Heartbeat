@@ -1,74 +1,85 @@
+<ng-template #addTxt>Add</ng-template>
+<ng-template #updateTxt>Update</ng-template>
+
 <ion-header>
   <ion-navbar>
     <ion-buttons start>
       <button ion-button (click)="goBack()">Close</button>
     </ion-buttons>
-    <ion-title>Add Doctor</ion-title>
+    <ion-title><span *ngIf="addingNewDoctor; then addTxt; else updateTxt"></span> Doctor</ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-input type="text" placeholder="First name" [(ngModel)]="doctor.firstName"></ion-input>
-    </ion-item>
+  <form #doctorForm="ngForm" (ngSubmit)="addOrUpdateDoctor(doctorForm.value)">
+    <ion-list>
 
-    <ion-item>
-      <ion-input type="text" placeholder="Last name" [(ngModel)]="doctor.lastName"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="First name" [(ngModel)]="clonedDoctor.firstName" required name="firstName"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label>Gender</ion-label>
-      <ion-select [(ngModel)]="doctor.gender">
-        <ion-option value="female">Female</ion-option>
-        <ion-option value="male">Male</ion-option>
-      </ion-select>
-    </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Last name" [(ngModel)]="clonedDoctor.lastName" required name="lastName"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-input type="number" placeholder="age" [(ngModel)]="doctor.age"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Profile image URL" [(ngModel)]="clonedDoctor.imageUrl" name="imageUrl"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label>Speciality</ion-label>
-      <ion-select [(ngModel)]="doctor.speciality">
-        <ion-option *ngFor="let speciality of specialityObservable | async" [value]="speciality.$id">{{speciality.name}}</ion-option>
-      </ion-select>
-    </ion-item>
+      <ion-item>
+        <ion-label floating>Gender</ion-label>
+        <ion-select [(ngModel)]="clonedDoctor.gender" required name="gender">
+          <ion-option value="Female">Female</ion-option>
+          <ion-option value="Male">Male</ion-option>
+        </ion-select>
+      </ion-item>
 
-    <ion-item>
-      <ion-input type="email" placeholder="email" [(ngModel)]="doctor.email"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label floating>Date of Birth</ion-label>
+        <ion-datetime [(ngModel)]="clonedDoctor.dateOfBirth" required name="dateOfBirth"></ion-datetime>
+      </ion-item>
 
-    <ion-item>
-      <ion-input type="password" placeholder="password" [(ngModel)]="doctor.password"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label floating>Speciality</ion-label>
+        <ion-select [(ngModel)]="clonedDoctor.specialityRef.id" required name="specialityRef">
+          <ion-option *ngFor="let speciality of specialityObservable | async" [value]="speciality.$id" required>{{speciality.name}}</ion-option>
+        </ion-select>
+      </ion-item>
 
-    <ion-item>
-      <ion-label>Working hours (start)</ion-label>
-      <ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="doctor.workHoursStart"></ion-datetime>
-    </ion-item>
+      <ion-item>
+        <ion-input type="email" placeholder="Email" [(ngModel)]="clonedDoctor.email" required name="email"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label>Working hours (end)</ion-label>
-      <ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="doctor.workHoursEnd"></ion-datetime>
-    </ion-item>
+      <ion-item>
+        <ion-input type="password" placeholder="Password" [(ngModel)]="clonedDoctor.password" required name="password"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label>Room</ion-label>
-      <ion-select [(ngModel)]="doctor.room">
-        <ion-option *ngFor="let room of roomObservable | async" [value]="room.$id">{{room.name}}</ion-option>
-      </ion-select>
-    </ion-item>
+      <ion-item>
+        <ion-label floating>Working hours (start)</ion-label>
+        <ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="clonedDoctor.workHoursStart" required name="workHoursStart"></ion-datetime>
+      </ion-item>
 
-    <ion-item>
-      <ion-input type="tel" placeholder="telephone number" [(ngModel)]="doctor.phone"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label floating>Working hours (end)</ion-label>
+        <ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="clonedDoctor.workHoursEnd" required name="workHoursEnd"></ion-datetime>
+      </ion-item>
 
-  </ion-list>
+      <ion-item>
+        <ion-label floating>Room</ion-label>
+        <ion-select [(ngModel)]="clonedDoctor.roomRef.id" name="roomRef">
+          <ion-option *ngFor="let room of roomObservable | async" [value]="room.$id" required>{{room.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="tel" placeholder="Telephone number" [(ngModel)]="clonedDoctor.phone" required name="phone"></ion-input>
+      </ion-item>
+
+    </ion-list>
     <ion-buttons end>
-      <button ion-button block (click)="addDoctor(doctor)">
-        Create
+      <button ion-button block [disabled]="!doctorForm.form.valid" type="submit">
+        <span *ngIf="addingNewDoctor; then addTxt; else updateTxt"></span>
       </button>
     </ion-buttons>
+  </form>
 </ion-content>
-

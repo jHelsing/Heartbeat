@@ -7,6 +7,7 @@ export class Comment {
   public category: string;
   public description: string;
   public patient: DocumentReference;
-  // public imageUrls: string[];
+  public imageUrl?: string;
   public createdAt: FieldValue;
+  public createdBy: string;  // Copy the current author's name for avoiding future errors if that reference is removed
 }

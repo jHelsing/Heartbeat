@@ -17,45 +17,57 @@
 
 <ion-content>
   <ion-list>
+    <ion-list-header>Basic Info</ion-list-header>
     <ion-card>
-      <ion-card-header>Basic Info</ion-card-header>
       <ion-card-content>
         <p><strong>Name: </strong> {{patient.name}}</p>
-        <p><strong>Date of Birth: </strong>{{patient.dob}}</p>
+        <p><strong>Date of Birth: </strong>{{patient.dateOfBirth}} ({{utl.dob2age(patient.dateOfBirth)}} yo)</p>
         <p><strong>Gender: </strong>{{patient.gender}}</p>
         <p><strong>Doctor: </strong>Dr. {{patient.doctorObj.firstName}} {{patient.doctorObj.lastName}}</p>
-        <p><strong>Room: </strong>{{patient.roomObj.name}}</p>
+        <p><strong>Office: </strong>{{patient.roomObj.name}}</p>
         <p><strong>Arrival Time: </strong>{{patient.arrivalTime | date : "yyyy-MM-dd"}}</p>
         <p><strong>Blood Type: </strong>{{patient.bloodType}}</p>
         <p><strong>Allergies: </strong>{{patient.allergyObj.name}}</p>
         <p><strong>Diet: </strong>{{patient.diet}}</p>
+        <p><strong>Severity: </strong>{{severities[patient.severity]}}</p>
       </ion-card-content>
     </ion-card>
     <ion-list-header>History</ion-list-header>
     <ion-item-group *ngFor="let comment of comments | async" [ngSwitch]="comment.category">
       <!-- NOTE -->
-      <ion-card *ngSwitchCase="'Note'">
+      <ion-card *ngSwitchCase="'Note'" class="info" (click)="viewCommentDetails(comment)">
         <ion-card-header>{{comment.category}}</ion-card-header>
         <ion-card-content>
           <p><strong>{{comment.title}}</strong></p>
           <p>{{comment.description}}</p>
-          <ion-note>{{comment.createdAt | date: 'yyyy-MM-dd'}}</ion-note>
+          <ion-note>
+            <span class="author">{{comment.createdBy}}</span>
+            – {{comment.createdAt | date: 'yyyy-MM-dd'}}
+          </ion-note>
         </ion-card-content>
       </ion-card>
       <!-- TREATMENT -->
-      <ion-card *ngSwitchCase="'Treatment'">
+      <ion-card *ngSwitchCase="'Treatment'" class="success" (click)="viewCommentDetails(comment)">
         <ion-card-header>{{comment.category}}</ion-card-header>
         <ion-card-content>
-          <p><strong>{{comment.title}}</strong></p>
-          <ion-note>Start date: {{comment.createdAt | date: 'yyyy-MM-dd'}}</ion-note>
+            <p><strong>{{comment.title}}</strong></p>
+          <p>{{comment.description}}</p>
+          <ion-note>
+            <span class="author">{{comment.createdBy}}</span>
+            – {{comment.createdAt | date: 'yyyy-MM-dd'}}
+          </ion-note>
         </ion-card-content>
       </ion-card>
       <!-- DIAGNOSIS -->
-      <ion-card *ngSwitchCase="'Diagnosis'">
-        <ion-card-header>Diagnosed with {{comment.title}}</ion-card-header>
+      <ion-card *ngSwitchCase="'Diagnosis'" class="danger" (click)="viewCommentDetails(comment)">
+        <ion-card-header>{{comment.category}}</ion-card-header>
         <ion-card-content>
-          <p><strong>Diagnosed by </strong>Dr. xxx</p>
-          <ion-note>{{comment.createdAt | date: 'yyyy-MM-dd'}}</ion-note>
+          <p><strong>{{comment.title}}</strong></p>
+          <p>{{comment.description}}</p>
+          <ion-note>
+            <span class="author">{{comment.createdBy}}</span>
+            – {{comment.createdAt | date: 'yyyy-MM-dd'}}
+          </ion-note>
         </ion-card-content>
       </ion-card>
     </ion-item-group>

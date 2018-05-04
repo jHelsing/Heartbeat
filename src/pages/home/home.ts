@@ -5,7 +5,7 @@ import { NurseProvider } from '../../providers/nurse/nurse';
 import { Observable } from 'rxjs/Observable';
 import { LoginPage } from '../login/login';
 import { PatientListPage } from '../patient-list/patient-list';
-import { DoctorRegistration } from '../add-doctor/add-doctor';
+import { AddDoctorPage } from '../add-doctor/add-doctor';
 
 @Component({
   selector: 'page-home',
@@ -19,16 +19,16 @@ export class HomePage {
   }
 
   public doctorView() {
-    this.navCtrl.push(DoctorRegistration);
+    this.navCtrl.push(AddDoctorPage);
   }
 
-  public addNursePrompt() {
+  /*public addNursePrompt() {
     this.nurseProvider.addNursePrompt();
   }
 
   public updateNursePrompt(nurse: Nurse) {
     this.nurseProvider.updateNursePrompt(nurse);
-  }
+  }*/
 
   public removeNurse(nurse: Nurse) {
     this.nurseProvider.removeNurse(nurse);

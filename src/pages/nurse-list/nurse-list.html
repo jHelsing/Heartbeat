@@ -1,10 +1,7 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>
-      Nurses
-    </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="addNursePrompt()">
+      <button ion-button icon-only (click)="openModalAddUpdateNurse()">
         <ion-icon name="person-add"></ion-icon>
       </button>
       <button ion-button (click)="presentPopover($event)">
@@ -16,14 +13,15 @@
 
 <ion-content>
   <ion-list>
+    <ion-list-header>Nurses</ion-list-header>
     <ion-item-sliding #item *ngFor="let nurse of nurses | async">
-      <ion-item (click)="updateNursePrompt(nurse)">
+      <ion-item (click)="openModalAddUpdateNurse(nurse)">
         <ion-avatar item-start>
-          <img src="http://i.pravatar.cc/150?u={{nurse.$id}}">
+          <img *ngIf="nurse.imageUrl" src="{{nurse.imageUrl}}">
+          <img *ngIf="!nurse.imageUrl" src="http://i.pravatar.cc/150?u={{nurse.$id}}">
         </ion-avatar>
         <h2>{{nurse.name}}</h2>
-        <p>Age: {{nurse.age}}</p>
-        <p>Room: {{nurse.room}}</p>
+        <p>Office: {{nurse.room}}</p>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="removeNurse(nurse)">

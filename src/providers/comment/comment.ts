@@ -12,10 +12,9 @@ export class CommentProvider {
     this.commentsCollection = fireStore.collection<Comment>('/comments');
   }
 
-  public uploadComment(comment: Comment, patientId: string) {
+  public uploadComment(comment: Comment, patientId: string, author: string) {
     comment.patient = this.fireStore.doc('patients/' + patientId).ref;
-    this.commentsCollection.add({ title: comment.title, category: comment.category, description: comment.description,
-      patient: comment.patient, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+    this.commentsCollection.add({...comment, createdAt: firebase.firestore.FieldValue.serverTimestamp(), createdBy: author});
   }
 
   public getComments(patientId: string): Observable<Comment[]> {
@@ -26,10 +25,12 @@ export class CommentProvider {
     return col.snapshotChanges().map((actions) => actions.map((commentAction) => {
       const data = commentAction.payload.doc.data() as Comment;
       const $id = commentAction.payload.doc.id;
+
       const patientObservable = this.fireStore.doc(data.patient.path).snapshotChanges()
         .map((action) => action.payload.data());
+
       return patientObservable.map((patient) => {
-        return ({ ...data, $id, patient: patientRef } as Comment);
+        return ({ ...data, $id, patient: patient.name } as Comment);
       });
     })).flatMap((comments) => Observable.combineLatest(comments));
   }

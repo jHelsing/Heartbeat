@@ -5,8 +5,7 @@ import { IonicPage,
          NavParams,
          ToastController,
          ModalController,
-         Select,
-         AlertController} from 'ionic-angular';
+         Select} from 'ionic-angular';
 import { PatientProvider } from '../../providers/patient/patient';
 import { CommentProvider } from '../../providers/comment/comment';
 import { UtilsProvider } from '../../providers/utils/utils';
@@ -26,6 +25,7 @@ export class PatientDetailPage {
   public doctors;
   public newDoctor;
   public comments: Observable<Comment[]>;
+  public severities = ['Not Available', 'Low', 'Medium', 'High'];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -36,7 +36,7 @@ export class PatientDetailPage {
               private utl: UtilsProvider) {
     this.patient = navParams.get('patient');
     this.doctors = patientProvider.getDoctors();
-    this.newDoctor = this.patient.doctor.id;
+    this.newDoctor = this.patient.doctorRef.id;
     this.comments = this.commentProvider.getComments(this.patient.$id);
   }
 
@@ -52,7 +52,7 @@ export class PatientDetailPage {
   }
 
   public transferPatient(patient: Patient) {
-    this.patientProvider.updatePatient(patient, { doctor: this.utl.ref('doctors', this.newDoctor) });
+    this.patientProvider.updatePatient(patient, { doctorRef: this.utl.ref('doctors', this.newDoctor) });
     const prompt = this.toastCtrl.create({
       message: 'Patient transfered',
       duration: 3000,
@@ -63,8 +63,16 @@ export class PatientDetailPage {
   }
 
   public addComment() {
-    const commentModal = this.modalCtrl.create(AddCommentComponent, { patientId: this.patient.$id }, {});
+    const commentModal = this.modalCtrl.create(AddCommentComponent,
+      { patientId: this.patient.$id, severity: this.patient.severity }, {});
+    commentModal.onDidDismiss((newSeverity) => {
+      this.patient.severity = newSeverity;
+    });
     commentModal.present();
+  }
 
+  public viewCommentDetails(comment: Comment) {
+    const CommentDetailPage = this.modalCtrl.create('CommentDetailPage', { commentData: comment });
+    CommentDetailPage.present();
   }
 }

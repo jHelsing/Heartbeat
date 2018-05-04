@@ -5,7 +5,7 @@ export interface Doctor {
   firstName: string;
   lastName: string;
   gender: string;
-  age: number;
+  dateOfBirth: Date;
   password: string;
   phone: string;
   specialityRef: DocumentReference;
@@ -13,4 +13,5 @@ export interface Doctor {
   email: string;
   workHoursStart: Date;
   workHoursEnd: Date;
+  imageUrl?: string;
 }

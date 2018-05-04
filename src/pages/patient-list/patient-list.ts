@@ -4,14 +4,12 @@ import { IonicPage,
          NavController,
          ModalController,
          PopoverController } from 'ionic-angular';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Patient } from '../../models/patient';
-import { Observable } from 'rxjs/Observable';
-import { AddPatientPage } from '../add-patient/add-patient';
 import { PatientDetailPage } from '../patient-detail/patient-detail';
+import { UtilsProvider } from '../../providers/utils/utils';
 import { PatientProvider } from '../../providers/patient/patient';
 import 'rxjs/Rx';
 import { PopoverComponent } from '../../components/popover/popover';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -19,13 +17,17 @@ import { PopoverComponent } from '../../components/popover/popover';
   templateUrl: 'patient-list.html',
 })
 export class PatientListPage {
+
+  public user = { id: '', role: '' };
   public patients;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public patientProvider: PatientProvider, public popoverCtrl: PopoverController,
-              public modalCtrl: ModalController) {
-    const specificDoctor = navParams.get('doctor');
-    this.patients = patientProvider.getPatients(specificDoctor);
+              public modalCtrl: ModalController, public utl: UtilsProvider, storage: Storage) {
+    storage.get('user').then((data) => {
+      this.user = data;
+      this.patients = patientProvider.getPatients(this.user.role === 'doctors' ? this.user.id : null);
+    });
   }
 
   public openModalAddPatient() {

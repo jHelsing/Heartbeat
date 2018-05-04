@@ -11,14 +11,14 @@ export class PatientProvider {
   // dId is the doctor's id, when one is specified
   public getPatients(doctorId?) {
     let patientsLst = doctorId
-        ? this.utl.colId$('patients', (ref) => ref.where('doctor', '==', this.utl.ref('doctors', doctorId)))
+        ? this.utl.colId$('patients', (ref) => ref.where('doctorRef', '==', this.utl.ref('doctors', doctorId)))
         : this.utl.colId$('patients');
 
     patientsLst = patientsLst.map((patientDoc) => patientDoc.map((patient) => {
       // Get the observables of the referenced Room, Allergy and Doctor documents
       const roomObs = this.utl.doc$(patient.roomRef.path);
-      const allergyObs = this.utl.doc$(patient.allergy.path);
-      const doctorObs = this.utl.doc$(patient.doctor.path);
+      const allergyObs = this.utl.doc$(patient.allergyRef.path);
+      const doctorObs = this.utl.doc$(patient.doctorRef.path);
       // Combine for extending the Patient object with referenced data
       const combined = Observable.combineLatest(roomObs, allergyObs, doctorObs);
       return combined.map(([roomObj, allergyObj, doctorObj]) => {
@@ -47,6 +47,10 @@ export class PatientProvider {
 
   public updatePatient(patient: Patient, data) {
     this.utl.col('patients').doc(patient.$id).update(data);
+  }
+
+  public updatePatientById(patientId, data) {
+    this.utl.col('patients').doc(patientId).update(data);
   }
 
   public removePatient(patient: Patient) {

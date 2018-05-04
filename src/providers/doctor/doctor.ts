@@ -5,6 +5,7 @@ import { Doctor } from '../../models/doctor';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { Room } from '../../models/room';
+import { Speciality } from '../../models/speciality';
 
 @Injectable()
 export class DoctorProvider {
@@ -19,9 +20,14 @@ export class DoctorProvider {
 
        const roomObservable = fireStore.doc(data.roomRef.path).snapshotChanges()
          .map((action) => action.payload.data() as Room);
+       const specialityObservable = fireStore.doc(data.specialityRef.path).snapshotChanges()
+         .map((action) => action.payload.data() as Speciality);
+       const combined = Observable.combineLatest(roomObservable, specialityObservable);
 
-       return roomObservable.map((room) => ({ ...data, $id, room: room.name }));
-     })).flatMap((doctorObservable) => Observable.combineLatest(doctorObservable));
+       return combined.map(([roomObj, specialityObj]) => {
+         return { ...data, $id, roomObj, specialityObj };
+       });
+     })).flatMap((doctors) => Observable.combineLatest(doctors));
   }
 
   public getDoctors() {
@@ -29,17 +35,7 @@ export class DoctorProvider {
   }
 
   public addDoctor(doctor) {
-    doctor.roomRef = this.fireStore.doc('rooms/' + doctor.room).ref;
-    doctor.specialityRef = this.fireStore.doc('specialties/' + doctor.speciality).ref;
-    delete doctor.room;
-    delete doctor.speciality;
     this.doctorCollection.add(doctor);
-    const alert = this.toastCtrl.create({
-      message: 'Doctor created',
-      duration: 3000,
-      position: 'bot',
-    });
-    alert.present();
   }
 
   public removeDoctor(doctor: Doctor) {
