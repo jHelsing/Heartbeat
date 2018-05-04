@@ -16,13 +16,16 @@ import { Comment } from '../../models/comment';
 })
 export class CommentDetailPage {
 
-  private comment: Comment;
+  public comment;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public viewCtrl: ViewController) {
 
     this.comment = navParams.get('commentData');
+    //alert(this.comment.patients.name);
+    alert(JSON.stringify(this.comment.patients));
+
   }
 
   public closeModal() {
