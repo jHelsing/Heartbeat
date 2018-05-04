@@ -16,11 +16,11 @@ import { AngularFirestore } from 'angularfire2/firestore';
 })
 export class DoctorListPage {
   public doctorObservable: Observable<Doctor[]>;
-
   constructor(public navCtrl: NavController, public doctorProvider: DoctorProvider,
               public patientProvider: PatientProvider, public modalCtrl: ModalController,
               public popoverCtrl: PopoverController, public fireStore: AngularFirestore) {
     this.doctorObservable = doctorProvider.getDoctors();
+
   }
 
   public addDoctorModal() {

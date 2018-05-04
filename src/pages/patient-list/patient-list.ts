@@ -9,6 +9,7 @@ import { UtilsProvider } from '../../providers/utils/utils';
 import { PatientProvider } from '../../providers/patient/patient';
 import 'rxjs/Rx';
 import { PopoverComponent } from '../../components/popover/popover';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -16,16 +17,17 @@ import { PopoverComponent } from '../../components/popover/popover';
   templateUrl: 'patient-list.html',
 })
 export class PatientListPage {
-  public userId;
-  public userRole;
+
+  public user = { id: '', role: '' };
   public patients;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public patientProvider: PatientProvider, public popoverCtrl: PopoverController,
-              public modalCtrl: ModalController, public utl: UtilsProvider) {
-    this.userId = navParams.get('userId');
-    this.userRole = navParams.get('userRole');
-    this.patients = patientProvider.getPatients(this.userRole === 'doctors' ? this.userId : null);
+              public modalCtrl: ModalController, public utl: UtilsProvider, storage: Storage) {
+    storage.get('user').then((data) => {
+      this.user = data;
+      this.patients = patientProvider.getPatients(this.user.role === 'doctors' ? this.user.id : null);
+    });
   }
 
   public openModalAddPatient() {
@@ -34,7 +36,7 @@ export class PatientListPage {
   }
 
   public viewDetails(patient) {
-    this.navCtrl.push(PatientDetailPage, { patient, userId: this.userId, userRole: this.userRole });
+    this.navCtrl.push(PatientDetailPage, { patient });
   }
 
   public presentPopover(myEvent) {
