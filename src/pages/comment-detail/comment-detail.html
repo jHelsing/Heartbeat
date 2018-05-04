@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-buttons start>
       <button ion-button (click)="closeModal()">Close</button>
     </ion-buttons>
@@ -18,10 +18,10 @@
         <p><strong>Created at: </strong>{{comment.createdAt | date : "yyyy-MM-dd"}}</p>
       </ion-card-content>
     </ion-card>
-    <ion-list-header>Attachments</ion-list-header>
-    <ion-card>
+    <ion-list-header *ngIf="comment.imageUrl" >Attachments</ion-list-header>
+    <ion-card *ngIf="comment.imageUrl">
       <ion-card-content>
-        <img *ngIf="comment.imageUrl" src="{{comment.imageUrl}}">
+        <img src="{{comment.imageUrl}}">
       </ion-card-content>
     </ion-card>
   </ion-list>
