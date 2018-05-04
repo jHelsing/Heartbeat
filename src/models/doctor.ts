@@ -13,4 +13,5 @@ export interface Doctor {
   email: string;
   workHoursStart: Date;
   workHoursEnd: Date;
+  imageUrl?: string;
 }
