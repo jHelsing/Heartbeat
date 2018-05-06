@@ -17,7 +17,8 @@
     <ion-item-sliding #item *ngFor="let doctor of doctorObservable | async">
       <ion-item (click)="viewDetails(doctor)">
         <ion-avatar item-start>
-          <img src="http://i.pravatar.cc/150?u={{doctor.$id}}">
+          <img *ngIf="doctor.imageUrl" src="{{doctor.imageUrl}}">
+          <img *ngIf="!doctor.imageUrl" src="http://i.pravatar.cc/150?u={{doctor.$id}}">
         </ion-avatar>
         <h2>{{doctor.firstName}} {{doctor.lastName}}</h2>
         <p>Speciality: {{doctor.specialityObj.name}}</p>

@@ -59,6 +59,11 @@
         </ion-select>
       </ion-item>
 
+      <ion-item *ngIf="comment.category == 'Diagnosis'">
+        <ion-label color="primary" stacked>Image URL</ion-label>
+        <ion-input type="text" class="url" placeholder="Enter URL to image attachment here" [(ngModel)]="comment.imageUrl" name="url"></ion-input>
+      </ion-item>
+
       <button ion-button block [disabled]="!commentForm.form.valid" type="submit">Add Comment</button>
     </form>
   </ion-list>

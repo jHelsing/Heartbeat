@@ -30,6 +30,10 @@
         <ion-input type="password" placeholder="Password" [(ngModel)]="password" required name="password"></ion-input>
       </ion-item>
 
+      <ion-item *ngIf="addingNewDoctor">
+        <ion-input type="text" placeholder="Profile image URL" [(ngModel)]="clonedDoctor.imageUrl" name="imageUrl"></ion-input>
+      </ion-item>
+
       <ion-item>
         <ion-label floating>Gender</ion-label>
         <ion-select [(ngModel)]="clonedDoctor.gender" required name="gender">

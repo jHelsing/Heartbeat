@@ -35,7 +35,7 @@
     <ion-list-header>History</ion-list-header>
     <ion-item-group *ngFor="let comment of comments | async" [ngSwitch]="comment.category">
       <!-- NOTE -->
-      <ion-card *ngSwitchCase="'Note'" class="info">
+      <ion-card *ngSwitchCase="'Note'" class="info" (click)="viewCommentDetails(comment)">
         <ion-card-header>{{comment.category}}</ion-card-header>
         <ion-card-content>
           <p><strong>{{comment.title}}</strong></p>
@@ -47,7 +47,7 @@
         </ion-card-content>
       </ion-card>
       <!-- TREATMENT -->
-      <ion-card *ngSwitchCase="'Treatment'" class="success">
+      <ion-card *ngSwitchCase="'Treatment'" class="success" (click)="viewCommentDetails(comment)">
         <ion-card-header>{{comment.category}}</ion-card-header>
         <ion-card-content>
             <p><strong>{{comment.title}}</strong></p>
@@ -59,7 +59,7 @@
         </ion-card-content>
       </ion-card>
       <!-- DIAGNOSIS -->
-      <ion-card *ngSwitchCase="'Diagnosis'" class="danger">
+      <ion-card *ngSwitchCase="'Diagnosis'" class="danger" (click)="viewCommentDetails(comment)">
         <ion-card-header>{{comment.category}}</ion-card-header>
         <ion-card-content>
           <p><strong>{{comment.title}}</strong></p>

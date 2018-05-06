@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-buttons end>
-      <button ion-button icon-only (click)="openModalAddPatient()">
+      <button ion-button *ngIf="user.role == 'administrators'" icon-only (click)="openModalAddPatient()">
         <ion-icon name="person-add"></ion-icon>
       </button>
       <button ion-button (click)="presentPopover($event)">

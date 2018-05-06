@@ -13,6 +13,7 @@
   <ion-list>
     <ion-list-header>Basic Info</ion-list-header>
     <ion-card>
+      <img *ngIf="doctor.imageUrl" src="{{doctor.imageUrl}}">
       <ion-card-content>
         <p><strong>Name: </strong> {{doctor.firstName}} {{doctor.lastName}}</p>
         <p><strong>Date of Birth: </strong>{{doctor.dateOfBirth}} ({{utl.dob2age(doctor.dateOfBirth)}} yo)</p>

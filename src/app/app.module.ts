@@ -26,6 +26,7 @@ import { PatientProvider } from '../providers/patient/patient';
 import { LoginProvider } from '../providers/login/login';
 import { UtilsProvider } from '../providers/utils/utils';
 import { PopoverComponent } from '../components/popover/popover';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -43,10 +44,16 @@ import { PopoverComponent } from '../components/popover/popover';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,
+      {
+        scrollAssist: false,
+        autoFocusAssist: false,
+      },
+    ),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
