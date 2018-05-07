@@ -4,7 +4,7 @@
 <ion-header>
   <ion-navbar>
     <ion-buttons start>
-      <button ion-button (click)="goBack()">Close</button>
+      <button ion-button (click)="closeModal()">Close</button>
     </ion-buttons>
     <ion-title><span *ngIf="addingNewDoctor; then addTxt; else updateTxt"></span> Doctor</ion-title>
   </ion-navbar>
@@ -23,6 +23,14 @@
       </ion-item>
 
       <ion-item>
+        <ion-input type="email" placeholder="Email" [(ngModel)]="clonedDoctor.email" required name="email" disabled="{{!addingNewDoctor}}"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="addingNewDoctor">
+        <ion-input type="password" placeholder="Password" [(ngModel)]="password" required name="password"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="addingNewDoctor">
         <ion-input type="text" placeholder="Profile image URL" [(ngModel)]="clonedDoctor.imageUrl" name="imageUrl"></ion-input>
       </ion-item>
 
@@ -42,16 +50,8 @@
       <ion-item>
         <ion-label floating>Speciality</ion-label>
         <ion-select [(ngModel)]="clonedDoctor.specialityRef.id" required name="specialityRef">
-          <ion-option *ngFor="let speciality of specialityObservable | async" [value]="speciality.$id" required>{{speciality.name}}</ion-option>
+          <ion-option *ngFor="let speciality of specialityObservable | async" [value]="speciality.$id">{{speciality.name}}</ion-option>
         </ion-select>
-      </ion-item>
-
-      <ion-item>
-        <ion-input type="email" placeholder="Email" [(ngModel)]="clonedDoctor.email" required name="email"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input type="password" placeholder="Password" [(ngModel)]="clonedDoctor.password" required name="password"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -66,8 +66,8 @@
 
       <ion-item>
         <ion-label floating>Room</ion-label>
-        <ion-select [(ngModel)]="clonedDoctor.roomRef.id" name="roomRef">
-          <ion-option *ngFor="let room of roomObservable | async" [value]="room.$id" required>{{room.name}}</ion-option>
+        <ion-select [(ngModel)]="clonedDoctor.roomRef.id" name="roomRef" required>
+          <ion-option *ngFor="let room of roomObservable | async" [value]="room.$id">{{room.name}}</ion-option>
         </ion-select>
       </ion-item>
 

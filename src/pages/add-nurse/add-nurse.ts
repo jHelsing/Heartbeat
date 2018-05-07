@@ -5,6 +5,7 @@ import { IonicPage,
          ToastController} from 'ionic-angular';
 import { UtilsProvider } from '../../providers/utils/utils';
 import { NurseProvider } from '../../providers/nurse/nurse';
+import { LoginProvider } from '../../providers/login/login';
 import { RoomProvider } from '../../providers/room/room';
 import { Nurse } from '../../models/nurse';
 import { Room } from '../../models/room';
@@ -18,6 +19,7 @@ import { Observable } from 'rxjs/Observable';
 export class AddNursePage {
   public nurse: Nurse;
   public clonedNurse;
+  public password;
   public rooms: Observable<Room[]>;
   public addingNewNurse: boolean; // False is updating existing nurse.
 
@@ -25,6 +27,7 @@ export class AddNursePage {
               public toastCtrl: ToastController,
               public utl: UtilsProvider,
               public nurseProvider: NurseProvider,
+              public loginProvider: LoginProvider,
               public roomProvider: RoomProvider,
               public viewCtrl: ViewController) {
     this.nurse = navParams.get('nurse');
@@ -38,16 +41,27 @@ export class AddNursePage {
 
   public addOrUpdateNurse(nurse) {
     this.clonedNurse.roomRef = this.utl.ref('rooms', nurse.roomRef);
-    let msg = 'Nurse ';
     if (this.addingNewNurse) {
-      this.nurseProvider.addNurse(this.clonedNurse);
-      msg += 'added';
+      this.loginProvider.signup(this.clonedNurse.email, this.password).then((newUser) => {
+        this.utl.col('nurses').doc(newUser.uid).set(this.clonedNurse);
+        this.showPopupAndClose('Nurse added');
+      })
+      .catch((err) => {
+        this.showPopupAndClose(err.message);
+      });
     } else {
       delete this.clonedNurse.room;
       delete this.clonedNurse.$id;
       this.nurseProvider.updateNurse(this.nurse, this.clonedNurse);
-      msg += 'updated';
+      this.showPopupAndClose('Nurse updated');
     }
+  }
+
+  public closeModal() {
+    this.viewCtrl.dismiss();
+  }
+
+  private showPopupAndClose(msg: string) {
     const toast = this.toastCtrl.create({
       message: msg,
       duration: 3000,
@@ -55,9 +69,5 @@ export class AddNursePage {
     });
     toast.present();
     this.closeModal();
-  }
-
-  public closeModal() {
-    this.viewCtrl.dismiss();
   }
 }

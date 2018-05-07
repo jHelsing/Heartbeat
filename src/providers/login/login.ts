@@ -24,6 +24,10 @@ export class LoginProvider {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
+  public signup(email: string, password: string): Promise<any> {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+  }
+
   public logout() {
     this.afAuth.auth.signOut();
   }
