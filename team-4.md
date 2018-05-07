@@ -117,8 +117,10 @@ For the third sprint, six backlog items were selected.
 - #24 As an administrator, I want to be able to view the list of doctors.
 - #21 As a user I want an application that is intuitive with a common theme.
 - #20 As a developer I want the code to be well-organised to make development easier.
+
 ## Work Done
 The priority of this sprint was decided to be on design and code structure, which resulted in less implemented features in the third sprint. From the previous sprints we had many individual features that were ready to be tied together, to generate a better user experience, as the previous features were only connected to the application for demo purposes (e.g. by having buttons that navigated to all possible screens, instead of having the navigation between different screens follow a more intuitive interaction flow). At the early stages of the sprint, we had a meeting to discuss the design of the application and the user flow according to its interactions. We made some low-fidelity sketches together on a whiteboard, to get a better overview of the interaction flow we were trying to achieve. We managed to make the application more secure in the sense that users have access rights to specific features. We worked on adding the capability for the different types of users to perform some of their actions required. This means that a doctor is able to add a diagnosis, treatment, and notes to a patient and that an administrator is able to view the different aspects of the hospital, for example doctors and nurses. As previously mentioned the most important feature is the redesign which means that the overall look of the application has been improved, the usability has greatly improved and because of the redesign we were able to streamline the user experience to match the purpose of the user type, e.g. the first thing a doctor will see after logging in is a list of his or her patients which is possible to interact with in order to view and edit some of the details of a patient. Overall, the user interface was streamlined to address the simplicity factor of using a mobile app. From the Developers perspective, we managed to minimize technical debt, by emphasizing more on refactoring and writing structured code. The aforementioned does not count as a feature but makes the entire project more modular, reusable which indirectly makes integrating future changes easier.
+
 We have discussed adding some more tests during the upcoming sprints, perhaps using Protractor for end-to-end testing. From our quick discussion it feels like focusing on end-to-end tests would be quite efficient, as a lot of functionality in our application is related to GUI interaction and CRUD operations against a remote database.
 
 Feature | Time estimated | Time spent per team member
@@ -131,14 +133,68 @@ Feature | Time estimated | Time spent per team member
 *8.2 As an administrator I want to change the assigned doctor of a patient.* | *5 hours* | *Marufa Binte Mostafa: 5 hours, David Mendez Alvarez: 6 hours, Christoffer Karlsson: 0.5 hours*
 *21 As a user I want an application that is intuitive with a common theme.* | *4 hours* | *Christoffer Karlsson: 4 hours, David Mendez Alvarez: 1 hour, Jonathan Helsing: 2 hours* 
 *23 As an administrator, I want information to be hidden from users that do not have the access level to read it* | *8 hours* | *Lage Bergman: 6 hours, Ashish M Husain: 5 hours, Christoffer Karlsson: 0.5 hours*
+
 ## Reflections
 Since this sprint is shorter than the two previous sprints, which meant that we were unsure of how many features we would be able to add to the application. Instead we focused on improving what we have, for example establishing a pull request review checklist in order to make our code look good. This meant that we gained a deeper understand of our code and how it works while also improving our ability to add more features quicker in the future.
 Before even starting on any new features, we refactored all code implemented during the previous sprint. All team members went through the code of all the new features and reviewed it together according to the newly created review checklist mentioned above. This was a good way of making sure no part of the code is unfamiliar to any team member and also made improving the features easier.
+
 Having the meeting where we met and together discussed different design solutions on a whiteboard was a great way to get all team members involved in the decision process. It was also very helpful in the sense that it naturally resulted in good discussions, regarding different approaches to the user experience. Having this meeting at the beginning of the sprint facilitated the process of dividing smaller tasks between the team members, and ensured that everyone was on the same page about what we were trying to achieve, prior to starting. We, also, intentionally decided not to spend too much time on styling of individual features (i.e. by specifying CSS for different components), as it would be hard to orchestrate this and still reach a unified look and feel of the application. As the built in components provided by Ionic already provide a standardized look and feel we thought it would be better to use the default design initially, and then, perhaps update individual components with CSS, given that we have settled on a specific look and feel for the application. This is, however, something that will be thought about in future sprints, if it becomes relevant.
+
 As mentioned earlier, we discussed adding end-to-end tests during the next sprint. This is something we will look more into, but it feels as if it would be an efficient way of achieving a lot of rich test cases, in a way that would probably suit our application and workflow better, than only relying strictly on unit tests.
 
+# Sprint 4 Log
 
+## Commitment
+For the fourth sprint, 13 backlog items were selected.
+- #4 As a doctor I want to be able to add a diagnosis to a patient (with option of adding x-ray images)
+- #21 As a user I want an application that is intuitive with a common theme
+- #30 As an admin I want to be able to add picture urls when registering a nurse or doctor
+- #31 As an administrator I want to be able to view the details of a doctor
+- #32 As a doctor I want to be able to view the severity of a patient's condition from the list view
+- #33 As a doctor I want to view details of a comment in a modal
+- #34 As an admin I don’t want doctors and nurses to be able to add patients to the system
+- #35 As a developer I don't want the app to crash when bad input is entered into text field
+- #36 As an admin I want the doctors and nurses I enter into the system to be able to log in
+- #37 As a developer I want to have dates of birth in the database instead of age for all people in the system
+- #38 As a doctor I want to be able to see the author of comments in a patient
+- #39 The color on the patient list should be dependent on room, not name
+- #40 As a developer I don't want the app to crash when I remove a doctor that has associated patients (in patient-detail view)
 
+## Work Done
+This sprint’s priority was to finish all of the promises made to our customer while also squashing out bugs.
+With most of the functionality already in place, a lot of work consisted of improving already existing features. For instance by improving the UX, or by adding a layer of role-based authorisation, where functionality was restricted depending on the role of the logged in user. One example of this is that only an administrator should be able to add new doctors to the system, while a nurse should not have the rights to perform this operation.
+
+As decided during the previous acceptance meeting with the customers, we decided to make a compromise with regards to the functionality regarding image attachments (such as x-rays), to limit the scope of the sprint. This meant that we let the user provide an image URL to an attachment, instead of selecting it through their own device. The application logo was also mentioned during the acceptance meeting, where the customer requested the logo to always be visible in the title bar. But after discussions within the group, and testing it out in practise, we thought that change would be better of unimplemented, so we contacted the customer about this matter. A mutual agreement was made, where we, as the developers, got to decide if we wanted to have the logo in the title bar or not. We decided not to include it, as we thought it would look better without it there. And as per our agreement, this was something the customer was fine with.
+
+The rest of the improvements requested by the customers were implemented, such as making the colors of patients circles dependent on room, add colored marks depending on the status on the patient, and use different colors depending on the type of comment in the details of a patient.
+
+Feature | Time estimated | Time spent per team member
+------------|----------|---------------------------
+*Sprint 4 planning meeting* | *2 hours* | *Evio Abazi: 2 hours, Ashish M Husain: 2 hours, Lage Bergman: 2 hours, Jonathan Helsing: 2 hours, Christoffer Karlsson: 2 hours, Oskar Lignell: 2 hours, Marufa Binte Mostafa: 2 hours, David Mendez Alvarez: 2 hours*
+*#4 As a doctor I want to be able to add a diagnosis to a patient* |*2 hours*| *Jonathan Helsing: 2 hours*
+*#21 As a user I want an application that is intuitive with a common theme* |*10 hours*| *Christoffer Karlsson: 2 hours, David Mendez Alvarez: 3.5 hours, Ashish M Husain: 2.5 hours, Lage Bergman: 3 hours*
+*#30 As an admin I want to be able to add picture urls when registering a nurse or doctor* |*2 hours*| *Jonathan Helsing: 2.5 hours*
+*#31 As an administrator I want to be able to view the details of a doctor* |*2 hours*| *David Mendez Alvarez: 1.5 hours*
+*#32 As a doctor I want to be able to view the severity of a patient's condition from the list view* |*5 hours*| *Marufa Binte Mostafa: 6 hours, David Mendez Alvarez: 1 hour, Christoffer Karlsson: 0.5 hours*
+*#33 As a doctor I want to view details of a comment in a modal* |	 *4 hours* | *Lage Bergman: 4 hours, Ashish M Husain: 4 hours*
+*#34 As an admin I don’t want doctors and nurses to be able to add patients to the system* |*2 hours*| *Evio Abazi: 2 hours, Oskar Lignell: 2 hours*
+*#35 As a developer I don't want the app to crash when bad input is entered into text field* |*1 hour*| *David Mendez Alvarez: 0.5 hours*
+*#36 As an admin I want the doctors and nurses I enter into the system to be able to log in* |*2 hours*| *David Mendez Alvarez: 2 hours*
+*#37 As a developer I want to have dates of birth in the database instead of age for all people in the system* |*1 hour*| *David Mendez Alvarez: 1.5 hours*
+*#38 As a doctor I want to be able to see the author of comments in a patient* |*2.5 hours*| *David Mendez Alvarez: 3 hours*
+*#39 The color on the patient list should be dependent on room, not name* |*0.5 hours*| *David Mendez Alvarez: 0.5 hours*
+*#40 As a developer I don't want the app to crash when I remove a doctor that has associated patients (in patient-detail view)* |*0.5 hours*| *David Mendez Alvarez: 0.5 hours*
+*Investigating and implementing unit tests* | *2 hours* | *Lage Bergman: 4 hours, Oskar Lignell: 3 hours*
+*Investigating and implementing E2E-tests using Protractor* | *2 hours* | *Christoffer Karlsson: 2 hours*
+*Pull request review* |*20 hours*| *Jonathan Helsing: 2 hours, Lage Bergman: 2 hours, Marufa Binte Mostafa: 3 hours, Christoffer Karlsson: 2 hours, David Mendez Alvarez: 2 hours*
+*Report sprint 4* |*4 hours*| *Evio Abazi: 0.5 hours, Ashish M Husain: 0.5 hours, Christoffer Karlsson: 1 hour, Oskar Lignell: 0.5 hours, Lage Bergman: 1 hour, Jonathan Helsing: 1 hour, David Mendez Alvarez: 1 hour, Marufa Binte Mostafa: 1 hour*
+
+## Reflections
+For this sprint we played planning poker to estimate the effort required to complete the selected backlog items. We used an online tool (https://scrumpoker.online/) which worked great without us having to create or find any physical materials. As for the technique itself, it worked rather well for estimating effort points. The problem is that we had not done any explicit estimation for previous sprints, meaning we did not have a good perception of the team velocity, making the effort points less useful than if we had a known velocity. Another issue was that certain tasks would take an hour to complete, while another task with the same number of effort points resulted in 5 hours of work. However, this will reoccur in most agile teams, but if we would have used this for every sprint we would have been better at it and made more accurate estimates.
+
+This sprint, efforts were spent on trying to get the test first principle to work. However, we ran into a lot of obstacles with testing and after a few members of the group spent an entire morning putting together a test and trying to understand how it should be created and what is needed for them to work, we ended up deciding against testing since it required too much effort given the large commitment that were made for this final sprint. The main reason for the obstacles we ran into is that the internal components of the application are not well suited for unit testing. The application is basically just a graphical interface for viewing and modifying the contents of a database, without much internal functionality. This means that testing the app would require UI-testing or complete end-to-end tests instead of unit tests, which in turn would require much more work. Some effort was spent on configuring and testing out end-to-end testing, and while the principle seems suitable and powerful for our application, it might not be ideal for test driven development, which was the higher goal we wanted to achieve. At least this is our hypothesis, that test driven development is more suitable for unit tests (where it’s quite intuitive to think about future functionality, and its expected input and output), rather than end-to-end tests. We believe end-to-end tests are most suitable for regression testing, where the goal is to ensure that already implemented functionality is working as expected, even as further changes are made to the code.
+
+When looking in the product backlog, all the different backlog items that were once created have now been implemented, which means we are more or less on schedule. This is good, as this could be seen as the last “real” sprint.
 
 <!-- Reflect on how the work worked.
 This data will form the basis for your final reflection.
