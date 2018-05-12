@@ -13,7 +13,10 @@
 
 <ion-content>
   <ion-list>
-    <ion-list-header>Patients</ion-list-header>
+    <ion-list-header>
+      <div float-left>Patients</div>
+      <div float-right>Severity</div>
+    </ion-list-header>
     <ion-item-sliding #item *ngFor="let patient of patients | async">
       <ion-item (click)="viewDetails(patient)">
         <ion-avatar item-start>
