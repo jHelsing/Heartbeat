@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-buttons start>
+        <button ion-button (click)="closeModal()">Close</button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-list-header>
+        <div float-left>Patients in {{room.name}}</div>
+        <div float-right>Severity</div>
+        </ion-list-header>
+      <ion-item-sliding #item *ngFor="let patient of patients | async">
+        <ion-item>
+          <h2>{{patient.name}}</h2>
+          <p>Date of Birth: {{patient.dateOfBirth}}</p>
+          <p>Responsible doctor: {{patient.doctorObj.firstName}} {{patient.doctorObj.lastName}}</p>
+          <ion-badge item-end *ngIf = "patient.severity == 0" color="light">N/A</ion-badge>
+          <ion-badge item-end *ngIf = "patient.severity == 1" color="success">Low</ion-badge>
+          <ion-badge item-end *ngIf = "patient.severity == 2" color="warning">Med</ion-badge>
+          <ion-badge item-end *ngIf = "patient.severity == 3" color="danger">High</ion-badge>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-content>

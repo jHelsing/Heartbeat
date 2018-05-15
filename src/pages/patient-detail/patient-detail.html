@@ -24,7 +24,7 @@
         <p><strong>Date of Birth: </strong>{{patient.dateOfBirth}} ({{utl.dob2age(patient.dateOfBirth)}} yo)</p>
         <p><strong>Gender: </strong>{{patient.gender}}</p>
         <p><strong>Doctor: </strong>Dr. {{patient.doctorObj.firstName}} {{patient.doctorObj.lastName}}</p>
-        <p><strong>Office: </strong>{{patient.roomObj.name}}</p>
+        <p (click)="viewRoomPatients(patient.roomId)"><strong>Room: </strong><u><font color="blue">{{patient.roomObj.name}}</font></u></p>
         <p><strong>Arrival Time: </strong>{{patient.arrivalTime | date : "yyyy-MM-dd"}}</p>
         <p><strong>Blood Type: </strong>{{patient.bloodType}}</p>
         <p><strong>Allergies: </strong>{{patient.allergyObj.name}}</p>
@@ -32,6 +32,7 @@
         <p><strong>Severity: </strong>{{severities[patient.severity]}}</p>
       </ion-card-content>
     </ion-card>
+
     <ion-list-header>History</ion-list-header>
     <ion-item-group *ngFor="let comment of comments | async" [ngSwitch]="comment.category">
       <!-- NOTE -->
