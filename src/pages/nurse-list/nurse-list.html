@@ -21,7 +21,7 @@
           <img *ngIf="!nurse.imageUrl" src="http://i.pravatar.cc/150?u={{nurse.$id}}">
         </ion-avatar>
         <h2>{{nurse.name}}</h2>
-        <p>Office: {{nurse.room}}</p>
+        <p><font color="black">Office: {{nurse.room}}</font></p>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="removeNurse(nurse)">
