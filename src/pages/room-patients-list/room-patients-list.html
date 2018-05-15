@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-buttons start>
+        <button ion-button (click)="closeModal()">Close</button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-list-header>Patients in {{room.name}}</ion-list-header>
+      <ion-item-sliding #item *ngFor="let patient of patients | async">
+        <ion-item (click)="viewDetails(patient)">
+          <ion-avatar item-start>
+            <p class="avatar-base" [ngStyle]="{'background-color': patient.roomObj.color}">
+              {{patient.name.charAt(0).toUpperCase()}}
+            </p>
+          </ion-avatar>
+          <h2>{{patient.name}}</h2>
+          <p>Date of Birth: {{patient.dateOfBirth}} ({{utl.dob2age(patient.dateOfBirth)}} yo)</p>
+          <p>Room: {{patient.roomObj.name}}</p>
+          <ion-badge item-end *ngIf = "patient.severity == 0" color="light">N/A</ion-badge>
+          <ion-badge item-end *ngIf = "patient.severity == 1" color="success">Low</ion-badge>
+          <ion-badge item-end *ngIf = "patient.severity == 2" color="warning">Med</ion-badge>
+          <ion-badge item-end *ngIf = "patient.severity == 3" color="danger">High</ion-badge>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="patientProvider.removePatient(patient)">
+            <ion-icon name="trash"></ion-icon>
+            Remove
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-content>
