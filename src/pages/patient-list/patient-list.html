@@ -13,7 +13,10 @@
 
 <ion-content>
   <ion-list>
-    <ion-list-header>Patients</ion-list-header>
+    <ion-list-header>
+      <div float-left>Patients</div>
+      <div float-right>Severity</div>
+    </ion-list-header>
     <ion-item-sliding #item *ngFor="let patient of patients | async">
       <ion-item (click)="viewDetails(patient)">
         <ion-avatar item-start>
@@ -22,7 +25,7 @@
           </p>
         </ion-avatar>
         <h2>{{patient.name}}</h2>
-        <p>Date of Birth: {{patient.dateOfBirth}} ({{utl.dob2age(patient.dateOfBirth)}} yo)</p>
+        <p>Date of Birth: {{patient.dateOfBirth}}</p>
         <p>Room: {{patient.roomObj.name}}</p>
         <ion-badge item-end *ngIf = "patient.severity == 0" color="light">N/A</ion-badge>
         <ion-badge item-end *ngIf = "patient.severity == 1" color="success">Low</ion-badge>
