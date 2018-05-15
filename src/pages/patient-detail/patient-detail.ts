@@ -72,7 +72,14 @@ export class PatientDetailPage {
   }
 
   public viewCommentDetails(comment: Comment) {
-    const CommentDetailPage = this.modalCtrl.create('CommentDetailPage', { commentData: comment });
-    CommentDetailPage.present();
+    const commentDetailPage = this.modalCtrl.create('CommentDetailPage', { commentData: comment });
+    commentDetailPage.present();
+  }
+
+  public viewRoomPatients(roomId) {
+    const patientListPage = this.modalCtrl.create(
+      'RoomPatientsListPage', { roomId: this.patient.roomRef.id, room: this.patient.roomObj },
+    );
+    patientListPage.present();
   }
 }
