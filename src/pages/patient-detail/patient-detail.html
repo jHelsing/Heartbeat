@@ -24,9 +24,7 @@
         <p><strong>Date of Birth: </strong>{{patient.dateOfBirth}} ({{utl.dob2age(patient.dateOfBirth)}} yo)</p>
         <p><strong>Gender: </strong>{{patient.gender}}</p>
         <p><strong>Doctor: </strong>Dr. {{patient.doctorObj.firstName}} {{patient.doctorObj.lastName}}</p>
-        <p><strong>Office: </strong><button ion-button (click)="viewRoomPatients(patient.roomId)">
-            {{patient.roomObj.name}}
-          </button></p>
+        <p (click)="viewRoomPatients(patient.roomId)"><strong>Office: </strong><u><font color="blue">{{patient.roomObj.name}}</font></u></p>
         <p><strong>Arrival Time: </strong>{{patient.arrivalTime | date : "yyyy-MM-dd"}}</p>
         <p><strong>Blood Type: </strong>{{patient.bloodType}}</p>
         <p><strong>Allergies: </strong>{{patient.allergyObj.name}}</p>
