@@ -21,7 +21,7 @@
       <ion-item (click)="viewDetails(patient)">
         <ion-avatar item-start>
           <p class="avatar-base" [ngStyle]="{'background-color': patient.roomObj.color}">
-            {{patient.name.charAt(0).toUpperCase()}}
+            {{patient.name.charAt(0).toUpperCase()}}{{patient.name.split(" ")[1]?.charAt(0).toUpperCase()}}
           </p>
         </ion-avatar>
         <h2>{{patient.name}}</h2>
