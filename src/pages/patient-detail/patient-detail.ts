@@ -11,6 +11,7 @@ import { CommentProvider } from '../../providers/comment/comment';
 import { UtilsProvider } from '../../providers/utils/utils';
 import { AddCommentComponent } from '../../components/add-comment/add-comment';
 import { Patient } from '../../models/patient';
+import { PatientListPage } from '../patient-list/patient-list';
 import { Comment } from '../../models/comment';
 import { Observable } from 'rxjs/Observable';
 
@@ -59,7 +60,7 @@ export class PatientDetailPage {
       position: 'bot',
     });
     prompt.present();
-    this.navCtrl.pop();
+    this.navCtrl.setRoot(PatientListPage);
   }
 
   public addComment() {
