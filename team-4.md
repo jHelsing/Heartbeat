@@ -4,10 +4,12 @@
 %
 
 # Project Description
-The project is called Heartbeat, which is a mobile application for tracking patients in a hospital. Through the application, doctors can view patients, which doctors are treating a patient, the patient’s allergies, and the patient’s medical history.
+The project is called Heartbeat, which is a mobile application for tracking patients in a hospital. Through the application, doctors can view patients, which doctors are treating a patient, the patient’s allergies, and the patient’s medical history.  
 The initial description given by the customer is as follows:
+
 “Hospital Horror: I work in a hospital, and we are struggling to keep track of our patients. It is such a difficult process which requires knowing; any treatments they have had, which doctor is treating them, their allergies, the doctor’s diagnosis. We desperately need an app which can tell us all of these details about a patient.”
-The application is developed using Ionic, a cross-platform mobile framework built on top of AngularJS and Apache Cordova. The backend database is developed using Firebase. Ionic uses TypeScript for scripting and HTML with CSS for representing visual components.
+
+The application is developed using Ionic, a cross-platform mobile framework built on top of AngularJS and Apache Cordova. The backend database is developed using Firebase. Ionic uses TypeScript for scripting and HTML with CSS for representing visual components.  
 
 - GitHub repository: https://github.com/jHelsing/Heartbeat
 - Issue tracker: https://trello.com/b/nf2rvUqW/development
@@ -196,42 +198,97 @@ This sprint, efforts were spent on trying to get the test first principle to wor
 
 When looking in the product backlog, all the different backlog items that were once created have now been implemented, which means we are more or less on schedule. This is good, as this could be seen as the last “real” sprint.
 
-<!-- Reflect on how the work worked.
-This data will form the basis for your final reflection.
-As the postmortem will be a writeup, it's fine to use shorthand notes, bullet list, and similar.
-Keep within 1000-1500 words. -->
-
-<!-- Discuss any deviations from the sprint commitment. -->
-
-<!-- Reflect on the agile practice practiced: -->
-
-<!-- - Did your experience correspond to or contradict with what literature claims?
-
-    - Analysis of why. Mostly interesting if something unexpected happens, but even
-      if everything runs according to plan, reflecting on the underlying mechanisms
-      can be interesting. -->
-
-<!-- - How did the practices interact?
-  Did they complement or counteract each other? -->
-
-<!-- - How efficient were the practices, given the time they took to use? -->
-
 # Postmortem
-Once the project is finished, summarize your experiences.
-The postmortem part shall be 2000-3000 words long.
+This section presents a reflection on this projects and the agile practices used within. Each practice has a dedicated subsection and discusses the following:
 
-Considering the following:
+- Did the experience of this method contradict or correspond to what literature suggests?
+- How did this practice interact with other practices?
+- Was this practice efficient?
 
-- With regards to the agile practices, reflect on the combined experience from all sprints.
+After discussing the agile methods, a discussion about what should change if we are to do this project again.
 
-- Which practices had the most impact on the software developed?
-  Think of both positives and negatives.
+## Pair Programming
+When applying the pair programming practice, the team felt that the coding process became more effective. Even though the literature states that empirical studies fail to support pair programming, we feel that it can be useful. It might be that it worked well because of the chosen framework that was new to everyone in the group, which made pair programming help in catching faults as well as speeding up the process of finding information on how to implement things.
 
-- What would you do differently in a future but similar project?
+Pair programming did help the team in other aspects as well. It complemented with collective code ownership since multiple people learned different parts of the code together. This made everyone understand different parts of the code much faster than if one would sit with each part by themselves. Thereby making the process of collective code ownership grow much faster. One could also state that it helped members with coding standards. However, this would only be a complement in situations such as this one, where the framework is new to the group. 
 
+With the experiences from this project, it is safe to say that pair programming definitely can be an effective way to work. However, as the project progressed and everyone got more comfortable with how to code and use the new things, pair programming became less effective which makes our experience go from contradicting the literature to correspond to it.
+
+## Planning Game
+Using planning game to estimate our effort was in a way useful because we got an idea of how much work we would have to complete during the sprint. However, since we only did it once, our estimations were off, sometimes things with the same score took somewhere between 5 minutes and 5 hours. Additionally, because we only used it once, it was impossible to establish a reasonable velocity. The planning game for us did not take that long, only a couple of hours, which meant that since it gave such an extensive overview, we consider it to have been useful.
+
+## Small Releases
+A core idea with agile is to obtain frequent customer feedback. This is done by working iteratively and showing the product in its current state to the customer at the end of each iteration. Because we wanted to show a small demo at each of these customer meetings, we wanted some working prototype. For this, working with small releases, where each release contains a working product with more functionality added to the previous, is a fitting workflow. It can be difficult for some projects to divide the work so that each finished part adds to a specific functionality which is visible to the user, but for us it has worked rather well. The earlier sprints needed some work to be spent on setting up backend functionality and deciding on a proper project structure, meaning less visible functionality was presented to the customer, but during the later sprints, the releases contained mostly new, complete features.
+
+## Simple Design
+Developing software with a simple design helped us deliver working software quickly, in small releases. This made it possible to have working prototypes, which could be shown to and validated by, the customer. It is easy to get attached to something you have spent much effort on, i.e. spending multiple hours on a design, which can be problematic in case the design needs to be updated in the future, for instance, if the customer requests another design. The safer alternative is building a simple, low-fidelity design, which can be further developed during future iterations. We worked with this actively and made our sketches on whiteboards to maintain a rather low level of detail, as opposed to creating pixel-perfect mockups, for instance. As a rule of thumb, we also avoided writing custom CSS for our components, to avoid spending unnecessary work on a design, as it was prone to change in the future, and we did not have a defined style guide. Not applying custom styles to the components was made possible thanks to the Ionic framework, which provides standardized components, that in general look good out of the box.
+
+## Test-first
+Test first and test-driven development are central parts of extreme programming. For experienced developers in familiar environments, they are probably very powerful as it pinpoints the minimal functionality required to satisfy some requirement. Together with refactoring (described in the next section), this becomes a very fast and efficient practice which at the same time guarantees that all implemented functionality has been tested.
+
+However, for us, this was not the case at all. All group members of this project were new to the techniques used; all group members were new to test driven development, the nature of the application was not suitable for unit tests and the project demanded new functionality to be added each sprint. Some group members spent time on trying to implement useful unit tests to use for test-driven development, but it all turned out to be a waste of time. We believe we would have been able to apply test-driven development in some parts of the project, and write complete end-to-end tests to ensure the quality of the software, but we had already created the parts suitable for TDD when we tried to apply the practice, and there was not enough time to do end-to-end tests.
+
+If we were to redo the project, we would try to put more effort during earlier sprints on understanding testing tools for the used languages and frameworks, as well as try to lower the amount of functionality for each sprint to provide a buffer for this kind of necessary research and implementation work that do not create visible functionality to the customer.
+
+## Refactoring
+To avoid increasing our technical debt, we ensured that the code met our standards by performing refactoring regularly. An excellent occasion to perform this was after multiple pull requests had been merged, as different authors typically wrote the code in the pull requests, and therefore following different styles. Refactoring the code enabled us to follow our coding standards, and to increase the collective code ownership by exposing the code to everyone, and writing it in a standardized way. Refactoring is something we feel is very efficient, especially if done at an early stage, to avoid further technical debt. By using pull requests with required code reviews, we were also able to detect problems early, which could lead to the pull request issuer to be able to refactor the code in the pull request instantly. This lead to our code holding, in general, meeting our expectations, which overall lowered the need for extensive refactoring.
+
+## Continuous Integration
+Continuous integration is a good way for systems to absorb small updates while making sure no change breaks anything. It is also a way to automate the checking of the system after each update instead of having each developer do integration tests of their changes manually when they want to integrate something. For some projects, it can be nearly impossible to emulate and run the whole system on one developer’s machine, and therefore integration testing needs to be run in a separate environment, but this is not the case for our project.
+
+For us, setting up Travis and waiting for CI builds when merging pull requests was not worth it for the value we received in return. Since we never implemented any real useful unit or integration tests, the continuous integration builds do not test the code, and so we are not really doing continuous integration even though we have the environment set up. For future projects, just as for the issues with test driven development, more emphasis would need to be put on testing for the continuous integration to be useful.
+
+## Sustainable Pace
+By thinking of having a sustainable pace the group tried to work as with a “regular job”. But since it sometimes happened that someone preferred to work during the weekend, the working hours were differing sometimes. By complementing the practice with planning game to have estimations and get to know your velocity, sustainable pace is easier to keep. But there is also a risk with estimations, if they are misestimated it might force people to work hard on tasks that were assumed to be simple. This then leads to a work overload that ruins the sustainable pace. 
+
+It is in the end a nice thought to aim for a sustainable pace, but it is a difficult task to plan perfectly which leads to some sprints to have a higher workload and in some sprints there is less to to.
+
+## Coding Standards
+One of the things we used to make sure that we write code that looks the same was lint, which checks the code against a set of rules. Lint enabled us to have the same structure in the code. However, there was still the problem of solving similar problems in the same way. Using pull requests and reviewing these together made sure that all the code that had a similar purpose, actually worked in the same way. One example of this is the use of certain classes, called providers, that provide access to the database. With the providers, it was possible to access everything with different classes using methods that only changed very little depending on what information exists about that item type in the database.
+
+Our use of coding standards enabled us to reduce the amount of refactoring we needed. The decreased need for refactoring became very clear the further the project went on. In the beginning, we would spend group meetings inspecting each others code, which resulted in quite a lot of significant changes to it. However, when the project neared its final deadline in sprint four, we spent much less time reviewing, and there were fewer things in the new code that needed correction.
+
+So does the implementation of coding standards help programmers with understanding the code and making it easier to work on and understand different parts of the code? In this project, it most definitely helped us and enabled us to easier add new features and correcting problems in the code, even if the person correcting it is not the person who originally wrote it.
+
+## Collective Code Ownership
+Collective code ownership is vital to increase the knowledge about the code across the team. This facilitates development as everyone is more knowledgeable about the code in general, which also decreases the so-called truck factor. We used different practices to promote collective code ownership, such as code reviews, coding standards, pair programming, and refactoring. Code reviews exposed the code to all team members, coding standards made the code more easily understandable as we had standardized ways of doing things, pair programming effectively exposes the code to two persons at the same time, and refactoring makes sure the code follows the defined standards, which makes the code more easily understood by everyone. These methods were very efficient in promoting collective code ownership. However, we had a tendency where everyone continued working on features related to the first set of features he or she worked on.
+
+## Onsite Customer
+Onsite customer is one of the requirements of extreme programming in order to have instant feedbacks and decisions to facilitate the development. At the beginning of our project when close communication with the customer was necessary we chose two of our members to be proxy customer for taking decisions. But with time the requirements became more clear and visible, so we did not feel the necessity of a proxy onsite customer that much. Also due to the placement of easter break everyone kind of forgot about this and moved on to the other practices. 
+
+## Change for future
+For the future, it would be a good idea to set up the coding standards from the start of the project, since it, in this case, meant that we lost a week of correcting stuff. Moreover, the group could have done with more reflection and discussion before starting working on each sprint, since the way it was done in this project meant that we would have a lot of similar code and functionality, but in different locations within the project. A way to accommodate for this would be to have used the planning game more, and there include discussions about each of the backlog items and discuss their dependence and similarities. Another idea is to have brainstorming sessions before the group starts coding in each sprint. This brainstorming session would enable the group to reflect and think about challenges and possible solutions.
 
 # Project outcome
-Document the project, for example using screenshots.
+![](https://drive.google.com/file/d/13jKzjUqoFLpq0TkGTTthIF3aseMhFlXJ/view?usp=sharing)
+When the application is started, the user is shown a login screen where they can log in. On login, the user is redirected to a page corresponding to their role. The roles of the system are Doctor, Nurse or Admin. If the email or password is incorrect, a message is displayed notifying the user of what went wrong.
 
+![](https://lh3.googleusercontent.com/Jzl-9i_5lQ1cRg4l-lZDC5q3eLTndAmMXf_PyL93J0ph0MpPEbhcoAKDJDUKX-pCTu--FPjkEQPU0hpeJJLYrJs1dLqiFj4f4iprHG99CbZ2n6TG2H0XUFVBpVluE16xqbkOwBQ9UTEVJsQgVmHH14SQyFJJ4X463mv75shk3OzcjCxloQ-VrwQHY5bAI80-nWPu7f5bwmJj1AOSpdAurJPYIrOhEWg_mhgJ2BNKnhz-CRqZxiLS6gkAjIRnDHIS1c0uhktfTh9KUOFAPE2RcE9W37qCGvgj-n_ayV4Fh9xBjtSYJv11cnzFucOqVBypKen9G4Cm_-F-62xFI62jXxEjLSgmjgwUpo6G_Rb8OLmpsKLdVJ0C3w4w1WJ_sKmzDnjPYqvNs_yr09JtCE8oo3Ypvm-JzrcUVdk6owREajn_ENIHE5nQhBj81Ndb_sgfMquy_CMbg4yn0UImurrVgcJ1lMsULsDkrGokb-bpmZAiVgwViDbgqAFaIytbA7_5pcJ0g4HMj9nPeAiaRwjNr2ka29pt8H_HdbaD4BX2EWhHg0I7Riarj4CKpaCdxCRL=w2880-h1606)
+A list of all the patients is shown after someone has signed in. An admin/nurse sees all patients while a doctor only sees the patients assigned to them.
 
+![](https://lh3.googleusercontent.com/TAdVFJl9eM5Qvx_650vqnrw-3V0J1_N_hEpPzaSfgZ5T2S5GByJoXQG5aaX32rRS_xnwm2sRLr32fQNeKjozrsVXtxICMq6v_CEWX_EDR8ksFr5ZNH_dEIwWsda09R04S7zF1Tp8ZNsUfhPlVAvPXUm9WIFsNR8UFMWrVy9vG9VaEKhZo5qq4TcBoVf5_KQWXs4wj_ixkbNcd51fKJ5oYrirx4VhS9zDTAfbgDZyLqvZO0ocVn5eiTJzcbba0VwXot7hCjie5TuvU-ELcpk1Zv4dgCgKSQcBT21KWmC6bHdDCHagAISq2oU_OYAa50MFgRWgm_U1mB_jsHfDbsYqxGINuAOGQFW5NZpfhbBqVAMLKbZEX4R2eLkj39e4baI6I8lLXoofcNlVWEr6ZHbbY1ASDhNVdgeIYpRb8Xn5Bm97FpkABBelpwznbNNIoomnKyqOvPyzmBpyNpjiSeXmi9Od66cm-AH9yFeZMzV73Cz9Ksejw696QcL-s9e7KEFBN4YFuc-cc8I_9sSlxMpZ-NLa7VgqWErnrBWuIRH94DnwnCLm3p20VI8ky3GNEXA_=w1462-h1606)
+The view that appears when an admin creates a new patient. The same look and feel is used when updating a patient, and also when adding new nurses and doctors to the system.
 
+![](https://www.google.com/url?q=https://lh3.googleusercontent.com/9-H67ZlsVO0T8YxwgCettVSLopAb0H6KZ0HMUhJdtWJzRXSgNHb9GgTrpVxXM64oDiiLIVZV_U28qqhoVpfMsQjq9C52LEcBMJJBNXZAEOcDzQcu3RJcx8ZWvC4JUXEmZeiCmK4byxb7AjRlR8LyYahfef88C58whZEHRN8QAOuqT--YUzsAn2uUccomclc7H_f2786fF_0FwdaVRCduanRAwwMi1LPKZwu3SkB72M3JW7BfRy1Y5e5yrfKqFu1JjCN70jwxr3E7Jlai_P3w1kPZyVl4FSLwHqnoga_w-M88RX70fRf_JiDeK3Y4UFA9Pyw43CzOX8oy_ZXUdtLWALYv1920mt9mvut4dpON8Ilu4KLnR0yzKfvc4IB-Ja8RcHngJAV4Yx7JGHOF5EculQQ_4NHYvYvSdk70dG0qJjFGss7gA22pyGtUjwKdi_gbxyaO8vWhzUJ6PmAECBHYu9YxeYHGQYo9XsXFwa46If-KU8t_9TkCR2B0Oi5LxbpY3nzf8ldnBsWH1u5lyaHmKEiTwcA30W7rw-nQ0vjyV7xz9hEXTDrGWN5rOrkyAf6m%3Dw1462-h1606&sa=D&ust=1526641675625000&usg=AFQjCNFWxKs-F8p5-NAX7P1UH07epNDP9w)
+Patient details, which appears after clicking on a certain patient.
+
+![](https://lh3.googleusercontent.com/cZsX1iHJ_IWqBm__5xW3j28m_4gQdv8gURbNySNBMm3Al-zleh2aswxDxb81ufS5yaXlHNB7bPaSUyIOVLdbHdipWrls4U25c09oOWJwnGsHaiw9tNenkcx7zYyhQYZISRDokgAzl6u1uhXVUSN8OgBzjncZSdPSMj-dGA7lVCHJTUWykpto6GDCtCKPR_C1dvRwH3KruP7GEuqGGpElC5wxjyUsz3rFjVlE4a9tLKHcaRPmTkZLN6UwnD-24tUDGIZlJ-6qDgc9O-OVUxQN6CG04UOaxdO4fOqHGETtFolJrQgu9ZHz8tRJHiBDQC1fkkYe7qILNmUzXH1ZaDwvSzzmZ0dzkSSp_TCG0Q2FcWtfP4MbJ21wbjoLLnSxSVa8ecbskR4JdKl6EnDDYWhFFr4Sjx6JBF0LpnnRcm07yhkyyeAdL1ywM0Pw6xEw_aEjWRHvRjymTNudka-s413Yw92dB44ArGVxU_JKu0crUkfdKG3LMPFXujbZ7Ru57c750mKAwwL4xvxS05ziHdkQe55ak7DfFsESVARe6bBcUwLk9GevC0PUW_C-yHktqOZ7=w1462-h1606)
+In the patient history, all comments are shown in chronological order starting from the newest. There are three types of comments a user can add to a patient; diagnosis, treatment and note. The comments are color coded based on the type. Clicking a comment brings up a detailed view of it.
+
+![](https://www.google.com/url?q=https://lh3.googleusercontent.com/wr4Kqj40T0HlSwy_aw5q38aQK0IBIehP9H7pVwnMET5m3w4oj8iD6YiTKHKb1o1-FKghp1PFzFlXLGK4rzXlHSa6iolfkpovlXcRT-aZo1zaLfs4mPScFxdYL-5Mf2vv8YzvY70Ku2IJgxYtXwygbxr7YYycFqgqtu-DeI8esafu-r6D1SjIZlBCXDc0Xs7W3Wg9csARKLKbCTo-BmuufMoi9O1MMHPnZOvTzpyn9fC7sDND4BWqudKj4GnPvjX3ed5fqZc3XR3JQtQ62NWw-a9LosKjR3o6tiYYkj7v13dTW36Wb6ES5oZjclwg3JGezEWuEYH858Ybdc6eJ05capgLJm8J5EQQuzzoZS0nm2YeJWZLe_wM_GW8kuO2QZxceZ3Fkmr782fkJCscoVRKCCXpphX-OKzjkujlxkeCoTGiK9BJaPtRDpc9kIhuWAtxRJcWTdrnVDsTuJ9AD3hmNJVtmnkk7drX1JHoPWzpYBdYzh8tntt_kENrkbEv1q_-xnxJfI-cMNVA721j5qdayb85PwTkBmB1jkCpL3PlkaQnFjElQriq0ndRneWquCqL%3Dw1462-h1606&sa=D&ust=1526641759898000&usg=AFQjCNGh9PZ-6k09NCn65JPTpfyYkSmHMw)
+Doctors can add comments (note/diagnosis/treatment) to a patient with explanation and image attachments. Also they can change the patient’s severity through a comment.
+
+![](https://lh3.googleusercontent.com/FnkbMQAUHof9L0x7wSown6p_j3wGlOklyaHxLWfkbOC3edrDGLmC12IriYevz9PxNnX_eEkBpcRO3a_8IOFm_lpOcjDvFi5hhOSJprqfczayGew0gaHaNQeJUxRf-JzTx2JrAIWfCbbPSsUf-gdEDt8X5cxFxiDToYhUNWCqsmSnSC44Yr5FOloCOGYY1tClY2uTlc8lOgWTWLsCYd160F8vcmJmJ7TPV8PTPwdZzuXfxK5P74Ej0FCphXuqwZMgrgFkiPAOWD4HoiE6uqRdWMXSFHealTLPot53eIGzBPGOLEIuMccktTuxHOsP1pzUttTNnekULwDqIXle8fVc0g4IOtuugLj0u3tb-YswBZc75tAuOmCmqNm8KhozHiG8guIxyVV5le3r_BkRdr1wCUO09rZrgyNzvRC7IOpyJnD3heZQUzO0pjfuxMU2mTXDGFZ4aPjM3i8GhQRSK4MqM69vp79nwAQNXpTyYZKOoZjRlluKSPingzyXNphDQrTHt6VI-vXaJ0yJowG6mtkqAnLrdY6y3m4uRua8bs2DAZFAHFo_ntyEXSdDsEkLxa0j=w1462-h1606)
+Any note/diagnosis/treatment can be viewed in detail along with the attachments by clicking on the item.
+
+![](https://lh3.googleusercontent.com/lPnqrDDorg9HLpxJyy3QfbWwdbGMyiBaplDo4lzJp5M3xD0xc2ubcIfGGJfnRi1DG79Jsmy8lfQfv1kAbWChBDYOdJiGafwzqcW8xu1Vfzj4-jWyRq946Qv_kzgHizxrkBLzKRhILcUXL2pF4p6JjbHeW-6NH6GjDErLakmsdQrNqb6KBPtAFIFGY6XyzVotEbBEUgVCV7MDrQ2i7bnxFuhKhrVkZlfWhATb-6vomPyPQh0jZQxS7C914CzmQCq7u49ltCO64BTf-RstfydKBq1t1iy2Vn876RwSYOMBIj57pR753b_yf9fjgKBW3GkN08X1jFEl7LNtWm5KjimtVdw4a4Xo8sLQhMsz0UxLM8DugJMyNSfZ-xxRxH6yRnhHASpen3_0MzeSgf_wXAi39lNUPy_BVRZBO5_K1T3lWKXLKnfqsqCy5rzs5bmuy_JWiEBQYZDLm0qmxC18ah8y_h_aQpaRvAnFKREbmBoQXN_lom8WVcsi1KHH276f3ZfqrtAqNYs21Yo0orIE1JcTkJQeN96Ol7-Pd9IV_41hV1fCm8CJZDXhdIeWdt6agq7A=w1462-h1606)
+A doctor can transfer his/her patient to another doctor which means he will no longer be responsible for that patient and therefore will not be able to view that patient in his/her own list. Admin has the same privilege of transferring a patient. 
+
+![](https://lh3.googleusercontent.com/ZuzHX7IKxxcmXWtaXAFpP-NkmD6PSiABAOkdFzPM8onAhljv9pRc0UzgjVZsnNkLlWB_cx7ZucHnvEpZlnq-tF2jFgeaqpzu3NgAmiFLag1vM88ipb1dY5vZ0PAeoKx1fY8-ti6l_IBnriLF-PF7nA-WCU6suI0gyDqIVG7eFuO6v1RzFt5cONGZZKJ8o0Sfoid7ZGInjGOuE4fcNTDcJeom5RpJvOE2G1409F9WgFD2fxbJVaqvDfFvcIB20y_djtHDACaN9G4RfD-ORJLYaYiyt_5EVN8o9XlgoGRfMexXLE83HYDJJsAytf02Y9XT1TnKjxbLBhP20vSEZdcTVmzM_EZARUOD1pxdqr9tlbyZGSbZo9VvN-pzNFTMSVcX6xKwWbrSvLd2LZmw3eMTEdwAaZ4icAIOm4Of8jl8VjpQK3R_QldmITmBs6GseKLBomIhqMLEJD14JybvCWFkgqPHk0g3oLa-Ji4wfZKmzMGhUxNxyiPdi5t9bZKFce-6zgaZqogIaWehi4nKYrZvPLrsTD8qi8bOnFxA7TpambHCf6qg9--qWxDT72usgJek=w1462-h1606)
+An admin is able to view patients, doctors and nurses from three separate list views. The lists are navigated between from a tabbed navigation menu at the bottom of the screen.
+
+![](https://lh3.googleusercontent.com/jyMAt0YTtUvRPQf9ojsoZ9Uk__LJtQBY8NQY3DmLki8yrKY7Zm6zT6yv3p3exAjkAsRRYh5KXMniGoQ6sVt0zG2BaKN7ko5S6la7mTqqM38w-TS_PlNiqs6lXyuJriV28CJEsJB-PsjP5DETv3knaIS7OMvZhXPqSWMc9CUXqkSHs1XY2HKUD9hv1oMYYaCaaNVoxIEQFJYetuGY-cwZtoJswxApuCWJwA94BD6icNupJqsLjidwsIoOmJxjsAyREJ0xST7w4-pxyELW3GZTSyD6wOVI5mQBOalD6uWRrYqqkjQ4xOYx8kzrDUhmB9-VyvPXtlFZUsE8-zSEqf2L8adcufgDB_cbV0tfDhyzjGm2_S2q5Jpp9dqmUjh5Ro4odPAI3h-XcoXDJDbL7gAhMD2PiBDdo0gp6AoSbP2P7EjrVts2oK90QuHgI41QnhGFSU9-Pnk9TtQ0qdV_LSggCEiqzbM1NEEhp9wufaSq5GvIgDvphIgRGcvTDC-RGmBLvVmV1X6NF8wd-yq2DtcIuQQaEwvFSex1qlgUZmTg-vDDBXt8VppFM8wQOLEgm4IU=w1462-h1606)
+There is also a detailed view for the doctors and nurses, where their profile images are shown.
+
+![](https://lh3.googleusercontent.com/nBS3fdx5ZXpiPKb1CgpZ_AQn9ryMsKIleIRDKV8_Jg_6_-8t_6o9Tu_ZqedC6KyMlCQa8PjwLFycQKp7XQ5OndT2v_xCvyfxAEI_c_s_BDr9pjJ5JFu2sHrDIH63vYaL94zy094Qhw2RViilGKRCh5suGSBUQycbPXDzOacA4XW0dRUfVv-wIXySkDt8Rtou1KE2LNGbyf9HsKqztS3UMmgPzGOI6ULTImRiCtEt-sSG-1ks6Jp3SUwV2MvQ9-cceRJGxiuoYP7G828n2gLVm4BYr4P155wH5gAiDY_cr_PdFCIu6mER03t0zqSduaSjV8uE9MIGb7GlyhQONGQt7RM_xhPGAYlhIP3TweimRRxh0fu6QU84-vVR1gahQUDqHZmUc_Gf_knXXXTvFTndXDL_2wqNpXvb5BPH6BbbUtQ2DGFcDui3_BT0H2QR2hWHD0ZKY0YSDmxJFzkkoSJ2l-WeVkRdG9xwMZ_njSUC6UY50VObsQLMttM5YWLJt9hbsHDOtUzZ_6KsIvlIaHsSPuE5VV2LuXFIBq4aqY6c1NbkWDcae3bbdUKoou1M0lRb=w1462-h1606)
+The tabbed navigation is not shown when logged in as a doctor or a nurse. Only the list of patients assigned to the logged in person is shown, making the other tabs unnecessary to show.
